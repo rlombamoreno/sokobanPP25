@@ -29,6 +29,9 @@ public class Board {
 	public void setCells(Cell[][] cells) {
 		this.cells = cells;
 	}
+	public Cell[][] getCells() {
+		return cells;
+	}
 	public int getWidth() {
 		return width;
 	}

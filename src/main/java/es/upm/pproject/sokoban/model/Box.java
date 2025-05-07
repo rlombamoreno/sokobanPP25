@@ -2,30 +2,28 @@ package es.upm.pproject.sokoban.model;
 
 public class Box {
 	
-	private int x;
-	private int y;
+	private Position position;
 	private boolean isOnTarget;
 
 	public Box(int x, int y) {
-		this.x = x;
-		this.y = y;
+		this.position = new Position(x, y);
 		this.isOnTarget = false;
 	}
 
 	public int getX() {
-		return x;
+		return position.getX();
 	}
 
 	public void setX(int x) {
-		this.x = x;
+		this.position.setX(x);
 	}
 
 	public int getY() {
-		return y;
+		return position.getY();
 	}
 
 	public void setY(int y) {
-		this.y = y;
+		this.position.setY(y);
 	}
 
 	public boolean isOnTarget() {
