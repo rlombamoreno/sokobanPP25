@@ -38,4 +38,13 @@ public class Board {
 	public void setWidth(int width) {
 		this.width = width;
 	}
+
+	public void setCell(int i, int j, Cell cell) {
+		if (i >= 0 && i < height && j >= 0 && j < width) {
+			cells[i][j] = cell;
+		} else {
+			throw new IndexOutOfBoundsException("Invalid cell position.");
+		}
+		
+	}
 }
