@@ -3,7 +3,7 @@ package es.upm.pproject.sokoban.model;
 public class Position {
     private int x;
     private int y;
-
+    public enum Direction { UP, DOWN, LEFT, RIGHT }
     public Position(int x, int y) {
         this.x = x;
         this.y = y;
@@ -25,12 +25,12 @@ public class Position {
     	this.y = y;
     }
 
-    public Position getAdjacent(String direction) {
+    public Position getAdjacent(Direction direction) {
         switch (direction) {
-            case "UP": return new Position(x, y - 1);
-            case "DOWN": return new Position(x, y + 1);
-            case "LEFT": return new Position(x - 1, y);
-            case "RIGHT": return new Position(x + 1, y);
+            case UP: return new Position(x, y - 1);
+            case DOWN: return new Position(x, y + 1);
+            case LEFT: return new Position(x - 1, y);
+            case RIGHT: return new Position(x + 1, y);
             default: throw new IllegalArgumentException("Invalid direction");
         }
     }

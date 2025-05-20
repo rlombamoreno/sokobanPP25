@@ -1,27 +1,23 @@
 package es.upm.pproject.sokoban.model;
 
+import es.upm.pproject.sokoban.model.Position.Direction;
+
 public class WarehouseMan {
 	
 	private Position position;
+	private int moves = 0;
 
 	public WarehouseMan(int x, int y) {
 		this.position = new Position(x, y);
 	}
-
-	public int getX() {
-		return position.getX();
+	public Position getPosition() {
+		return position;
+	}
+	public void move(Direction direction) {
+		position.getAdjacent(direction);
+		moves++;
 	}
 
-	public void setX(int x) {
-		this.position.setX(x);
-	}
 
-	public int getY() {
-		return position.getY();
-	}
-
-	public void setY(int y) {
-		this.position.setY(y);
-	}
 
 }

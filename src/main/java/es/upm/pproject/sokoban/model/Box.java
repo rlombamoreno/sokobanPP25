@@ -14,24 +14,17 @@ public class Box {
 		return position.getX();
 	}
 
-	public void setX(int x) {
-		this.position.setX(x);
-	}
 
 	public int getY() {
 		return position.getY();
 	}
 
-	public void setY(int y) {
-		this.position.setY(y);
-	}
-
-	public boolean isOnTarget() {
-		return isOnTarget;
-	}
-
-	public void setOnTarget(boolean isOnTarget) {
-		this.isOnTarget = isOnTarget;
+   public void move(int dx, int dy) {
+	   	position.setX(position.getX() + dx);
+	   	position.setY(position.getY() + dy);
+   }
+	public void updateOnTarget(Cell cell) {
+		isOnTarget = cell.isTarget();
 	}
 
 }

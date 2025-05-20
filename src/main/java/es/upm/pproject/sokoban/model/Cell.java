@@ -1,66 +1,50 @@
 package es.upm.pproject.sokoban.model;
 
 public class Cell {
-	private boolean isWall;
-	private boolean isBox;
-	private boolean isTarget;
-	private boolean isPlayer;
+	
+	public enum CellType { EMPTY, WALL, BOX, TARGET, PLAYER }
 
-	public Cell() {
-		this.isWall = false;
-		this.isBox = false;
-		this.isTarget = false;
-		this.isPlayer = false;
+	private CellType type;
+
+
+	public Cell(CellType type) {
+		this.type = type;
 	}
 
 	public boolean isWall() {
-		return isWall;
+		return type == CellType.WALL;
 	}
 
-	public void setWall(boolean isWall) {
-		this.isWall = isWall;
+	public void setType(CellType type) {
+		this.type = type;
 	}
 
 	public boolean isBox() {
-		return isBox;
+		return type == CellType.BOX;
 	}
 
-	public void setBox(boolean isBox) {
-		this.isBox = isBox;
-	}
 
 	public boolean isTarget() {
-		return isTarget;
+		return type == CellType.TARGET;
 	}
 
-	public void setTarget(boolean isTarget) {
-		this.isTarget = isTarget;
-	}
 
 	public boolean isPlayer() {
-		return isPlayer;
-	}
-
-	public void setPlayer(boolean isPlayer) {
-		this.isPlayer = isPlayer;
+		return type == CellType.PLAYER;
 	}
 
 	public String getContent() {
-		if (isWall) {
+		if (isWall()) {
 			return "Wall";
-		} else if (isBox) {
+		} else if (isBox()) {
 			return "Box";
-		} else if (isTarget) {
+		} else if (isTarget()) {
 			return "Target";
-		} else if (isPlayer) {
+		} else if (isPlayer()) {
 			return "Player";
 		} else {
 			return " ";
 		}
-	}
-
-	public boolean isOnGoal() {
-		return isTarget && isBox;
 	}
 	
 
