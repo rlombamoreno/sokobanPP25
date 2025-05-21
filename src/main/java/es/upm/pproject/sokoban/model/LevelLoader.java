@@ -22,21 +22,20 @@ public class LevelLoader {
             for (int j = 0; j < width; j++) {
                 char cellChar = line.charAt(j);
                 Cell cell = new Cell();
-
                 switch (cellChar) {
                     case '+':
-                        cell.setWall(true);
+                        cell.setType(Cell.CellType.WALL);
                         break;
                     case '*':
-                        cell.setTarget(true);
+                        board.setTarget(i, j);
                         goalCount++;
                         break;
                     case '#':
-                        cell.setBox(true);
+                        cell.setType(Cell.CellType.BOX);
                         boxCount++;
                         break;
                     case 'W':
-                        cell.setPlayer(true);
+                        cell.setType(Cell.CellType.PLAYER);
                         warehouseManCount++;
                         break;
                     default:

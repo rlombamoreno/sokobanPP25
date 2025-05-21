@@ -18,13 +18,19 @@ public class Box {
 	public int getY() {
 		return position.getY();
 	}
+	
+	
 
    public void move(int dx, int dy) {
 	   	position.setX(position.getX() + dx);
 	   	position.setY(position.getY() + dy);
    }
-	public void updateOnTarget(Cell cell) {
-		isOnTarget = cell.isTarget();
+	public void updateOnTarget(Boolean isOnTarget) {
+		this.isOnTarget = isOnTarget;
+	}
+	
+	public boolean isOnTarget() {
+		return isOnTarget;
 	}
 
 }

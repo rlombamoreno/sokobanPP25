@@ -2,10 +2,13 @@ package es.upm.pproject.sokoban.model;
 
 public class Cell {
 	
-	public enum CellType { EMPTY, WALL, BOX, TARGET, PLAYER }
+	public enum CellType { EMPTY, WALL, BOX, PLAYER }
 
 	private CellType type;
 
+	public Cell() {
+		this.type = CellType.EMPTY;
+	}
 
 	public Cell(CellType type) {
 		this.type = type;
@@ -24,11 +27,6 @@ public class Cell {
 	}
 
 
-	public boolean isTarget() {
-		return type == CellType.TARGET;
-	}
-
-
 	public boolean isPlayer() {
 		return type == CellType.PLAYER;
 	}
@@ -38,8 +36,6 @@ public class Cell {
 			return "Wall";
 		} else if (isBox()) {
 			return "Box";
-		} else if (isTarget()) {
-			return "Target";
 		} else if (isPlayer()) {
 			return "Player";
 		} else {

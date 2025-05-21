@@ -1,13 +1,18 @@
 package es.upm.pproject.sokoban.model;
 
 public class Level {
-	private static int levelNumber = 1;
+	private int levelNumber;
 	private String levelName;
 	private Board board;
-
+	
 	public Level(String levelName, Board board) {
 	    this.levelName = levelName;
 	    this.board = board;
+	}
+	public Level(String levelName, Board board, int levelNumber) {
+	    this.levelName = levelName;
+	    this.board = board;
+	    this.levelNumber = levelNumber;
 	}
 
 	public int getLevelNumber() {
@@ -17,23 +22,16 @@ public class Level {
 	public String getLevelName() {
 		return levelName;
 	}
-
-	public void setLevelName(String levelName) {
-		this.levelName = levelName;
-	}
-   	public Board getBoard() {
+	
+	public Board getBoard() {
 		return board;
 	}
-   	public void setBoard(Board board) {
-		this.board = board;
-	}
+
    	public boolean isLevelComplete() {
-   	    for (Cell[] row : board.getCells()) { 
-   	        for (Cell cell : row) {
-   	            if (cell.getContent().equals("Box") && !cell.isOnGoal()) {
-   	                return false;
-   	            }
-   	        }
+   	    for (Box box : board.getBoxes()) {
+   	        if (!box.isOnTarget()) {
+   	            return false;
+   	        } 
    	    }
    	    return true;
    	}

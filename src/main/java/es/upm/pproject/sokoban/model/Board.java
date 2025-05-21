@@ -10,6 +10,7 @@ public class Board {
 	private Cell[][] cells;
 	private WarehouseMan warehouseman;
 	private List<Box> boxes;
+	private List<Position> targets;
 	
 	// The width and height of the board
 	private int width;
@@ -20,12 +21,22 @@ public class Board {
 		this.width = width;
 		this.height = height;
 		boxes = new java.util.ArrayList<>();
+		this.targets = new java.util.ArrayList<>();
+
 		cells = new Cell[height][width];
 		for (int i = 0; i < height; i++) {
 			for (int j = 0; j < width; j++) {
 				cells[i][j] = new Cell(CellType.EMPTY);
 			}
 		}
+	}
+	
+	public WarehouseMan getWarehouseman() {
+		return warehouseman;
+	}
+	
+	public List<Box> getBoxes() {
+		return boxes;
 	}
 	
 	public Cell getCell(int x, int y) {
@@ -52,7 +63,7 @@ public class Board {
 			cells[i][j] = cell;
 			if (cell.isPlayer()) {
 				warehouseman = new WarehouseMan(j, i);
-			} else if (cell.isBox()) {
+			} if (cell.isBox()) {
 				boxes.add(new Box(j, i));
 			}
 		} else {
@@ -94,11 +105,13 @@ public class Board {
 			if (boxTargetCell.isWall() || boxTargetCell.isBox()) {
 				return false; // Wall or another box
 			}
-			box.updateOnTarget(boxTargetCell);
-			box.move(boxNewPos.getX() - newPos.getX(), boxNewPos.getY() - newPos.getY());
-			if (!boxTargetCell.isTarget()) {
-				boxTargetCell.setType(CellType.BOX);
+			if(targets.contains(boxNewPos)) {
+				box.updateOnTarget(true);
+			} else {
+				box.updateOnTarget(false);
 			}
+			box.move(boxNewPos.getX() - newPos.getX(), boxNewPos.getY() - newPos.getY());
+			boxTargetCell.setType(CellType.BOX);
 			
 		}
 		return true; // Valid move
@@ -111,5 +124,13 @@ public class Board {
 			}
 		}
 		return null;
+	}
+
+	public void setTarget(int i, int j) {
+		if (i >= 0 && i < height && j >= 0 && j < width) {
+			targets.add(new Position(j, i));
+		} else {
+			throw new IndexOutOfBoundsException("Invalid cell position.");
+		}
 	}
 }

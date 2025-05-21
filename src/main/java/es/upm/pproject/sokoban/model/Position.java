@@ -3,7 +3,17 @@ package es.upm.pproject.sokoban.model;
 public class Position {
     private int x;
     private int y;
-    public enum Direction { UP, DOWN, LEFT, RIGHT }
+    public enum Direction { UP, DOWN, LEFT, RIGHT;
+
+	Direction getOpposite() {
+		switch (this) {
+			case UP: return DOWN;
+			case DOWN: return UP;
+			case LEFT: return RIGHT;
+			case RIGHT: return LEFT;
+			default: throw new IllegalArgumentException("Invalid direction");
+		}
+	} }
     public Position(int x, int y) {
         this.x = x;
         this.y = y;
