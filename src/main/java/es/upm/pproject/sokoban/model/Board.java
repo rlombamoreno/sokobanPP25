@@ -6,7 +6,6 @@ import es.upm.pproject.sokoban.model.Cell.CellType;
 import es.upm.pproject.sokoban.model.Position.Direction;
 
 public class Board {
-	// The board is a 2D array of cells
 	private Cell[][] cells;
 	private WarehouseMan warehouseman;
 	private List<Box> boxes;
@@ -75,15 +74,15 @@ public class Board {
 	public boolean movePlayer(Direction direction) {
 		Position playerPos = warehouseman.getPosition();
 		Position newPos = playerPos.getAdjacent(direction);
-		cells[playerPos.getY()][playerPos.getX()].setType(CellType.EMPTY);
-		if (isValidMove(newPos,direction)) {
-			cells[newPos.getY()][newPos.getX()].setType(CellType.PLAYER);
-			warehouseman.move(direction);
-			return true;
-		} else {
-			cells[playerPos.getY()][playerPos.getX()].setType(CellType.PLAYER);
+		
+		if (!isValidMove(newPos,direction)) {
 			return false;
 		}
+		System.out.println("!");
+		cells[playerPos.getY()][playerPos.getX()].setType(CellType.EMPTY);
+		cells[newPos.getY()][newPos.getX()].setType(CellType.PLAYER);
+		warehouseman.move(direction);
+		return true;
 	}
 
 
@@ -133,4 +132,27 @@ public class Board {
 			throw new IndexOutOfBoundsException("Invalid cell position.");
 		}
 	}
+	
+	@Override
+	public String toString() {
+	    StringBuilder sb = new StringBuilder();
+	    for (int i = 0; i < height; i++) {
+	        for (int j = 0; j < width; j++) {
+	            char symbol = ' ';
+	            Cell cell = cells[i][j];
+	            if (cell.isWall()) symbol = '+';
+	            else if (cell.isBox()) symbol = '#';
+	            else if (targets.contains(new Position(j, i))) symbol = '*';
+	            else if (cell.isPlayer()) symbol = 'W'; // Asegurar que el almacenero se imprime correctamente
+	            else symbol = ' ';
+
+	            sb.append(symbol);
+	        }
+	        sb.append("\n"); // Nueva línea por cada fila
+	    }
+	    return sb.toString();
+	}
+
+
+
 }

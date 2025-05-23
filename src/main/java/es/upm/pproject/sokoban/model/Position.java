@@ -5,7 +5,7 @@ public class Position {
     private int y;
     public enum Direction { UP, DOWN, LEFT, RIGHT;
 
-	Direction getOpposite() {
+	public Direction getOpposite() {
 		switch (this) {
 			case UP: return DOWN;
 			case DOWN: return UP;

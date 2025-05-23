@@ -14,7 +14,7 @@ public class WarehouseMan {
 		return position;
 	}
 	public void move(Direction direction) {
-		position.getAdjacent(direction);
+		position = position.getAdjacent(direction);
 		moves++;
 	}
 
