@@ -14,7 +14,7 @@ public class InputHandler {
     public void listenForInput() {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Enter command (W: UP, S: DOWN, A: LEFT, D: RIGHT, U: Undo, R: Restart, Q: Quit, G: Save Game, L: Load Game):");
-
+        gameController.displayGameStatus();
         while (true) {
             String input = scanner.nextLine().toUpperCase();
 
@@ -35,6 +35,6 @@ public class InputHandler {
                     System.out.println("Invalid input. Use W/S/A/D for movement, U to undo, R to restart, G to save, L to load, Q to quit.");
             }
             gameController.displayGameStatus();
-        }
-    }
+        }
+    }
 }
