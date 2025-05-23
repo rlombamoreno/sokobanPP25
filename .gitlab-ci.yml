@@ -1,0 +1,26 @@
+image: maven:3.8.5
+
+stages:
+  - test
+  - analysis
+
+variables:
+  SONARQUBE_HOST: https://costa.ls.fi.upm.es
+  SONARQUBE_TOKEN: $SONARQUBE_TOKEN
+
+test:
+  stage: test
+  script:
+    - mvn clean test
+  artifacts:
+    paths:
+      - target/surefire-reports/ 
+
+sonar_analysis:
+  stage: analysis
+  script:
+    - mvn sonar:sonar -Dsonar.host.url=$SONARQUBE_HOST -Dsonar.login=$SONARQUBE_TOKEN
+  only:
+    - main
+  dependencies:
+    - test 
