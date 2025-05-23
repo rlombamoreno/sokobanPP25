@@ -17,7 +17,6 @@ public class InputHandler {
         gameController.displayGameStatus();
         while (true) {
             String input = scanner.nextLine().toUpperCase();
-
             switch (input) {
                 case "W": gameController.movePlayer(Direction.UP); break;
                 case "S": gameController.movePlayer(Direction.DOWN); break;
@@ -35,6 +34,6 @@ public class InputHandler {
                     System.out.println("Invalid input. Use W/S/A/D for movement, U to undo, R to restart, G to save, L to load, Q to quit.");
             }
             gameController.displayGameStatus();
-        }
-    }
+            }
+        }
 }
