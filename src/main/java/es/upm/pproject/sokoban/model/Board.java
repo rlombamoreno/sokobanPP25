@@ -78,7 +78,6 @@ public class Board {
 		if (!isValidMove(newPos,direction)) {
 			return false;
 		}
-		System.out.println("!");
 		cells[playerPos.getY()][playerPos.getX()].setType(CellType.EMPTY);
 		cells[newPos.getY()][newPos.getX()].setType(CellType.PLAYER);
 		warehouseman.move(direction);

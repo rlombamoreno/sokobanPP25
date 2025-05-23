@@ -12,6 +12,8 @@
     <name>Sokoban</name>
     <description>A Java implementation of the Sokoban puzzle game</description>
     <url>http://www.example.com</url>
+    
+    
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -133,7 +135,7 @@
                         <configuration>
                             <transformers>
                                 <transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
-                                    <mainClass>es.upm.pproject.sokoban.Main</mainClass>
+                                    <mainClass>es.upm.pproject.sokoban.Sokoban</mainClass>
                                 </transformer>
                             </transformers>
                         </configuration>
