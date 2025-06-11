@@ -45,6 +45,9 @@
         <sonar.projectName>${project.name}-${sonar.id}</sonar.projectName>
         <sonar.projectKey>${project.groupId}:${project.artifactId}:${sonar.projectName}:${sonar.id}</sonar.projectKey>
         <sonar.scm.provider>git</sonar.scm.provider>
+        
+        <!-- Excluir coverage de view y controller -->
+        <sonar.coverage.exclusions>**/view/**,**/controller/**</sonar.coverage.exclusions>
     </properties>
 
     <dependencies>
