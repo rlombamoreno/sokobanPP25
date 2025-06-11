@@ -1,26 +1,15 @@
-image: maven:3.8.5
-
-stages:
-  - test
-  - analysis
-
-variables:
-  SONARQUBE_HOST: https://costa.ls.fi.upm.es
-  SONARQUBE_TOKEN: $SONARQUBE_TOKEN
-
-test:
-  stage: test
-  script:
-    - mvn clean test
-  artifacts:
+sonarqube-check:
+  image: maven:3.6.3-jdk-11
+  variables:
+    SONAR_USER_HOME: "${CI_PROJECT_DIR}/.sonar"  # Defines the location of the analysis task cache
+    GIT_DEPTH: "0"  # Tells git to fetch all the branches of the project, required by the analysis task
+  cache:
+    key: "${CI_JOB_NAME}"
     paths:
-      - target/surefire-reports/ 
-
-sonar_analysis:
-  stage: analysis
-  script:
-    - mvn sonar:sonar -Dsonar.host.url=$SONARQUBE_HOST -Dsonar.login=$SONARQUBE_TOKEN
+      - .sonar/cache
+  script: 
+    - mvn verify sonar:sonar -Dsonar.login=${SONAR_LOGIN} -Dsonar.id=${SONAR_ID}
+  allow_failure: true
   only:
-    - main
-  dependencies:
-    - test 
+    - main # or master (the name of your main branch)
+
