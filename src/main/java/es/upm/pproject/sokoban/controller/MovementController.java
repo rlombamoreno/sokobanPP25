@@ -18,7 +18,9 @@ public class MovementController {
         	moveHistory.push(direction);
         return moved;
     }
-
+    public Board getCurrentBoard() {
+		return board;
+	}
     // Deshacer el último movimiento
     public boolean undoLastMove() {
         if (moveHistory.isEmpty()) {

@@ -38,9 +38,9 @@ public class Board {
 		return boxes;
 	}
 	
-	public Cell getCell(int x, int y) {
-	    if (x >= 0 && x < width && y >= 0 && y < height) {
-	        return cells[y][x];
+	public Cell getCell(int i, int j) {
+	    if (i >= 0 && i < height  && j >= 0 && j < width) {
+	        return cells[i][j];
 	    }
 	    throw new IndexOutOfBoundsException("Invalid cell position.");
 	}
@@ -56,7 +56,12 @@ public class Board {
 	public void setWidth(int width) {
 		this.width = width;
 	}
-
+	public int getHeight() {
+		return height;
+	}
+	public void setHeight(int height) {
+		this.height = height;
+	}
 	public void setCell(int i, int j, Cell cell) {
 		if (i >= 0 && i < height && j >= 0 && j < width) {
 			cells[i][j] = cell;

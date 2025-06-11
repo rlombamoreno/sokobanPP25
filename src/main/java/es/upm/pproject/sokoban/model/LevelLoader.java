@@ -43,6 +43,7 @@ public class LevelLoader {
                         cell.setType(Cell.CellType.WALL);
                         break;
                     case '*':
+                    	cell.setIsTarget(true);
                     	board.setTarget(i, j);
                         goalCount++;
                         break;

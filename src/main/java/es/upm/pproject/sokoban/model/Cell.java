@@ -3,6 +3,7 @@ package es.upm.pproject.sokoban.model;
 public class Cell {
 	
 	public enum CellType { EMPTY, WALL, BOX, PLAYER }
+	public boolean isTarget = false;
 
 	private CellType type;
 
@@ -41,6 +42,14 @@ public class Cell {
 		} else {
 			return " ";
 		}
+	}
+
+	public void setIsTarget(boolean b) {
+		this.isTarget = b;
+	}
+
+	public boolean isTarget() {
+		return isTarget;
 	}
 	
 

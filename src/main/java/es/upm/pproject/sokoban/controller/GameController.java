@@ -39,4 +39,7 @@ public class GameController {
 	public InputHandler getInputHandler() {
 		return inputHandler;
 	}
+	public MovementController getMovementController() {
+		return movementController;
+	}
 }
