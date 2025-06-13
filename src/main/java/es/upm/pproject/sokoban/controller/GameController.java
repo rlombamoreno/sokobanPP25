@@ -5,12 +5,10 @@ import es.upm.pproject.sokoban.model.Position.Direction;
 
 public class GameController {
 	private Game game;
-    private LevelController levelController;
     private MovementController movementController;
 
     public GameController() {
         this.game = new Game();
-        this.levelController = new LevelController();
         this.movementController = new MovementController(game.getCurrentLevel().getBoard());
     }
     public void startNewGame() {
