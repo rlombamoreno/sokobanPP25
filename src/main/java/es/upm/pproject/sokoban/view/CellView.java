@@ -9,48 +9,38 @@ import es.upm.pproject.sokoban.model.Cell;
 
 public class CellView extends JPanel {
     private Cell cell;
-    private Image playerImage;
-    private Image boxImage;
+    private static Image playerImage;
+    private static Image boxImage;
+
+    static {
+        try {
+            playerImage = ImageIO.read(new File("src/main/resources/player.png"));
+            boxImage = ImageIO.read(new File("src/main/resources/box.png"));
+        } catch (IOException e) {
+            System.err.println("Error al cargar las imágenes.");
+            playerImage = null;
+            boxImage = null;
+        }
+    }
 
     public CellView(Cell cell) {
         this.cell = cell;
         setPreferredSize(new Dimension(20, 20));
-        loadPlayerImage();
-        loadBoxImage();
         updateAppearance();
     }
 
     public void updateCell(Cell newCell) {
-        this.cell = newCell;
-        updateAppearance();
-    }
-
-    private void loadPlayerImage() {
-        try {
-            playerImage = ImageIO.read(new File("src/main/resources/player.png"));
-        } catch (IOException e) {
-            System.err.println("Error al cargar la imagen del jugador.");
-            playerImage = null;
+        if (!newCell.equals(this.cell)) { // Solo actualiza si hay cambios
+            this.cell = newCell;
+            updateAppearance();
+            repaint();
         }
     }
 
-    private void loadBoxImage() {
-        try {
-            boxImage = ImageIO.read(new File("src/main/resources/box.png"));
-        } catch (IOException e) {
-            System.err.println("Error al cargar la imagen de la caja.");
-            boxImage = null;
-        }
-    }
-    
     private void updateAppearance() {
-        if ("Player".equals(cell.getContent())) {
-            setBackground(null); // Eliminar el color de fondo
-        } 
-        else if ("Box".equals(cell.getContent())) {
-        	setBackground(null); // Eliminar el color de fondo
-        }
-        else {
+        if ("Player".equals(cell.getContent()) || "Box".equals(cell.getContent())) {
+            setBackground(null); // Eliminar el color de fondo para imágenes
+        } else {
             switch (cell.getContent()) {
                 case "Wall":
                     setBackground(Color.DARK_GRAY);
@@ -60,7 +50,6 @@ public class CellView extends JPanel {
                     break;
             }
         }
-        repaint();
     }
 
     @Override
@@ -68,8 +57,7 @@ public class CellView extends JPanel {
         super.paintComponent(g);
         if ("Player".equals(cell.getContent()) && playerImage != null) {
             g.drawImage(playerImage, 0, 0, getWidth(), getHeight(), this);
-        }
-        else if ("Box".equals(cell.getContent()) && boxImage != null) {
+        } else if ("Box".equals(cell.getContent()) && boxImage != null) {
             g.drawImage(boxImage, 0, 0, getWidth(), getHeight(), this);
         }
     }
