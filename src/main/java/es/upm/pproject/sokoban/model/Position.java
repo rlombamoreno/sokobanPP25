@@ -1,5 +1,7 @@
 package es.upm.pproject.sokoban.model;
 
+import java.util.Objects;
+
 public class Position {
     private int x;
     private int y;
@@ -51,5 +53,10 @@ public class Position {
         if (!(obj instanceof Position)) return false;
         Position other = (Position) obj;
         return this.x == other.x && this.y == other.y;
+    }
+    
+    @Override
+    public int hashCode() {
+        return Objects.hash(x, y);
     }
 }

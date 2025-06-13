@@ -42,15 +42,10 @@ public class CellView extends JPanel {
     private void updateAppearance() {
         if ("Player".equals(cell.getContent()) || "Box".equals(cell.getContent())) {
             setBackground(null); // Eliminar el color de fondo para imágenes
+        } else if ("Wall".equals(cell.getContent())) {
+            setBackground(Color.DARK_GRAY);
         } else {
-            switch (cell.getContent()) {
-                case "Wall":
-                    setBackground(Color.DARK_GRAY);
-                    break;
-                default:
-                	setBackground(cell.isTarget() ? null : new Color(240, 240, 240));
-                    break;
-            }
+            setBackground(cell.isTarget() ? null : new Color(240, 240, 240));
         }
     }
 
