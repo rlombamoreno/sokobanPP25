@@ -92,6 +92,14 @@ public class MainTest {
             board.getCell(5, 5);
         });
     }
+    
+    @Test
+    void testGetCellInvalid4() {
+        Board board = new Board(3, 3); 
+        assertThrows(IndexOutOfBoundsException.class, () -> {
+            board.getCell(2, 0);
+        });
+    }
 
 
     @Test
