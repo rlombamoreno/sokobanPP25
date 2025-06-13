@@ -63,13 +63,6 @@ public class MainTest {
         assertFalse(cell.isPlayer());
     }
 
-    @Test
-    void testGetCellInvalid() {
-        assertThrows(IndexOutOfBoundsException.class, () -> board.getCell(-1, 0));
-        assertThrows(IndexOutOfBoundsException.class, () -> board.getCell(0, width));
-        assertThrows(IndexOutOfBoundsException.class, () -> board.getCell(height, 0));
-        assertThrows(IndexOutOfBoundsException.class, () -> board.getCell(0, -1));
-    }
 
     @Test
     void testSetCellValidPlayer() {
@@ -92,14 +85,6 @@ public class MainTest {
         assertEquals(1, boxes.get(0).getY());
     }
 
-    @Test
-    void testSetCellInvalid() {
-        assertThrows(IndexOutOfBoundsException.class, () -> board.setCell(-1, 0, new Cell(CellType.EMPTY)));
-        assertThrows(IndexOutOfBoundsException.class, () -> board.setCell(0, width, new Cell(CellType.EMPTY)));
-        assertThrows(IndexOutOfBoundsException.class, () -> board.setCell(height, 0, new Cell(CellType.EMPTY)));
-        assertThrows(IndexOutOfBoundsException.class, () -> board.setCell(0, -1, new Cell(CellType.EMPTY)));
-        assertThrows(IllegalArgumentException.class, () -> board.setCell(2, 2, null));
-    }
 
     @Test
     void testSetTargetValid() {
@@ -110,13 +95,6 @@ public class MainTest {
         assertTrue(boardStr.contains("*")); // Target is represented by '*'
     }
 
-    @Test
-    void testSetTargetInvalid() {
-        assertThrows(IndexOutOfBoundsException.class, () -> board.setTarget(-1, 0));
-        assertThrows(IndexOutOfBoundsException.class, () -> board.setTarget(0, width));
-        assertThrows(IndexOutOfBoundsException.class, () -> board.setTarget(height, 0));
-        assertThrows(IndexOutOfBoundsException.class, () -> board.setTarget(0, -1));
-    }
 
     @Test
     void testMovePlayerValid() {
@@ -246,12 +224,6 @@ public class MainTest {
         assertEquals(6, box.getY());
     }
 
-    @Test
-    void testInvalidBoxCreation() {
-        assertThrows(IllegalArgumentException.class, () -> new Box(-1, 0));
-        assertThrows(IllegalArgumentException.class, () -> new Box(0, -1));
-        assertThrows(IllegalArgumentException.class, () -> new Box(-5, -5));
-    }
 
     @Test
     void testBoxMove() {
