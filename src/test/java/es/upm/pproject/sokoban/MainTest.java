@@ -446,6 +446,54 @@ public class MainTest {
         assertFalse(pos.equals("not a Position")); 
     }
     
+    //-------------------------LEVEL----------------------------
+
+    @Test
+    void testConstructorWithLevelNameBoardAndNumber() {
+        Board board = new Board(5, 5);
+        Level level = new Level("Level 2", board, 2);
+        assertEquals("Level 2", level.getLevelName());
+        assertEquals(board, level.getBoard());
+        assertEquals(2, level.getLevelNumber());
+    }
+    
+    @Test
+    void testIsLevelCompleteFalse() {
+        Board board = new Board(5, 5);
+        Cell cell = new Cell(Cell.CellType.BOX);
+        board.setCell(2, 2, cell);
+        Level level = new Level("Incomplete Level", board);
+        assertFalse(level.isLevelComplete());
+    }
+    
+    @Test
+    void testIsLevelCompleteTrue() {
+        Board board = new Board(5, 5);
+        Cell cell = new Cell(Cell.CellType.BOX);
+        board.setCell(1, 1, cell);
+        board.setTarget(1, 1);
+        Box box = board.getBoxes().get(0);
+        box.updateOnTarget(true);
+        Level level = new Level("Completed Level", board);
+        assertTrue(level.isLevelComplete());
+    }
+    
+    
+    @Test
+    void testIsLevelCompleteWithMultipleBoxes() {
+        Board board = new Board(5, 5);
+        board.setCell(1, 1, new Cell(Cell.CellType.BOX));
+        board.setTarget(1, 1);
+        board.getBoxes().get(0).updateOnTarget(true);
+        board.setCell(2, 2, new Cell(Cell.CellType.BOX));
+        board.setTarget(2, 2);
+        board.getBoxes().get(1).updateOnTarget(true);
+        Level level = new Level("Nivel con múltiples cajas", board);
+        assertTrue(level.isLevelComplete());
+        board.getBoxes().get(1).updateOnTarget(false);
+        assertFalse(level.isLevelComplete());
+    }
+    
 }  
  
  
