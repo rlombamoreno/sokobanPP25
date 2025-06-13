@@ -76,6 +76,10 @@ public class MainMenuView extends JFrame {
     }
 
     private void startGame() {
+    	if (!hasEnoughLevels()) {
+            showErrorScreen();
+            return;
+        }
         dispose();
         GameView gameView = new GameView(gameController);
         gameView.setVisible(true);
@@ -86,5 +90,21 @@ public class MainMenuView extends JFrame {
         dispose();
         GameView gameView = new GameView(gameController);
         gameView.setVisible(true);
+    }
+    
+    private boolean hasEnoughLevels() {
+        int levelCount = 0;
+        for (int i = 1; i <= 4; i++) { // Buscar hasta 100 niveles
+            File levelFile = new File("level" + i + ".txt");
+            if (levelFile.exists()) {
+                levelCount++;
+            }
+        }
+        return levelCount >= 3;
+    }
+    private void showErrorScreen() {
+        dispose();
+        ErrorView errorView = new ErrorView();
+        errorView.setVisible(true);
     }
 }
