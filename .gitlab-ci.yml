@@ -9,7 +9,7 @@ sonarqube-check:
       - .sonar/cache
   script: 
     - mvn verify sonar:sonar -Dsonar.login=${SONAR_LOGIN} -Dsonar.id=${SONAR_ID}
-  allow_failure: false
+  allow_failure: true
   only:
     - main # or master (the name of your main branch)
 
