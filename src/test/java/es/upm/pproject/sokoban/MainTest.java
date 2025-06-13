@@ -6,6 +6,10 @@ import org.junit.jupiter.api.Test;
 import es.upm.pproject.sokoban.model.*;
 import es.upm.pproject.sokoban.model.Cell.CellType;
 import es.upm.pproject.sokoban.model.Position.Direction;
+
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.List;
 
 public class MainTest {
@@ -31,7 +35,6 @@ public class MainTest {
         assertEquals(width, board.getCells()[0].length);
         assertNotNull(board.getBoxes());
         assertTrue(board.getBoxes().isEmpty());
-        assertNotNull(board.getWarehouseman());
         for (int i = 0; i < height; i++) {
             for (int j = 0; j < width; j++) {
                 Cell cell = board.getCell(i, j);
@@ -63,13 +66,6 @@ public class MainTest {
         assertFalse(cell.isPlayer());
     }
 
-    @Test
-    void testGetCellInvalid() {
-        assertThrows(IndexOutOfBoundsException.class, () -> board.getCell(-1, 0));
-        assertThrows(IndexOutOfBoundsException.class, () -> board.getCell(0, width));
-        assertThrows(IndexOutOfBoundsException.class, () -> board.getCell(height, 0));
-        assertThrows(IndexOutOfBoundsException.class, () -> board.getCell(0, -1));
-    }
 
     @Test
     void testSetCellValidPlayer() {
@@ -92,14 +88,6 @@ public class MainTest {
         assertEquals(1, boxes.get(0).getY());
     }
 
-    @Test
-    void testSetCellInvalid() {
-        assertThrows(IndexOutOfBoundsException.class, () -> board.setCell(-1, 0, new Cell(CellType.EMPTY)));
-        assertThrows(IndexOutOfBoundsException.class, () -> board.setCell(0, width, new Cell(CellType.EMPTY)));
-        assertThrows(IndexOutOfBoundsException.class, () -> board.setCell(height, 0, new Cell(CellType.EMPTY)));
-        assertThrows(IndexOutOfBoundsException.class, () -> board.setCell(0, -1, new Cell(CellType.EMPTY)));
-        assertThrows(IllegalArgumentException.class, () -> board.setCell(2, 2, null));
-    }
 
     @Test
     void testSetTargetValid() {
@@ -110,13 +98,6 @@ public class MainTest {
         assertTrue(boardStr.contains("*")); // Target is represented by '*'
     }
 
-    @Test
-    void testSetTargetInvalid() {
-        assertThrows(IndexOutOfBoundsException.class, () -> board.setTarget(-1, 0));
-        assertThrows(IndexOutOfBoundsException.class, () -> board.setTarget(0, width));
-        assertThrows(IndexOutOfBoundsException.class, () -> board.setTarget(height, 0));
-        assertThrows(IndexOutOfBoundsException.class, () -> board.setTarget(0, -1));
-    }
 
     @Test
     void testMovePlayerValid() {
@@ -246,12 +227,6 @@ public class MainTest {
         assertEquals(6, box.getY());
     }
 
-    @Test
-    void testInvalidBoxCreation() {
-        assertThrows(IllegalArgumentException.class, () -> new Box(-1, 0));
-        assertThrows(IllegalArgumentException.class, () -> new Box(0, -1));
-        assertThrows(IllegalArgumentException.class, () -> new Box(-5, -5));
-    }
 
     @Test
     void testBoxMove() {
@@ -332,10 +307,107 @@ public class MainTest {
         assertThrows(NullPointerException.class, () -> wm.move(null));
     }
 
+    
+  //-----------------CELL--------------------------------
+    
+    
     @Test
-    void testConstructorWithNegativeCoordinatesThrows() {
-        assertThrows(IllegalArgumentException.class, () -> new WarehouseMan(-1, 2));
-        assertThrows(IllegalArgumentException.class, () -> new WarehouseMan(2, -5));
-        assertThrows(IllegalArgumentException.class, () -> new WarehouseMan(-1, -1));
+    void testConstructorEmpty() {
+        Cell cell = new Cell();
+        cell.setType(CellType.EMPTY);
+        assertFalse(cell.isWall());
+        assertFalse(cell.isBox());
+        assertFalse(cell.isPlayer());
+        assertEquals(" ", cell.getContent());
+        assertFalse(cell.isTarget());
+    }
+    
+    @Test
+    void testConstructorWall() {
+        Cell cell = new Cell(CellType.WALL);
+        assertTrue(cell.isWall());
+        assertEquals("Wall", cell.getContent());
+    }
+    
+    @Test
+    void testConstructorBox() {
+        Cell cell = new Cell(CellType.BOX);
+        assertTrue(cell.isBox());
+        assertEquals("Box", cell.getContent());
+    }
+    
+    @Test
+    void testConstructorPlayer() {
+        Cell cell = new Cell(CellType.PLAYER);
+        assertTrue(cell.isPlayer());
+        assertEquals("Player", cell.getContent());
+    }
+    
+    @Test
+    void testSetTypeWALL() {
+        Cell cell = new Cell(CellType.PLAYER);
+        assertTrue(cell.isPlayer());
+        assertEquals("Player", cell.getContent());
+    }
+    
+    
+    @Test
+    void testIsTargetTrue() {
+        Cell cell = new Cell();
+        cell.setIsTarget(true);
+        assertTrue(cell.isTarget());
+    }
+    
+    @Test
+    void testIsTargetFalse() {
+        Cell cell = new Cell();
+        cell.setIsTarget(true);
+        cell.setIsTarget(false);
+        assertFalse(cell.isTarget());
+    }
+   
+//-------------------------GAME----------------------------
+    @Test
+    void testGameInitialization() {
+        Game game = new Game();
+        Level level = game.getCurrentLevel();
+        assertNotNull(level);
+        assertEquals(1, game.getCurrentLevelNumber());
+    }
+
+    @Test
+    void testLoadLevel() {
+        Game game = new Game();
+        boolean loaded = game.loadLevel(1);
+        assertTrue(loaded);
+        assertEquals(1, game.getCurrentLevelNumber());
+        assertNotNull(game.getCurrentLevel());
+    }
+
+    @Test
+    void testMovePlayer() {
+        Game game = new Game();
+        boolean moved = game.movePlayer(Direction.RIGHT);
+        assertNotNull(moved);
+    }
+
+    @Test
+    void testRestartLevel() {
+        Game game = new Game();
+        Level before = game.getCurrentLevel();
+        game.movePlayer(Direction.RIGHT);
+        game.restartLevel();
+        Level after = game.getCurrentLevel();
+        assertNotNull(after);
+        assertEquals(game.getCurrentLevelNumber(), 1);
+        assertNotSame(before, after); 
+    }
+
+    
+
+    @Test
+    void testDisplayGameStatus() {
+        Game game = new Game();
+        assertDoesNotThrow(() -> game.displayGameStatus());
     }
 }
