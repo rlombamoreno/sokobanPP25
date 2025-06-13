@@ -11,11 +11,13 @@ public class CellView extends JPanel {
     private Cell cell;
     private static Image playerImage;
     private static Image boxImage;
+    private static Image equisImage; 
 
     static {
         try {
             playerImage = ImageIO.read(new File("src/main/resources/player.png"));
             boxImage = ImageIO.read(new File("src/main/resources/box.png"));
+            equisImage = ImageIO.read(new File("src/main/resources/equis.png"));
         } catch (IOException e) {
             System.err.println("Error al cargar las imágenes.");
             playerImage = null;
@@ -46,7 +48,7 @@ public class CellView extends JPanel {
                     setBackground(Color.DARK_GRAY);
                     break;
                 default:
-                    setBackground(cell.isTarget() ? Color.GREEN : new Color(240, 240, 240));
+                    setBackground(cell.isTarget() ? null : new Color(240, 240, 240));
                     break;
             }
         }
@@ -59,6 +61,8 @@ public class CellView extends JPanel {
             g.drawImage(playerImage, 0, 0, getWidth(), getHeight(), this);
         } else if ("Box".equals(cell.getContent()) && boxImage != null) {
             g.drawImage(boxImage, 0, 0, getWidth(), getHeight(), this);
+        } else if (cell.isTarget() && equisImage != null) {
+            g.drawImage(equisImage, 0, 0, getWidth(), getHeight(), this);
         }
     }
 }
