@@ -65,6 +65,33 @@ public class MainTest {
         assertFalse(cell.isBox());
         assertFalse(cell.isPlayer());
     }
+    
+    @Test
+    void testGetCellInvalid1() {
+        Board board = new Board(3, 3); 
+        assertThrows(IndexOutOfBoundsException.class, () -> {
+            board.getCell(-1, 0);
+        });
+
+    }
+    @Test
+    void testGetCellInvalid2() {
+        Board board = new Board(3, 3); 
+
+        assertThrows(IndexOutOfBoundsException.class, () -> {
+            board.getCell(0, 3);
+        });
+
+        
+    }
+    
+    @Test
+    void testGetCellInvalid3() {
+        Board board = new Board(3, 3); 
+        assertThrows(IndexOutOfBoundsException.class, () -> {
+            board.getCell(5, 5);
+        });
+    }
 
 
     @Test
