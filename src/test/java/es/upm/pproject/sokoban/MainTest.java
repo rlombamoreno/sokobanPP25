@@ -410,6 +410,42 @@ public class MainTest {
         Game game = new Game();
         assertDoesNotThrow(() -> game.displayGameStatus());
     }
+    
+  //-------------------------POSITION----------------------------
+    @Test
+    void testDirectionGetOppositeUp() {
+        assertEquals(Direction.DOWN, Direction.UP.getOpposite());
+        
+    }
+    
+    @Test
+    void testDirectionGetOppositeDown() {
+        assertEquals(Direction.UP, Direction.DOWN.getOpposite());
+      
+    }
+    
+    @Test
+    void testDirectionGetOppositeLeft() {
+        assertEquals(Direction.RIGHT, Direction.LEFT.getOpposite());
+    }
+    
+    @Test
+    void testDirectionGetOppositeRight() {
+        assertEquals(Direction.LEFT, Direction.RIGHT.getOpposite());
+    }
+    
+    @Test
+    void testEqualsSameObject() {
+        Position pos = new Position(2, 3);
+        assertTrue(pos.equals(pos)); 
+    }
+
+    @Test
+    void testEqualsDifferentType() {
+        Position pos = new Position(2, 3);
+        assertFalse(pos.equals("not a Position")); 
+    }
+    
 }  
  
  
