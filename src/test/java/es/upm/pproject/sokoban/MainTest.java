@@ -583,7 +583,109 @@ public class MainTest {
         Level level = new Level("Level with multiple boxes", board);
         assertFalse(level.isLevelComplete());
     }
-    
-}  
- 
- 
+
+//----------------------------LOAD LEVEL------------------------------------
+    @Test
+    void testValidLevelLoad() {
+        String levelData =
+            "Level 1\n" +
+            "++++\n" +
+            "+W*+\n" +
+            "+#++\n" +
+            "++++";
+
+        Level level = LevelLoader.loadLevel(levelData);
+        assertEquals("Level 1", level.getLevelName());
+        assertNotNull(level.getBoard());
+        assertEquals(1, level.getBoard().getBoxes().size());
+        assertNotNull(level.getBoard().getWarehouseman());
+
+        Cell targetCell = level.getBoard().getCell(1, 2);
+        assertTrue(targetCell.isTarget());
+    }
+
+    @Test
+    void testInvalidLevelNoBoxes() {
+        String levelData =
+            "No Boxes\n" +
+            "++++\n" +
+            "+W*+\n" +
+            "++++\n" +
+            "++++";
+
+        Exception exception = assertThrows(IllegalArgumentException.class, () ->
+            LevelLoader.loadLevel(levelData)
+        );
+        assertEquals("The level must contain at least one box and one objective.", exception.getMessage());
+    }
+
+    @Test
+    void testInvalidLeveNoGoals() {
+        String levelData =
+            "No Goals\n" +
+            "++++\n" +
+            "+W#+\n" +
+            "++++\n" +
+            "++++";
+
+        Exception exception = assertThrows(IllegalArgumentException.class, () ->
+            LevelLoader.loadLevel(levelData)
+        );
+        assertEquals("The level must contain at least one box and one objective.", exception.getMessage());
+    }
+
+    @Test
+    void testInvalidLevelMultipleW() {
+        String levelData =
+            "Too Many Players\n" +
+            "++++\n" +
+            "+W#+\n" +
+            "+W*+\n" +
+            "++++";
+
+        Exception exception = assertThrows(IllegalArgumentException.class, () ->
+            LevelLoader.loadLevel(levelData)
+        );
+        assertEquals("There must be exactly one warehouseman in the level.", exception.getMessage());
+    }
+
+    @Test
+    void testInvalidLevelMismatched() {
+        String levelData =
+            "Box Goal Mismatch\n" +
+            "++++\n" +
+            "+W#+\n" +
+            "+*++\n" +
+            "+*++";
+
+        Exception exception = assertThrows(IllegalArgumentException.class, () ->
+            LevelLoader.loadLevel(levelData)
+        );
+        assertEquals("The number of boxes and objectives must be the same.", exception.getMessage());
+    }
+
+    @Test
+    void testLevelNonRectangular() {
+        String levelData =
+            "Non Rectangular\n" +
+            "++++\n" +
+            "+W*+\n" +
+            "+#\n" +
+            "++++";
+
+        Level level = LevelLoader.loadLevel(levelData);
+        assertEquals(4, level.getBoard().getHeight());
+        assertEquals(4, level.getBoard().getWidth());
+    } 
+
+    @Test
+    void testInvalidLevelFormat() {
+        String levelData =
+            "Only Name";
+
+        Exception exception = assertThrows(IllegalArgumentException.class, () ->
+            LevelLoader.loadLevel(levelData)
+        );
+        assertEquals("Invalid level format: missing rows or data.", exception.getMessage());
+    }
+}
