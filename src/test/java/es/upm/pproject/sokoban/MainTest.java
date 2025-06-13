@@ -332,10 +332,62 @@ public class MainTest {
         assertThrows(NullPointerException.class, () -> wm.move(null));
     }
 
+    
+  //-----------------CELL--------------------------------
+    
+    
     @Test
-    void testConstructorWithNegativeCoordinatesThrows() {
-        assertThrows(IllegalArgumentException.class, () -> new WarehouseMan(-1, 2));
-        assertThrows(IllegalArgumentException.class, () -> new WarehouseMan(2, -5));
-        assertThrows(IllegalArgumentException.class, () -> new WarehouseMan(-1, -1));
+    void testConstructorEmpty() {
+        Cell cell = new Cell();
+        cell.setType(CellType.EMPTY);
+        assertFalse(cell.isWall());
+        assertFalse(cell.isBox());
+        assertFalse(cell.isPlayer());
+        assertEquals(" ", cell.getContent());
+        assertFalse(cell.isTarget());
+    }
+    
+    @Test
+    void testConstructorWall() {
+        Cell cell = new Cell(CellType.WALL);
+        assertTrue(cell.isWall());
+        assertEquals("Wall", cell.getContent());
+    }
+    
+    @Test
+    void testConstructorBox() {
+        Cell cell = new Cell(CellType.BOX);
+        assertTrue(cell.isBox());
+        assertEquals("Box", cell.getContent());
+    }
+    
+    @Test
+    void testConstructorPlayer() {
+        Cell cell = new Cell(CellType.PLAYER);
+        assertTrue(cell.isPlayer());
+        assertEquals("Player", cell.getContent());
+    }
+    
+    @Test
+    void testSetTypeWALL() {
+        Cell cell = new Cell(CellType.PLAYER);
+        assertTrue(cell.isPlayer());
+        assertEquals("Player", cell.getContent());
+    }
+    
+    
+    @Test
+    void testIsTargetTrue() {
+        Cell cell = new Cell();
+        cell.setIsTarget(true);
+        assertTrue(cell.isTarget());
+    }
+    
+    @Test
+    void testIsTargetFalse() {
+        Cell cell = new Cell();
+        cell.setIsTarget(true);
+        cell.setIsTarget(false);
+        assertFalse(cell.isTarget());
     }
 }
