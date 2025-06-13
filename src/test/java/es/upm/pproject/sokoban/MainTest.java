@@ -488,9 +488,22 @@ public class MainTest {
         board.setCell(2, 2, new Cell(Cell.CellType.BOX));
         board.setTarget(2, 2);
         board.getBoxes().get(1).updateOnTarget(true);
-        Level level = new Level("Nivel con múltiples cajas", board);
+        Level level = new Level("Level with multiple boxes", board);
         assertTrue(level.isLevelComplete());
         board.getBoxes().get(1).updateOnTarget(false);
+        assertFalse(level.isLevelComplete());
+    }
+    
+    @Test
+    void testIsLevelInCompleteWithMultipleBoxes() {
+        Board board = new Board(5, 5);
+        board.setCell(1, 1, new Cell(Cell.CellType.BOX));
+        board.setTarget(1, 1);
+        board.getBoxes().get(0).updateOnTarget(true);
+        board.setCell(2, 2, new Cell(Cell.CellType.BOX));
+        board.setTarget(2, 3);
+        board.getBoxes().get(1).updateOnTarget(false);
+        Level level = new Level("Level with multiple boxes", board);
         assertFalse(level.isLevelComplete());
     }
     
