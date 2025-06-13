@@ -15,18 +15,19 @@ public class BoardView extends JPanel {
 
     public void updateBoard(Board newBoard) {
         this.board = newBoard;
-        renderBoard();
+        removeAll(); // Eliminar todas las celdas antes de actualizar
+
+        renderBoard(); // Volver a pintar el tablero
+
+        revalidate();
+        repaint();
     }
 
     private void renderBoard() {
-        removeAll();
         for (int i = 0; i < board.getHeight(); i++) {
-          for (int j = 0; j < board.getWidth(); j++) {
-            Cell cell = board.getCell(i, j);
-            add(new CellView(cell));
-          }
+            for (int j = 0; j < board.getWidth(); j++) {
+                add(new CellView(board.getCell(i, j))); // Crear nuevas celdas
+            }
         }
-        revalidate();
-        repaint();
     }
 }

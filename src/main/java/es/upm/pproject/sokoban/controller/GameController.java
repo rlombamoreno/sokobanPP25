@@ -7,19 +7,18 @@ public class GameController {
 	private Game game;
     private LevelController levelController;
     private MovementController movementController;
-    private InputHandler inputHandler;
 
     public GameController() {
         this.game = new Game();
         this.levelController = new LevelController();
         this.movementController = new MovementController(game.getCurrentLevel().getBoard());
-        this.inputHandler = new InputHandler(this);
     }
     public void startNewGame() {
         game = new Game();
     }   
     public void restartLevel() {
         game.loadLevel(game.getCurrentLevelNumber());
+        movementController = new MovementController(game.getCurrentLevel().getBoard());
     }   
     public boolean movePlayer(Direction direction) {
         return movementController.move(direction);
@@ -36,9 +35,6 @@ public class GameController {
     public void displayGameStatus() {
         game.displayGameStatus();
     }
-	public InputHandler getInputHandler() {
-		return inputHandler;
-	}
 	public MovementController getMovementController() {
 		return movementController;
 	}
