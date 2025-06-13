@@ -43,6 +43,8 @@ public class InputHandler extends KeyAdapter {
 		case KeyEvent.VK_RIGHT:
 			direction = Direction.RIGHT;
 			break;
+		default:
+			break;
 		}
 
 		if (direction != null) {
