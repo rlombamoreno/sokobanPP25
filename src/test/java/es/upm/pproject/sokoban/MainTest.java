@@ -100,7 +100,23 @@ public class MainTest {
             board.getCell(2, -1);
         });
     }
+    
+    @Test
+    void testSetCellsReplacesBoardCells() {
+        Board board = new Board(2, 2); // crea una board inicial
 
+        Cell[][] newCells = {
+            { new Cell(Cell.CellType.EMPTY), new Cell(Cell.CellType.WALL) },
+            { new Cell(Cell.CellType.BOX), new Cell(Cell.CellType.PLAYER) }
+        };
+
+        board.setCells(newCells);
+
+        assertEquals(" ", board.getCell(0, 0).getContent());
+        assertEquals("Wall", board.getCell(0, 1).getContent());
+        assertEquals("Box", board.getCell(1, 0).getContent());
+        assertEquals("Player", board.getCell(1, 1).getContent());
+    }
 
     @Test
     void testSetCellValidPlayer() {
