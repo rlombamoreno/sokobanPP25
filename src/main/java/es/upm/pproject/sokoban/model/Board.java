@@ -137,6 +137,8 @@ public class Board {
 		}
 	}
 	
+	
+	
 	@Override
 	public String toString() {
 	    StringBuilder sb = new StringBuilder();
@@ -155,6 +157,15 @@ public class Board {
 	        sb.append("\n"); // Nueva línea por cada fila
 	    }
 	    return sb.toString();
+	}
+
+	public boolean isLevelCompleted() {
+		for (Box box : boxes) {
+			if (!box.isOnTarget()) {
+				return false; // Si alguna caja no está en su objetivo, el nivel no está completado
+			}
+		}
+		return true; // Todas las cajas están en sus objetivos
 	}
 
 

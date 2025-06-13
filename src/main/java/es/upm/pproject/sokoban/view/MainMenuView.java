@@ -36,8 +36,8 @@ public class MainMenuView extends JFrame {
 
         // Panel de instrucciones
         JLabel instructions = new JLabel("<html><center><h2>Bienvenido a Sokoban</h2>"
-                + "<p>Usa W, A, S, D para mover al personaje.</p>"
-                + "<p>Empuja las cajas hasta los objetivos.</p>"
+                + "<p>Usa W, A, S, D, o las flechas para mover al personaje.</p>"
+                + "<p>Empuja las cajas hasta los objetivos marcados por una X.</p>"
                 + "<p>Presiona U para deshacer un movimiento.</p>"
                 + "<p>Presiona R para reiniciar el nivel.</p>"
                 + "<p>Presiona Q para salir.</p></center></html>");
