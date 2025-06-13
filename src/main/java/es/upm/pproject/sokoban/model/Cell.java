@@ -3,7 +3,7 @@ package es.upm.pproject.sokoban.model;
 public class Cell {
 	
 	public enum CellType { EMPTY, WALL, BOX, PLAYER }
-	public boolean isTarget = false;
+	private boolean isTarget = false;
 
 	private CellType type;
 

@@ -17,7 +17,6 @@ public class InputHandler extends KeyAdapter {
 	@Override
 	public void keyPressed(KeyEvent e) {
 		Direction direction = null;
-		boolean actualizado = false;
 		switch (e.getKeyCode()) {
 		case KeyEvent.VK_W:
 			direction = Direction.UP;
@@ -52,7 +51,7 @@ public class InputHandler extends KeyAdapter {
 			if (moved) {
 				gameView.updateBoard(); // Actualizar la vista después del movimiento
 				if (gameController.getMovementController().getCurrentBoard().isLevelCompleted()) {
-					new LevelCompleteView(gameController, gameView); // Mostrar pantalla de nivel completado }
+					new LevelCompleteView(gameController, gameView); // Mostrar pantalla de nivel completado 
 				}
 
 			}

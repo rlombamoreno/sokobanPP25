@@ -2,7 +2,6 @@ package es.upm.pproject.sokoban.view;
 import javax.swing.*;
 import java.awt.*;
 import es.upm.pproject.sokoban.model.Board;
-import es.upm.pproject.sokoban.model.Cell;
 
 public class BoardView extends JPanel {
     private Board board;

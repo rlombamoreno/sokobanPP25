@@ -108,11 +108,9 @@ public class Board {
 			if (boxTargetCell.isWall() || boxTargetCell.isBox()) {
 				return false; // Wall or another box
 			}
-			if(targets.contains(boxNewPos)) {
-				box.updateOnTarget(true);
-			} else {
-				box.updateOnTarget(false);
-			}
+			
+			box.updateOnTarget(targets.contains(boxNewPos));
+			
 			box.move(boxNewPos.getX() - newPos.getX(), boxNewPos.getY() - newPos.getY());
 			boxTargetCell.setType(CellType.BOX);
 			
