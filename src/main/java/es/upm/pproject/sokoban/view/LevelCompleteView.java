@@ -47,6 +47,7 @@ public class LevelCompleteView extends JDialog {
 
     private void saveAndExit() {
         gameController.saveGame("saved_game.txt");
+        gameController.restartLevel();
         exitToMenu();
     }
 
