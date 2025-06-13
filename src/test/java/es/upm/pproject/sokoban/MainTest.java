@@ -255,6 +255,32 @@ public class MainTest {
         assertEquals(1, box.getX());
         assertEquals(1, box.getY());
     }
+    
+    @Test
+    void testLevelCompletedTrue() {
+        Board board = new Board(5, 5);
+        board.setCell(1, 1, new Cell(Cell.CellType.BOX));
+        board.setTarget(1, 1);
+        board.getBoxes().get(0).updateOnTarget(true);
+        board.setCell(2, 2, new Cell(Cell.CellType.BOX));
+        board.setTarget(2, 2);
+        board.getBoxes().get(1).updateOnTarget(true);
+        assertTrue(board.isLevelCompleted());
+        board.getBoxes().get(1).updateOnTarget(false);
+        assertFalse(board.isLevelCompleted());
+    }
+    
+    @Test
+    void testLevelCompletedFalse() {
+        Board board = new Board(5, 5);
+        board.setCell(1, 1, new Cell(Cell.CellType.BOX));
+        board.setTarget(1, 1);
+        board.getBoxes().get(0).updateOnTarget(true);
+        board.setCell(2, 2, new Cell(Cell.CellType.BOX));
+        board.setTarget(2, 3);
+        board.getBoxes().get(1).updateOnTarget(false);
+        assertFalse(board.isLevelCompleted());
+    }
 
 //--------------------------------------BOX---------------------------------
   //AQUI NO AGO UN BEFORE EACH PARA ASI CAMBIAR UN POCO, PERO LO PODRÍAMOS AÑADIR Y NO DECLARAR BOX EN TODOS LOS METODOS
