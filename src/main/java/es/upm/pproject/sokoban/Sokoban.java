@@ -5,6 +5,7 @@ import javax.swing.SwingUtilities;
 import es.upm.pproject.sokoban.controller.GameController;
 import es.upm.pproject.sokoban.controller.InputHandler;
 import es.upm.pproject.sokoban.view.GameView;
+import es.upm.pproject.sokoban.view.MainMenuView;
 
 public class Sokoban {
 	public static void main(String[] args) {
@@ -12,8 +13,8 @@ public class Sokoban {
         //InputHandler inputHandler = gameController.getInputHandler();
         //inputHandler.listenForInput();
         SwingUtilities.invokeLater(() -> {
-            GameView gameView = new GameView(gameController);
-            gameView.setVisible(true);
+        	MainMenuView mainMenu = new MainMenuView(gameController);
+            mainMenu.setVisible(true);
         });
         }
 }
