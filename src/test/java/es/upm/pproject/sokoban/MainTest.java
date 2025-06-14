@@ -543,6 +543,19 @@ class MainTest {
         assertDoesNotThrow(() -> game.saveGame(invalidFilename));
     }
     
+    
+    
+    @Test
+    void testLoadLevelWithCorruptedFile() throws IOException {
+        String filename = "level_corrupted.txt";
+        try (FileWriter writer = new FileWriter(filename)) {
+            writer.write("%%% CORRUPTED DATA %%%\n%%% MORE NOISE %%%\n");
+        }
+
+        Game game = new Game();
+        boolean loaded = game.loadLevel("corrupted".hashCode());
+        assertFalse(loaded);
+    }
   //-------------------------POSITION----------------------------
     @Test
     void testDirectionGetOppositeUp() {
