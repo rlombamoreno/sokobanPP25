@@ -28,6 +28,9 @@ class MainTest {
         board = new Board(width, height);
     }
 
+    
+  //--------------------------------------BOARD---------------------------------
+
     @Test
     void testConstructorValid() {
         assertEquals(width, board.getWidth());
@@ -346,7 +349,7 @@ class MainTest {
     }
 
 //--------------------------------------BOX---------------------------------
-  //AQUI NO AGO UN BEFORE EACH PARA ASI CAMBIAR UN POCO, PERO LO PODRÍAMOS AÑADIR Y NO DECLARAR BOX EN TODOS LOS METODOS
+  //AQUI NO HAGO UN BEFORE EACH PARA ASI CAMBIAR UN POCO, PERO LO PODRÍAMOS AÑADIR Y NO DECLARAR BOX EN TODOS LOS METODOS
     @Test
     void testBoxConstructor() {
         Box box = new Box(2, 2);
