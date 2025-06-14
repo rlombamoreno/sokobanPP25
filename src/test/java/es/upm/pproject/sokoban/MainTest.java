@@ -514,13 +514,13 @@ class MainTest {
     @Test
     void testEqualsSameObject() {
         Position pos = new Position(2, 3);
-        assertEquals(pos.equals(pos), true); 
+        assertEquals(true, pos.equals(pos)); 
     }
 
     @Test
     void testEqualsDifferentType() {
         Position pos = new Position(2, 3);
-        assertNotEquals(pos.equals("not a Position"), true); 
+        assertNotEquals(true, pos.equals("not a Position")); 
     }
     
     //-------------------------LEVEL----------------------------
