@@ -140,6 +140,44 @@ class MainTest {
         assertEquals(1, boxes.get(0).getX());
         assertEquals(1, boxes.get(0).getY());
     }
+    
+    @Test
+    void testSetCellInvalid1() {
+        Board board = new Board(3, 3); 
+        Cell emptyCell = new Cell(CellType.EMPTY);
+        assertThrows(IndexOutOfBoundsException.class, () -> {
+        	board.setCell(-1, 1, emptyCell);
+        });
+
+    }
+    @Test
+    void testSetCellInvalid2() {
+    	Board board = new Board(3, 3); 
+        Cell emptyCell = new Cell(CellType.EMPTY);
+        assertThrows(IndexOutOfBoundsException.class, () -> {
+        	board.setCell(1, -1, emptyCell);
+        });
+
+        
+    }
+    
+    @Test
+    void testSetCellInvalid3() {
+    	Board board = new Board(3, 3); 
+        Cell emptyCell = new Cell(CellType.EMPTY);
+        assertThrows(IndexOutOfBoundsException.class, () -> {
+        	board.setCell(4, 1, emptyCell);
+        });
+    }
+    
+    @Test
+    void testSetCellInvalid4() {
+    	Board board = new Board(3, 3); 
+        Cell emptyCell = new Cell(CellType.EMPTY);
+        assertThrows(IndexOutOfBoundsException.class, () -> {
+        	board.setCell(1, 4, emptyCell);
+        });
+    }
 
 
     @Test
