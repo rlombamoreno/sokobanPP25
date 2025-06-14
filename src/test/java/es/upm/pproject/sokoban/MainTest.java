@@ -12,7 +12,7 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.List;
 
-public class MainTest {
+class MainTest {
     private Board board;
     //private Box box;
     private final int width = 5;
@@ -476,7 +476,7 @@ public class MainTest {
         game.restartLevel();
         Level after = game.getCurrentLevel();
         assertNotNull(after);
-        assertEquals(game.getCurrentLevelNumber(), 1);
+        assertEquals(1, game.getCurrentLevelNumber());
         assertNotSame(before, after); 
     }
 
@@ -514,13 +514,13 @@ public class MainTest {
     @Test
     void testEqualsSameObject() {
         Position pos = new Position(2, 3);
-        assertTrue(pos.equals(pos)); 
+        assertEquals(pos.equals(pos), true); 
     }
 
     @Test
     void testEqualsDifferentType() {
         Position pos = new Position(2, 3);
-        assertFalse(pos.equals("not a Position")); 
+        assertNotEquals(pos.equals("not a Position"), true); 
     }
     
     //-------------------------LEVEL----------------------------
