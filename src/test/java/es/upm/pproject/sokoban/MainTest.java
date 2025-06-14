@@ -208,6 +208,29 @@ class MainTest {
         assertFalse(moved);
         assertTrue(board.getCell(0, 0).isPlayer());
     }
+    
+    @Test
+    void testMovePlayerInvalid() {
+    	board.setCell(4, 0, new Cell(CellType.PLAYER));
+        boolean moved = board.movePlayer(Direction.LEFT);
+        assertFalse(moved);
+    }
+    
+    
+    
+    @Test
+    void testMovePlayerInvalid3() {
+    	board.setCell(0, 4, new Cell(CellType.PLAYER));
+        boolean moved = board.movePlayer(Direction.UP);
+        assertFalse(moved);
+    }
+    
+    @Test
+    void testMovePlayerInvalid4() {
+    	board.setCell(0, 0, new Cell(CellType.PLAYER));
+        boolean moved = board.movePlayer(Direction.LEFT);
+        assertFalse(moved);
+    }
 
     @Test
     void testMovePlayerIntoWall() {
