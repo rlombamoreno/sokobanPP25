@@ -8,6 +8,7 @@ import es.upm.pproject.sokoban.model.Cell.CellType;
 import es.upm.pproject.sokoban.model.Position.Direction;
 
 import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
@@ -524,6 +525,34 @@ class MainTest {
         Game game = new Game();
         boolean loaded = game.loadSavedGame("nonexistentfile.txt");
         assertFalse(loaded);
+    }
+    
+    @Test
+    void testLoadLevelIOException() {
+        Game game = new Game();
+        boolean loaded = game.loadLevel(99); 
+        assertFalse(loaded);
+    }
+    
+    @Test
+    void testLoadLevelReturnsNull() throws IOException {
+        // Crear archivo vacío
+        String filename = "level_empty.txt";
+        try (FileWriter writer = new FileWriter(filename)) {
+            writer.write("Only Name"); // forzamos error de formato
+        }
+
+        Game game = new Game();
+        boolean loaded = game.loadLevel("empty".hashCode()); // hashCode como número para evitar colisión
+
+        assertFalse(loaded);
+    }
+    
+    @Test
+    void testSaveGameIOException00() {
+        Game game = new Game();
+        String invalidFilename = "/invalid_path/saved_game.txt";
+        assertDoesNotThrow(() -> game.saveGame(invalidFilename));
     }
     
   //-------------------------POSITION----------------------------
