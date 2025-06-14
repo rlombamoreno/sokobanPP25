@@ -323,6 +323,20 @@ class MainTest {
     }
     
     @Test
+    void testFindBoxes() {
+        board.setCell(1, 1, new Cell(CellType.BOX));
+        board.setCell(2, 2, new Cell(CellType.BOX));
+        Box box = board.getBoxes().get(0);
+        Box box1 = board.getBoxes().get(1);
+        assertNotNull(box);
+        assertEquals(1, box.getX());
+        assertEquals(1, box.getY());
+        assertNotNull(box1);
+        assertEquals(2, box1.getX());
+        assertEquals(2, box1.getY());
+    }
+     
+    @Test
     void testLevelCompletedTrue() {
         Board board = new Board(5, 5);
         board.setCell(1, 1, new Cell(Cell.CellType.BOX));
