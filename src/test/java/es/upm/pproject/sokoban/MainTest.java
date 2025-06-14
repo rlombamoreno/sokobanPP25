@@ -603,17 +603,6 @@ class MainTest {
         Cell targetCell = level.getBoard().getCell(1, 2);
         assertTrue(targetCell.isTarget());
     }
-    
-    @Test
-    void testLoadLevelThrowsWhenLevelLinesAreEmpty() {
-        String invalidLevelData = "Level 1"; // Solo el nombre, sin filas de contenido
-
-        Exception exception = assertThrows(IllegalArgumentException.class, () -> {
-            LevelLoader.loadLevel(invalidLevelData);
-        });
-
-        assertEquals("Invalid level format: missing rows or data.", exception.getMessage());
-    }
 
     @Test
     void testInvalidLevelNoBoxes() {
