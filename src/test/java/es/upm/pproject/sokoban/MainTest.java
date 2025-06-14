@@ -7,6 +7,7 @@ import es.upm.pproject.sokoban.model.*;
 import es.upm.pproject.sokoban.model.Cell.CellType;
 import es.upm.pproject.sokoban.model.Position.Direction;
 
+import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
@@ -486,6 +487,43 @@ class MainTest {
     void testDisplayGameStatus() {
         Game game = new Game();
         assertDoesNotThrow(() -> game.displayGameStatus());
+    }
+    
+    @Test
+    void testSaveGameSuccess() {
+        Game game = new Game();
+        String filename = "testSave.txt";
+        assertDoesNotThrow(() -> game.saveGame(filename));
+        File file = new File(filename);
+        assertTrue(file.exists());
+        file.delete();
+    }
+    
+    @Test
+    void testSaveGameIOException() {
+        Game game = new Game();
+        assertDoesNotThrow(() -> game.saveGame("/invalid-path/testSave.txt"));
+    }
+    
+    @Test
+    void testLoadSavedGameSuccess() {
+        Game game = new Game();
+        String filename = "testLoad.txt";
+        game.saveGame(filename);
+
+        Game newGame = new Game();
+        boolean loaded = newGame.loadSavedGame(filename);
+        assertTrue(loaded);
+        assertEquals(game.getCurrentLevelNumber(), newGame.getCurrentLevelNumber());
+
+        new File(filename).delete(); // limpieza
+    }
+    
+    @Test
+    void testLoadSavedGameIOException() {
+        Game game = new Game();
+        boolean loaded = game.loadSavedGame("nonexistentfile.txt");
+        assertFalse(loaded);
     }
     
   //-------------------------POSITION----------------------------
