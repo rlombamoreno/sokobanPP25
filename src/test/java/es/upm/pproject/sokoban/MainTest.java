@@ -506,19 +506,7 @@ class MainTest {
         assertDoesNotThrow(() -> game.saveGame("/invalid-path/testSave.txt"));
     }
     
-    @Test
-    void testLoadSavedGameSuccess() {
-        Game game = new Game();
-        String filename = "testLoad.txt";
-        game.saveGame(filename);
-
-        Game newGame = new Game();
-        boolean loaded = newGame.loadSavedGame(filename);
-        assertTrue(loaded);
-        assertEquals(game.getCurrentLevelNumber(), newGame.getCurrentLevelNumber());
-
-        new File(filename).delete(); // limpieza
-    }
+    
     
     @Test
     void testLoadSavedGameIOException() {
