@@ -697,6 +697,30 @@ class MainTest {
         Game.decreaseScore(game);
         assertEquals(1, game.getCurrentLevel().getLevelScore());
     }
+    
+    @Test
+    void testDecreaseScore2() {
+        Game game = new Game();
+        Game.decreaseScore(game);
+        assertEquals(0, game.getCurrentLevel().getLevelScore());
+    }
+    
+    @Test
+    void testResetLevelScore() {
+        Game game = new Game();
+        Level level = game.getCurrentLevel();
+        level.setLevelScore(5);  
+        Game.setTotalScore(10);
+        Game.resetLevelScore(game);
+        assertEquals(5, Game.getTotalScore()); 
+    }
+    
+    @Test
+    void testRestartLevelScore() {
+        Game.setTotalScore(15); 
+        Game.restartLevelScore();
+        assertEquals(0, Game.getTotalScore());
+    }
 
 
     
