@@ -12,12 +12,14 @@ public class CellView extends JPanel {
     private static Image playerImage;
     private static Image boxImage;
     private static Image equisImage;
+    private static Image boxEquisImage;
 
     static {
         try {
             playerImage = ImageIO.read(new File("src/main/resources/player.png"));
             boxImage = ImageIO.read(new File("src/main/resources/box.png"));
             equisImage = ImageIO.read(new File("src/main/resources/equis.png"));
+            boxEquisImage = ImageIO.read(new File("src/main/resources/boxEquis.png"));
         } catch (IOException e) {
             System.err.println("Error al cargar las imágenes.");
             playerImage = null;
@@ -54,10 +56,13 @@ public class CellView extends JPanel {
         super.paintComponent(g);
         if ("Player".equals(cell.getContent()) && playerImage != null) {
             g.drawImage(playerImage, 0, 0, getWidth(), getHeight(), this);
-        } else if ("Box".equals(cell.getContent()) && boxImage != null) {
-            g.drawImage(boxImage, 0, 0, getWidth(), getHeight(), this);
+        } else if ("Box".equals(cell.getContent()) && boxImage != null && boxEquisImage != null) {
+            if (cell.isTarget())
+            	g.drawImage(boxEquisImage, 0, 0, getWidth(), getHeight(), this);
+            else 
+            	g.drawImage(boxImage, 0, 0, getWidth(), getHeight(), this);
         } else if (cell.isTarget() && equisImage != null) {
         	g.drawImage(equisImage, 0, 0, getWidth(), getHeight(), this);
-        }
+        } 
     }
 }
