@@ -260,7 +260,7 @@ class MainTest {
     }
     
     @Test
-    public void testIsValidMoveFailsWhenBoxIsMissing() {
+    void testIsValidMoveFailsWhenBoxIsMissing() {
         Board board = new Board(3, 3);
         board.setCell(1, 1, new Cell(Cell.CellType.PLAYER));
         board.setCell(2, 1, new Cell(Cell.CellType.BOX)); 
@@ -295,6 +295,7 @@ class MainTest {
         assertTrue(board.getCell(2, 3).isBox());
         assertTrue(board.getCell(2, 4).isWall());
     }
+    
 
     @Test
     void testMovePlayerPushBoxIntoBox() {
@@ -344,7 +345,7 @@ class MainTest {
         assertEquals(2, box1.getX());
         assertEquals(2, box1.getY());
     }
-     
+       
     @Test
     void testLevelCompletedTrue() {
         Board board = new Board(5, 5);
