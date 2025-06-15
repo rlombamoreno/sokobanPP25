@@ -657,6 +657,32 @@ class MainTest {
         assertEquals("Level 2", level.getLevelName());
         assertEquals(board, level.getBoard());
     }
+    
+    @Test
+    void testGetLevelScore() {
+        Board board = new Board(5, 5);
+        Level level = new Level("Level 2", board);
+        assertEquals(0, level.getLevelScore());
+    }
+    
+    @Test
+    void testIncreaseLevelScore() {
+        Board board = new Board(5, 5);
+        Level level = new Level("Level 2", board);
+        level.increaseScore();
+        assertEquals(1, level.getLevelScore());
+    }
+    
+    @Test
+    void testDecreaseLevelScore() {
+        Board board = new Board(5, 5);
+        Level level = new Level("Level 2", board);
+        level.increaseScore();
+        level.increaseScore();
+        level.increaseScore();
+        level.decreaseScore();
+        assertEquals(2, level.getLevelScore());
+    }
 
 //----------------------------LOAD LEVEL------------------------------------
     @Test
