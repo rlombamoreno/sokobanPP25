@@ -125,11 +125,12 @@ public class Game {
 			try {
 				int x = Integer.parseInt(coordinates[0].trim());
 				int y = Integer.parseInt(coordinates[1].trim());
-				Box box = board.getBoxAt(x, y);
-				if (box != null) {
-					boxHistory.push(box);
+				if (x != -100 && y != -100 ) {
+					Box box = board.getBoxAt(x, y);
+					boxHistory.addLast(box);
 				} else {
-					System.out.println("Caja no encontrada en las coordenadas: " + move);
+					Box newBox = new Box(x, y);
+					boxHistory.addLast(newBox);
 				}
 			} catch (NumberFormatException e) {
 				System.out.println("Formato de coordenadas inválido: " + move);
@@ -162,16 +163,16 @@ public class Game {
 			if (!move.isEmpty()) {
 				switch (move.trim().toUpperCase()) {
 					case "UP":
-						moveHistory.push(Direction.UP);
+						moveHistory.addLast(Direction.UP);
 						break;
 					case "DOWN":
-						moveHistory.push(Direction.DOWN);
+						moveHistory.addLast(Direction.DOWN);
 						break;
 					case "LEFT":
-						moveHistory.push(Direction.LEFT);
+						moveHistory.addLast(Direction.LEFT);
 						break;
 					case "RIGHT":
-						moveHistory.push(Direction.RIGHT);
+						moveHistory.addLast(Direction.RIGHT);
 						break;
 					default:
 						System.out.println("Movimiento desconocido: " + move);
