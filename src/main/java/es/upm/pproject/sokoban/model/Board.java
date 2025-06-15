@@ -1,8 +1,9 @@
 package es.upm.pproject.sokoban.model;
 
 import java.util.ArrayList;
+import java.util.ArrayDeque;
+import java.util.Deque;
 import java.util.List;
-import java.util.Stack;
 
 import es.upm.pproject.sokoban.model.Cell.CellType;
 import es.upm.pproject.sokoban.model.Position.Direction;
@@ -12,7 +13,9 @@ public class Board {
 	private WarehouseMan warehouseman;
 	private List<Box> boxes;
 	private List<Position> targets;
-	private Stack<Box> boxHistory;
+	private Deque<Box> boxHistory;
+	private static final String INVALID_CELL_POSITION = "Invalid cell position.";
+
 	
 	
 	// The width and height of the board
@@ -25,7 +28,7 @@ public class Board {
 		this.height = height;
 		boxes = new ArrayList<>();
 		this.targets = new ArrayList<>();
-		boxHistory = new Stack<>();
+		boxHistory = new ArrayDeque<>();
 
 		cells = new Cell[height][width];
 		for (int i = 0; i < height; i++) {
@@ -47,7 +50,7 @@ public class Board {
 	    if (i >= 0 && i < height  && j >= 0 && j < width) {
 	        return cells[i][j];
 	    }
-	    throw new IndexOutOfBoundsException("Invalid cell position.");
+	    throw new IndexOutOfBoundsException(INVALID_CELL_POSITION);
 	}
 	public void setCells(Cell[][] cells) {
 		this.cells = cells;
@@ -72,11 +75,12 @@ public class Board {
 			cells[i][j] = cell;
 			if (cell.isPlayer()) {
 				warehouseman = new WarehouseMan(j, i);
-			} if (cell.isBox()) {
+			} 
+			if (cell.isBox()) {
 				boxes.add(new Box(j, i));
 			}
 		} else {
-			throw new IndexOutOfBoundsException("Invalid cell position.");
+			throw new IndexOutOfBoundsException(INVALID_CELL_POSITION);
 		}
 		
 	}
@@ -141,11 +145,11 @@ public class Board {
 		if (i >= 0 && i < height && j >= 0 && j < width) {
 			targets.add(new Position(j, i));
 		} else {
-			throw new IndexOutOfBoundsException("Invalid cell position.");
+			throw new IndexOutOfBoundsException(INVALID_CELL_POSITION);
 		}
 	}
 	
-	public Stack<Box> getBoxHistory() {
+	public Deque<Box> getBoxHistory() {
 		return boxHistory;
 	}
 	
@@ -182,7 +186,7 @@ public class Board {
 	    StringBuilder sb = new StringBuilder();
 	    for (int i = 0; i < height; i++) {
 	        for (int j = 0; j < width; j++) {
-	            char symbol = ' ';
+	            char symbol;
 	            Cell cell = cells[i][j];
 	            if (cell.isWall()) symbol = '+';
 	            else if (cell.isBox()) symbol = '#';
@@ -206,7 +210,7 @@ public class Board {
 		return null;
 	}
 
-	public void setBoxHistory(Stack<Box> boxHistory2) {
+	public void setBoxHistory(Deque<Box> boxHistory2) {
 		this.boxHistory = boxHistory2;
 	}
 

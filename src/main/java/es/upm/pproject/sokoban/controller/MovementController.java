@@ -2,16 +2,18 @@ package es.upm.pproject.sokoban.controller;
 
 import es.upm.pproject.sokoban.model.Board;
 import es.upm.pproject.sokoban.model.Position.Direction;
-import java.util.Stack;
+
+import java.util.ArrayDeque;
+import java.util.Deque;
 
 public class MovementController {
     private Board board;
-    private Stack<Direction> moveHistoryPlayer;
+    private Deque<Direction> moveHistoryPlayer;
     
 
     public MovementController(Board board) {
         this.board = board;
-        this.moveHistoryPlayer = new Stack<>();
+        this.moveHistoryPlayer = new ArrayDeque<>();
     }
     public boolean move(Direction direction) {
         boolean moved = board.movePlayer(direction);
@@ -31,10 +33,10 @@ public class MovementController {
         Direction oppositeMove = lastMove.getOpposite();
         return board.undoLastMove(oppositeMove);
     }
-	public Stack<Direction> getMoveHistoryPlayer() {
+	public Deque<Direction> getMoveHistoryPlayer() {
 		return moveHistoryPlayer;
 	}
-	public void setMoveHistoryPlayer(Stack<Direction> moveHistory) {
+	public void setMoveHistoryPlayer(Deque<Direction> moveHistory) {
 		this.moveHistoryPlayer = moveHistory;
 	}
     

@@ -4,7 +4,8 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.Stack;
+import java.util.ArrayDeque;
+import java.util.Deque;
 
 import es.upm.pproject.sokoban.model.Position.Direction;
 
@@ -63,24 +64,24 @@ public class Game {
     }
 
     // Guardar partida en archivo
-    public void saveGame(String filename, Stack<Direction> stack) {
-    	Stack<Box> boxHistory = currentLevel.getBoard().getBoxHistory();
-    	StringBuilder stackString = new StringBuilder();
+    public void saveGame(String filename, Deque<Direction> deque) {
+    	Deque<Box> boxHistory = currentLevel.getBoard().getBoxHistory();
+    	StringBuilder dequeString = new StringBuilder();
     	for (Box box : boxHistory) {
     	    if (box != null) {
-    	    	stackString.append(box.getX()).append(",").append(box.getY());
+    	    	dequeString.append(box.getX()).append(",").append(box.getY());
     	    } else {
-    	    	stackString.append("null");
+    	    	dequeString.append("null");
     	    }
-    	    stackString.append(";");
+    	    dequeString.append(";");
     	}
     	
         try (FileWriter writer = new FileWriter(filename)) {
             writer.write(levelNumber + "\n");
             writer.write(currentLevel.getLevelScore() + "\n");
             writer.write(totalScore + "\n");
-            writer.write(stack.toString() + "\n");
-            writer.write(stackString.toString() + "\n"); // Guardar el nombre del nivel
+            writer.write(deque.toString() + "\n");
+            writer.write(dequeString.toString() + "\n"); // Guardar el nombre del nivel
             writer.write(currentLevel.getLevelName() + "\n"); // Guardar el nombre del nivel
             writer.write(currentLevel.getBoard().getHeight() + " " + currentLevel.getBoard().getWidth()+"\n"); // Guardar dimensiones del tablero
             writer.write(currentLevel.getBoard().toString());
@@ -89,34 +90,34 @@ public class Game {
     }
 
     // Cargar una partida guardada
-    public Stack<Direction> loadSavedGame(String filename) {
+    public Deque<Direction> loadSavedGame(String filename) {
     	 StringBuilder levelData = new StringBuilder();
     	 int levelScore = 0;
-    	 String stackString = "";
+    	 String dequeString = "";
     	 String boxesString = "";
         try (BufferedReader reader = new BufferedReader(new FileReader(filename))) {
             this.levelNumber = Integer.parseInt(reader.readLine());
             levelScore = Integer.parseInt(reader.readLine());
             Game.totalScore = Integer.parseInt(reader.readLine());
-        	stackString = reader.readLine(); // Leer la línea del stack
+        	dequeString = reader.readLine(); // Leer la línea del stack
         	boxesString = reader.readLine(); // Leer la línea de las cajas
             String line;
             while ((line = reader.readLine()) != null) {
                 levelData.append(line).append("\n"); // Leer línea y agregarla al `StringBuilder`
             }
         } catch (IOException e) {
-            return new Stack<>(); // Retorna una pila vacía si hay un error
+            return new ArrayDeque<>(); // Retorna una pila vacía si hay un error
         }
         this.currentLevel = LevelLoader.loadLevel(levelData.toString());
         this.currentLevel.setLevelScore(levelScore);
-        Stack<Direction> moveHistory = setMoveHistoryPlayer(stackString);
-        Stack<Box> boxHistory = setBoxHistory(boxesString);
+        Deque<Direction> moveHistory = setMoveHistoryPlayer(dequeString);
+        Deque<Box> boxHistory = setBoxHistory(boxesString);
         currentLevel.getBoard().setBoxHistory(boxHistory);
         return moveHistory;
     }
 
-    private Stack<Box> setBoxHistory(String boxesString) {
-    	Stack<Box> boxHistory = new Stack<>();
+    private Deque<Box> setBoxHistory(String boxesString) {
+    	Deque<Box> boxHistory = new ArrayDeque<>();
     	String[] moves = boxesString.split(";");
     	Board board = currentLevel.getBoard();
     	for (String move : moves) {
@@ -160,10 +161,10 @@ public class Game {
 		this.levelNumber = i;
 	}
 	
-	public Stack<Direction> setMoveHistoryPlayer(String stackString) {
-		Stack<Direction> moveHistory = new Stack<>();
-		stackString = stackString.replace("[", "").replace("]", "").trim();
-		String[] moves = stackString.split(",");
+	public Deque<Direction> setMoveHistoryPlayer(String dequeString) {
+		Deque<Direction> moveHistory = new ArrayDeque<>();
+		dequeString = dequeString.replace("[", "").replace("]", "").trim();
+		String[] moves = dequeString.split(",");
 		for (String move : moves) {
 			if (!move.isEmpty()) {
 				switch (move.trim().toUpperCase()) {

@@ -1,6 +1,6 @@
 package es.upm.pproject.sokoban.controller;
 
-import java.util.Stack;
+import java.util.Deque;
 
 import es.upm.pproject.sokoban.model.Game;
 import es.upm.pproject.sokoban.model.Position.Direction;
@@ -39,7 +39,7 @@ public class GameController {
         game.saveGame(filename, movementController.getMoveHistoryPlayer());
     }
     public boolean loadSavedGame(String filename) {
-    	Stack<Direction> moveHistory = game.loadSavedGame(filename);
+    	Deque<Direction> moveHistory = game.loadSavedGame(filename);
         if(moveHistory != null) {
 			updateBoard(moveHistory) ;
 			return true;
@@ -55,7 +55,7 @@ public class GameController {
 	public void updateBoard() {
 		movementController = new MovementController(game.getCurrentLevel().getBoard());
 	}
-	public void updateBoard(Stack<Direction> moveHistory) {
+	public void updateBoard(Deque<Direction> moveHistory) {
 		movementController = new MovementController(game.getCurrentLevel().getBoard());
 		movementController.setMoveHistoryPlayer(moveHistory);
 	}
