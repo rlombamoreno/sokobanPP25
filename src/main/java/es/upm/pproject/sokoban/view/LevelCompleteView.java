@@ -7,8 +7,10 @@ import es.upm.pproject.sokoban.controller.GameController;
 public class LevelCompleteView extends JDialog {
     private GameController gameController;
     private GameView gameView;
+    private int levelCount;
 
-    public LevelCompleteView(GameController gameController, GameView gameView) {
+    public LevelCompleteView(GameController gameController, GameView gameView, int levelCount) {
+    	this.levelCount = levelCount;
         this.gameController = gameController;
         this.gameView = gameView;
 
@@ -52,8 +54,19 @@ public class LevelCompleteView extends JDialog {
     }
 
     private void goToNextLevel() {
-        gameController.loadSavedGame("level2.txt"); // Cargar siguiente nivel (ajustar lógica según niveles disponibles)
+    	int levelAct = gameController.getGame().getCurrentLevelNumber();
+    	if(levelAct == levelCount) {
+			JOptionPane.showMessageDialog(this, "¡Has completado todos los niveles!", "Fin del juego", JOptionPane.INFORMATION_MESSAGE);
+			exitToMenu();
+			return;
+		}
+    	gameController.getGame().setCurrentLevelNumber(levelAct + 1);
+    	gameController.getGame().loadLevel(levelAct + 1);
+    	gameController.updateBoard();
+    	gameView.setBoardView(new BoardView(gameController.getMovementController().getCurrentBoard()));
         gameView.updateBoard();
+        gameView.dispose();
+        new GameView(gameController,levelCount).setVisible(true);
         dispose();
     }
 

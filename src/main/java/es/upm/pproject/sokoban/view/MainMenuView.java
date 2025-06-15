@@ -10,6 +10,7 @@ import es.upm.pproject.sokoban.controller.GameController;
 public class MainMenuView extends JFrame {
     private GameController gameController;
     private Image titleImage;
+    private int levelCount = 0;
 
     public MainMenuView(GameController gameController) {
         this.gameController = gameController;
@@ -81,20 +82,20 @@ public class MainMenuView extends JFrame {
             return;
         }
         dispose();
-        GameView gameView = new GameView(gameController);
+        GameView gameView = new GameView(gameController, levelCount);
         gameView.setVisible(true);
     }
 
     private void loadGame() {
         gameController.loadSavedGame("saved_game.txt");
         dispose();
-        GameView gameView = new GameView(gameController);
+        GameView gameView = new GameView(gameController, levelCount);
         gameView.setVisible(true);
     }
     
     private boolean hasEnoughLevels() {
-        int levelCount = 0;
-        for (int i = 1; i <= 4; i++) { // Buscar hasta 100 niveles
+        levelCount = 0;
+        for (int i = 1; i <= 100; i++) { // Buscar hasta 100 niveles
             File levelFile = new File("level" + i + ".txt");
             if (levelFile.exists()) {
                 levelCount++;

@@ -8,8 +8,10 @@ import es.upm.pproject.sokoban.view.*;
 public class InputHandler extends KeyAdapter {
 	private GameController gameController;
 	private GameView gameView;
+	private int levelCount;
 
-	public InputHandler(GameController gameController, GameView gameView) {
+	public InputHandler(GameController gameController, GameView gameView, int levelCount) {
+		this.levelCount = levelCount;
 		this.gameController = gameController;
 		this.gameView = gameView;
 	}
@@ -51,7 +53,12 @@ public class InputHandler extends KeyAdapter {
 			if (moved) {
 				gameView.updateBoard(); // Actualizar la vista después del movimiento
 				if (gameController.getMovementController().getCurrentBoard().isLevelCompleted()) {
-					new LevelCompleteView(gameController, gameView); // Mostrar pantalla de nivel completado 
+					int levelAct = gameController.getGame().getCurrentLevelNumber();
+					if (levelAct == levelCount) {
+						new GameFinishView(gameController, gameView); // Mostrar pantalla de fin del juego
+					}else { 
+						new LevelCompleteView(gameController, gameView,levelCount);
+					}
 				}
 
 			}

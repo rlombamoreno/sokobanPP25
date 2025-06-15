@@ -96,4 +96,9 @@ public class Game {
     public int getCurrentLevelNumber() {
         return levelNumber;
     }
+
+	public void setCurrentLevelNumber(int i) {
+		this.levelNumber = i;
+		
+	}
 }

@@ -9,8 +9,10 @@ import es.upm.pproject.sokoban.controller.InputHandler;
 public class GameView extends JFrame {
     private GameController gameController;
     private BoardView boardView;
+    private int levelCount;
 
-    public GameView(GameController gameController) {
+    public GameView(GameController gameController, int levelCount) {
+    	this.levelCount = levelCount;
         this.gameController = gameController;
         setTitle("Sokoban");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -24,7 +26,7 @@ public class GameView extends JFrame {
         add(boardView, BorderLayout.CENTER);
 
         // Capturar eventos de teclado con InputHandler
-        addKeyListener(new InputHandler(gameController, this));
+        addKeyListener(new InputHandler(gameController, this,levelCount));
 
         setFocusable(true);
         requestFocusInWindow();
@@ -33,4 +35,11 @@ public class GameView extends JFrame {
     public void updateBoard() {
         boardView.updateBoard(gameController.getMovementController().getCurrentBoard());
     }
-}
+
+	public void setBoardView(BoardView boardView2) {
+		this.boardView = boardView2;
+		add(boardView, BorderLayout.CENTER);
+		revalidate();
+		repaint();
+	}
+	}

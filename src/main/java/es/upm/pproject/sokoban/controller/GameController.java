@@ -36,4 +36,10 @@ public class GameController {
 	public MovementController getMovementController() {
 		return movementController;
 	}
+	public Game getGame() {
+		return game;
+	}
+	public void updateBoard() {
+		movementController = new MovementController(game.getCurrentLevel().getBoard());
+	}
 }
