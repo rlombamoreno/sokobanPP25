@@ -30,6 +30,7 @@ public class MenuView extends JMenuBar {
         	gameController.getGame().loadLevel(1);
         	gameController.updateBoard();
             gameView.updateBoard();
+            gameView.setTitle("NIVEL " + gameController.getGame().getCurrentLevelNumber() + " - Sokoban");
         });
 
         // Deshacer movimiento (U)
