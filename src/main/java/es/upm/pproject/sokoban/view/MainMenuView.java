@@ -1,16 +1,22 @@
 package es.upm.pproject.sokoban.view;
 
 import javax.swing.*;
+
 import java.awt.*;
 import java.io.File;
 import java.io.IOException;
 import javax.imageio.ImageIO;
 import es.upm.pproject.sokoban.controller.GameController;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 public class MainMenuView extends JFrame {
     private transient GameController gameController;
     private transient Image titleImage;
     private int levelCount = 0;
+	private static final Logger LOGGER = LoggerFactory.getLogger(MainMenuView.class);
+
 
     public MainMenuView(GameController gameController) {
         this.gameController = gameController;
@@ -71,7 +77,7 @@ public class MainMenuView extends JFrame {
         try {
             titleImage = ImageIO.read(new File("src/main/resources/title.png"));
         } catch (IOException e) {
-            System.err.println("Error al cargar la imagen del título.");
+        	LOGGER.error("Error al cargar la imagen del titulo.", e);
             titleImage = null;
         }
     }
