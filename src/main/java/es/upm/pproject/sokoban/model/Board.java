@@ -127,7 +127,7 @@ public class Board {
 			boxHistory.push(box);
 			
 		}else {
-			boxHistory.push(null);
+			boxHistory.push(new Box(-100,-100));
 		}
 		return true;
 	}
@@ -166,7 +166,7 @@ public class Board {
 		Box box = boxHistory.pop();
 		Position playerPos = warehouseman.getPosition();
 		Position newPos = playerPos.getAdjacent(oppositeMove);
-		if(box != null) {
+		if(box.getX() != -100 && box.getY() != -100) {
 			Cell targetBoxCell = cells[box.getY()][box.getX()];
 			targetBoxCell.setType(CellType.EMPTY);
 			box.updateOnTarget(targets.contains(playerPos));
