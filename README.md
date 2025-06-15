@@ -6,7 +6,7 @@ This is the README.md file of our project2025 which contains the implementation 
 
 Sokoban is a logic game where the player must push boxes onto target locations within a maze. 
 The game controls are: 
-- **Arroy keys or W,A,S,D**: to move the player
+- **Arrow keys or W,A,S,D**: to move the player
 - **U**:  undo a movement
 - **R**: restart current level
 - **J**: restart the entire game 
