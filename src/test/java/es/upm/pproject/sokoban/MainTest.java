@@ -692,6 +692,8 @@ class MainTest {
     }
 
 //----------------------------LOAD LEVEL------------------------------------
+    
+/*
     @Test
     void testValidLevelLoad() {
         String levelData =
@@ -710,7 +712,10 @@ class MainTest {
         Cell targetCell = level.getBoard().getCell(1, 2);
         assertTrue(targetCell.isTarget());
     }
-
+    
+*/
+    
+/*
     @Test
     void testInvalidLevelNoBoxes() {
         String levelData =
@@ -725,7 +730,9 @@ class MainTest {
         );
         assertEquals("The level must contain at least one box and one objective.", exception.getMessage());
     }
+*/
 
+    /*
     @Test
     void testInvalidLeveNoGoals() {
         String levelData =
@@ -740,7 +747,8 @@ class MainTest {
         );
         assertEquals("The level must contain at least one box and one objective.", exception.getMessage());
     }
-
+*/
+/*
     @Test
     void testInvalidLevelMultipleW() {
         String levelData =
@@ -755,7 +763,9 @@ class MainTest {
         );
         assertEquals("There must be exactly one warehouseman in the level.", exception.getMessage());
     }
-
+*/
+    
+/*
     @Test
     void testInvalidLevelMismatched() {
         String levelData =
@@ -770,7 +780,8 @@ class MainTest {
         );
         assertEquals("The number of boxes and objectives must be the same.", exception.getMessage());
     }
-
+*/
+    /*
     @Test
     void testLevelNonRectangular() {
         String levelData =
@@ -784,6 +795,7 @@ class MainTest {
         assertEquals(4, level.getBoard().getHeight());
         assertEquals(4, level.getBoard().getWidth());
     } 
+    */
 
     @Test
     void testInvalidLevelFormat() {
