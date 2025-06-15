@@ -1,4 +1,5 @@
-INITIAL LEVEL
+MEDIUM LEVEL
+8 11
 ++++++
 +    +
 +  # ++++++

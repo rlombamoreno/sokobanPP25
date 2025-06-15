@@ -19,9 +19,12 @@ public class LevelLoader {
         List<String> levelLines = Arrays.asList(lines).subList(1, lines.length);
         
         String levelName = lines[0].trim();
-        int height = lines.length - 1;
+       /*int height = lines.length - 1;
         int width = levelLines.stream().mapToInt(String::length).max().orElseThrow(() ->
-        new IllegalArgumentException("Could not determine level width."));
+        new IllegalArgumentException("Could not determine level width."));*/
+        String[] dimensions = lines[1].trim().split("\\s+"); // Separar valores por espacios
+        int height = Integer.parseInt(dimensions[0]); // Número de filas
+        int width = Integer.parseInt(dimensions[1]); 
 
         Board board = new Board(width, height);
 
@@ -30,7 +33,7 @@ public class LevelLoader {
         int warehouseManCount = 0;
 
         for (int i = 0; i < height; i++) {
-            String line = lines[i + 1].trim();
+            String line = lines[i + 2].trim();
             for (int j = 0; j < width; j++) {
             	char cellChar = 'V';
             	if(j<line.length()) {

@@ -82,6 +82,7 @@ public class Game {
             writer.write(stack.toString() + "\n");
             writer.write(stackString.toString() + "\n"); // Guardar el nombre del nivel
             writer.write(currentLevel.getLevelName() + "\n"); // Guardar el nombre del nivel
+            writer.write(currentLevel.getBoard().getHeight() + " " + currentLevel.getBoard().getWidth()+"\n"); // Guardar dimensiones del tablero
             writer.write(currentLevel.getBoard().toString());
         } catch (IOException e) {
         }
