@@ -21,6 +21,16 @@ public class MenuView extends JMenuBar {
             gameController.restartLevel();
             gameView.updateBoard();
         });
+        
+     // Reiniciar juego (J)
+        JMenuItem restartGame = new JMenuItem("Reiniciar Juego");
+        restartGame.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_J, 0));
+        restartGame.addActionListener(e -> {
+        	gameController.getGame().setCurrentLevelNumber(1);
+        	gameController.getGame().loadLevel(1);
+        	gameController.updateBoard();
+            gameView.updateBoard();
+        });
 
         // Deshacer movimiento (U)
         JMenuItem undoItem = new JMenuItem("Deshacer (U)");
@@ -50,6 +60,7 @@ public class MenuView extends JMenuBar {
 
         // Agregar elementos al menú
         menu.add(restartItem);
+        menu.add(restartGame);
         menu.add(undoItem);
         menu.addSeparator();
         menu.add(saveItem);

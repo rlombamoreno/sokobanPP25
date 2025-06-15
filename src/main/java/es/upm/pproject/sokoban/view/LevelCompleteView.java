@@ -63,8 +63,6 @@ public class LevelCompleteView extends JDialog {
     	gameController.getGame().setCurrentLevelNumber(levelAct + 1);
     	gameController.getGame().loadLevel(levelAct + 1);
     	gameController.updateBoard();
-    	gameView.setBoardView(new BoardView(gameController.getMovementController().getCurrentBoard()));
-        gameView.updateBoard();
         gameView.dispose();
         new GameView(gameController,levelCount).setVisible(true);
         dispose();
