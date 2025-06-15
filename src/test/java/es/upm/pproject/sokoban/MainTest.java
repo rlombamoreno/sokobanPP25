@@ -371,6 +371,40 @@ class MainTest {
         board.getBoxes().get(1).updateOnTarget(false);
         assertFalse(board.isLevelCompleted());
     }
+    
+    @Test
+    void testGetBox() {
+        Board board = new Board(3, 3);
+        board.setCell(1, 1, new Cell(CellType.BOX));
+        Box box = board.getBoxAt(1, 1);
+        assertNotNull(box);
+        assertEquals(1, box.getX());
+        assertEquals(1, box.getY());
+    }
+    
+    @Test
+    void testGetBoxNull() {
+        Board board = new Board(3, 3);
+        Box box = board.getBoxAt(0, 0);
+        assertNull(box);
+    }
+    
+    @Test
+    void testGetBoxes() {
+        Board board = new Board(5, 5);
+        board.setCell(2, 2, new Cell(CellType.BOX));
+        board.setCell(4, 4, new Cell(CellType.BOX));
+        Box box1 = board.getBoxAt(2, 2);
+        Box box2 = board.getBoxAt(4, 4);
+        Box box3 = board.getBoxAt(0, 0);
+        assertNotNull(box1);
+        assertEquals(2, box1.getX());
+        assertEquals(2, box1.getY());
+        assertNotNull(box2);
+        assertEquals(4, box2.getX());
+        assertEquals(4, box2.getY());
+        assertNull(box3, "No debe haber caja en (0,0)");
+    }
 
 //--------------------------------------BOX---------------------------------
   //AQUI NO HAGO UN BEFORE EACH PARA ASI CAMBIAR UN POCO, PERO LO PODRÍAMOS AÑADIR Y NO DECLARAR BOX EN TODOS LOS METODOS
