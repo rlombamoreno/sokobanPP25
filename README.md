@@ -52,16 +52,15 @@ mvn clean verify sonar:sonar -Dsonar.id=220209 -Dsonar.login=squ_1fe48ae2574d675
 
 ## Testing
 
-To run the unit tests: 
+**Location:** `src/test/java/es/upm/pproject/sokoban/`
+
+- **MainTest.java**  
+  Contains JUnit tests cases for validating core game functionalities.
+
+**To run the tests:** 
 
 ```sh
-mvn clean test jacoco:report
-```
-
-The code coverage report is generated at:
-
-```
-xdg-open target/site/jacoco/index.html
+mvn test 
 ```
 
 ## Implementations used
@@ -74,3 +73,68 @@ This implementation inlcudes:
 - Unit testing with JUnit.
 - Code coverage analysis using JaCoCo.
 - Code quality analysis using SonarQube.
+
+
+## Project Structure
+
+The project's Java classes and tests are structured as follows:
+
+```
+project2025/
+|
++-- src/
+|   +-- main/
+|   |--+-- java/
+|   |       +-- es/upm/pproject/sokoban/
+|   |           +-- Sokoban.java                 # Main game launcher
+|   |           |
+|   |           +-- controller/                  # User input and logic control
+|   |           |   +-- GameController.java
+|   |           |   +-- InputHandler.java
+|   |           |   +-- MovementController.java
+|   |           |
+|   |           +-- model/                       # Game logic and domain classes
+|   |           |   +-- Board.java
+|   |           |   +-- Box.java
+|   |           |   +-- Cell.java
+|   |           |   +-- Game.java
+|   |           |   +-- Level.java
+|   |           |   +-- LevelLoader.java
+|   |           |   +-- Position.java
+|   |           |   +-- WarehouseMan.java
+|   |           +-- view/                        # Visual components using Swing (GUI) 
+|   |               +-- BoardView.java
+|   |               +-- CellView.java
+|   |               +-- ErrorView.java
+|   |               +-- GameFinishView.java
+|   |               +-- GameView.java
+|   |               +-- LevelCompleteView.java
+|   |               +-- MainMenuView.java
+|   |               +-- MenuView.java
+|   |    
+|   |--+-- resources/                          # Images and configuration
+|           +-- box.png
+|           +-- equis.png
+|           +-- log4j.properties
+|           +-- player.png
+|           +-- title.png
+|
+|
+|---+-- test/
+|       +-- java/es/upm/pproject/sokoban/
+|           +-- MainTest.java                    # Unit tests for game logic
+|
+|
++-- level1.txt                                  # Sokoban level files
++-- level2.txt
++-- level3.txt
++-- level_empty.txt
++-- saved_game.txt                              # Saved game state
++-- pom.xml                                     # Maven configuration
++-- dependency-reduced-pom.xml                  # Result of Maven shading
++-- .gitlab-ci.yml                              # GitLab CI/CD pipeline config
++-- README.md                                   # Project documentation
+```
+
+
+
