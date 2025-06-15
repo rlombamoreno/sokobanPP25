@@ -192,6 +192,26 @@ class MainTest {
         String boardStr = board.toString();
         assertTrue(boardStr.contains("*")); // Target is represented by '*'
     }
+    
+    @Test
+    void testSetTargetInValid1() {
+        assertThrows(IndexOutOfBoundsException.class, () -> board.setTarget(-1, 2));
+    }
+    @Test
+    void testSetTargetInValid2() {
+        assertThrows(IndexOutOfBoundsException.class, () -> board.setTarget(2, -1));
+
+    }
+    @Test
+    void testSetTargetInValid3() {
+        assertThrows(IndexOutOfBoundsException.class, () -> board.setTarget(5, 2)); // i >= height
+    }
+    
+    @Test
+    void testSetTargetInValid4() {
+        assertThrows(IndexOutOfBoundsException.class, () -> board.setTarget(2, 5)); // j >= width
+    }
+
 
 
     @Test
