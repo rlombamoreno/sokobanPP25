@@ -388,6 +388,15 @@ class MainTest {
         Box box = board.getBoxAt(0, 0);
         assertNull(box);
     }
+    @Test
+    void testGetBoxNull2() {
+        Board board = new Board(3, 3);
+        board.setCell(1, 1, new Cell(CellType.BOX));
+        Box box = board.getBoxAt(1, 1);
+        assertNotNull(box);
+        assertEquals(1, box.getX());
+        assertNotEquals(2, box.getY());
+    }
     
     @Test
     void testGetBoxes() {
