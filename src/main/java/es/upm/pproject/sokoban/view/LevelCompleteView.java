@@ -69,6 +69,7 @@ public class LevelCompleteView extends JDialog {
     }
 
     private void exitToMenu() {
+    	gameController.getGame().restartLevelScore();
         gameView.dispose();
         new MainMenuView(gameController).setVisible(true);
         dispose();

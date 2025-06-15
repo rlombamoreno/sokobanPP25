@@ -9,13 +9,10 @@ import es.upm.pproject.sokoban.model.Position.Direction;
 
 public class Game {
     private Level currentLevel;
-    private int totalScore;
-    private LevelLoader levelLoader;
+    private static int totalScore = 0;
     private int levelNumber;
 
     public Game() {
-        this.levelLoader = new LevelLoader();
-        this.totalScore = 0;
         this.levelNumber = 1;
         loadLevel(levelNumber);
     }
@@ -45,14 +42,23 @@ public class Game {
         return true;
     }
 
-    // Mueve al almacenero
-    public boolean movePlayer(Direction direction) {
-        return currentLevel.getBoard().movePlayer(direction);
-    }
-
-    // Reiniciar el nivel actual
-    public void restartLevel() {
-        loadLevel(levelNumber);
+    
+    public void increaseScore() {
+		currentLevel.increaseScore();
+		totalScore++;
+	}
+    public void decreaseScore() {
+		if (currentLevel.getLevelScore() > 0) {
+			currentLevel.decreaseScore();
+			totalScore--;
+		}
+	}
+    public void resetLevelScore() {
+		totalScore -= currentLevel.getLevelScore();
+	}
+    
+    public void restartLevelScore() {
+    	totalScore = 0;
     }
 
     // Guardar partida en archivo
@@ -81,13 +87,9 @@ public class Game {
         }
     }
 
-    // Mostrar estado del juego
-    public void displayGameStatus() {
-        System.out.println("Level Name: " + currentLevel.getLevelName());
-        System.out.println("Level Number: " + levelNumber);
-        System.out.println("Total Score: " + totalScore);
-        System.out.println(currentLevel.getBoard().toString()); // Aquí imprimimos el tablero correctamente
-    }
+    public static int getTotalScore() {
+		return totalScore;
+	}
 
     public Level getCurrentLevel() {
         return currentLevel;

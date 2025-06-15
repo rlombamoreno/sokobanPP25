@@ -26,6 +26,7 @@ public class MenuView extends JMenuBar {
         JMenuItem restartGame = new JMenuItem("Reiniciar Juego");
         restartGame.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_J, 0));
         restartGame.addActionListener(e -> {
+        	gameController.getGame().restartLevelScore();
         	gameController.getGame().setCurrentLevelNumber(1);
         	gameController.getGame().loadLevel(1);
         	gameController.updateBoard();
@@ -74,6 +75,7 @@ public class MenuView extends JMenuBar {
     }
 
     private void returnToMainMenu() {
+    	gameController.getGame().restartLevelScore();
         gameView.dispose(); // Cierra la ventana del juego
         MainMenuView mainMenu = new MainMenuView(gameController);
         mainMenu.setVisible(true); // Abre el menú principal

@@ -15,23 +15,29 @@ public class GameController {
         game = new Game();
     }   
     public void restartLevel() {
+    	game.resetLevelScore();
         game.loadLevel(game.getCurrentLevelNumber());
         movementController = new MovementController(game.getCurrentLevel().getBoard());
     }   
     public boolean movePlayer(Direction direction) {
-        return movementController.move(direction);
+    	if(movementController.move(direction)) {
+    		game.increaseScore();
+    		return true;
+		}
+        return false;
     } 
     public boolean undoLastMove() {
-        return movementController.undoLastMove();
+        if(movementController.undoLastMove()) {
+        	game.decreaseScore();
+        	return true;
+        }
+        return false;
     }
     public void saveGame(String filename) {
         game.saveGame(filename);
     }
     public boolean loadSavedGame(String filename) {
         return game.loadSavedGame(filename);
-    }
-    public void displayGameStatus() {
-        game.displayGameStatus();
     }
 	public MovementController getMovementController() {
 		return movementController;

@@ -6,7 +6,6 @@ import java.util.List;
 public class LevelLoader {
 
     public LevelLoader() {
-        // Constructor vacío
     }
 
     public static Level loadLevel(String levelData) {

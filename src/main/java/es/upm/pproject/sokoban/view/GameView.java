@@ -10,6 +10,7 @@ public class GameView extends JFrame {
     private GameController gameController;
     private BoardView boardView;
     private int levelCount;
+    private JLabel scoreLabel;
 
     public GameView(GameController gameController, int levelCount) {
     	this.levelCount = levelCount;
@@ -18,10 +19,15 @@ public class GameView extends JFrame {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(800, 600);
         setLocationRelativeTo(null);
-
         setLayout(new BorderLayout());
-        add(new MenuView(gameController,this), BorderLayout.NORTH);
+        
+        JPanel topPanel = new JPanel(new BorderLayout());
+        topPanel.add(new MenuView(gameController, this), BorderLayout.NORTH); // Menú
+        scoreLabel = new JLabel(getScoreText(), SwingConstants.CENTER);
+        topPanel.add(scoreLabel, BorderLayout.SOUTH); // Puntuación
 
+        add(topPanel, BorderLayout.NORTH);
+        
         boardView = new BoardView(gameController.getMovementController().getCurrentBoard());
         add(boardView, BorderLayout.CENTER);
 
@@ -34,6 +40,7 @@ public class GameView extends JFrame {
 
     public void updateBoard() {
         boardView.updateBoard(gameController.getMovementController().getCurrentBoard());
+        scoreLabel.setText(getScoreText());
     }
 
 	public void setBoardView(BoardView boardView2) {
@@ -42,4 +49,9 @@ public class GameView extends JFrame {
 		revalidate();
 		repaint();
 	}
+	private String getScoreText() {
+        int levelScore = gameController.getGame().getCurrentLevel().getLevelScore();
+        int totalScore = gameController.getGame().getTotalScore();
+        return "Puntuación Nivel: " + levelScore + " | Puntuación Total: " + totalScore;
+    }
 	}

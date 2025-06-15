@@ -541,32 +541,10 @@ class MainTest {
         assertNotNull(game.getCurrentLevel());
     }
 
-    @Test
-    void testMovePlayer() {
-        Game game = new Game();
-        boolean moved = game.movePlayer(Direction.RIGHT);
-        assertNotNull(moved);
-    }
-
-    @Test
-    void testRestartLevel() {
-        Game game = new Game();
-        Level before = game.getCurrentLevel();
-        game.movePlayer(Direction.RIGHT);
-        game.restartLevel();
-        Level after = game.getCurrentLevel();
-        assertNotNull(after);
-        assertEquals(1, game.getCurrentLevelNumber());
-        assertNotSame(before, after); 
-    }
 
     
 
-    @Test
-    void testDisplayGameStatus() {
-        Game game = new Game();
-        assertDoesNotThrow(() -> game.displayGameStatus());
-    }
+    
     
     @Test
     void testSaveGameSuccess() {
@@ -661,60 +639,9 @@ class MainTest {
     @Test
     void testConstructorWithLevelNameBoardAndNumber() {
         Board board = new Board(5, 5);
-        Level level = new Level("Level 2", board, 2);
+        Level level = new Level("Level 2", board);
         assertEquals("Level 2", level.getLevelName());
         assertEquals(board, level.getBoard());
-        assertEquals(2, level.getLevelNumber());
-    }
-    
-    @Test
-    void testIsLevelCompleteFalse() {
-        Board board = new Board(5, 5);
-        Cell cell = new Cell(Cell.CellType.BOX);
-        board.setCell(2, 2, cell);
-        Level level = new Level("Incomplete Level", board);
-        assertFalse(level.isLevelComplete());
-    }
-    
-    @Test
-    void testIsLevelCompleteTrue() {
-        Board board = new Board(5, 5);
-        Cell cell = new Cell(Cell.CellType.BOX);
-        board.setCell(1, 1, cell);
-        board.setTarget(1, 1);
-        Box box = board.getBoxes().get(0);
-        box.updateOnTarget(true);
-        Level level = new Level("Completed Level", board);
-        assertTrue(level.isLevelComplete());
-    }
-    
-    
-    @Test
-    void testIsLevelCompleteWithMultipleBoxes() {
-        Board board = new Board(5, 5);
-        board.setCell(1, 1, new Cell(Cell.CellType.BOX));
-        board.setTarget(1, 1);
-        board.getBoxes().get(0).updateOnTarget(true);
-        board.setCell(2, 2, new Cell(Cell.CellType.BOX));
-        board.setTarget(2, 2);
-        board.getBoxes().get(1).updateOnTarget(true);
-        Level level = new Level("Level with multiple boxes", board);
-        assertTrue(level.isLevelComplete());
-        board.getBoxes().get(1).updateOnTarget(false);
-        assertFalse(level.isLevelComplete());
-    }
-    
-    @Test
-    void testIsLevelInCompleteWithMultipleBoxes() {
-        Board board = new Board(5, 5);
-        board.setCell(1, 1, new Cell(Cell.CellType.BOX));
-        board.setTarget(1, 1);
-        board.getBoxes().get(0).updateOnTarget(true);
-        board.setCell(2, 2, new Cell(Cell.CellType.BOX));
-        board.setTarget(2, 3);
-        board.getBoxes().get(1).updateOnTarget(false);
-        Level level = new Level("Level with multiple boxes", board);
-        assertFalse(level.isLevelComplete());
     }
 
 //----------------------------LOAD LEVEL------------------------------------

@@ -47,6 +47,7 @@ public class GameFinishView extends JDialog{
         gameController.getGame().setCurrentLevelNumber(1);
     	gameController.getGame().loadLevel(1);
     	gameController.updateBoard();
+    	gameController.getGame().restartLevelScore();
         new MainMenuView(gameController).setVisible(true);
         dispose();
     }

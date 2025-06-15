@@ -51,11 +51,11 @@ public class InputHandler extends KeyAdapter {
 		if (direction != null) {
 			boolean moved = gameController.movePlayer(direction);
 			if (moved) {
-				gameView.updateBoard(); // Actualizar la vista después del movimiento
+				gameView.updateBoard();
 				if (gameController.getMovementController().getCurrentBoard().isLevelCompleted()) {
 					int levelAct = gameController.getGame().getCurrentLevelNumber();
 					if (levelAct == levelCount) {
-						new GameFinishView(gameController, gameView); // Mostrar pantalla de fin del juego
+						new GameFinishView(gameController, gameView);
 					}else { 
 						new LevelCompleteView(gameController, gameView,levelCount);
 					}
