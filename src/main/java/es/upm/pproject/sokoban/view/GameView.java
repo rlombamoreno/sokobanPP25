@@ -5,18 +5,17 @@ import javax.swing.*;
 
 import es.upm.pproject.sokoban.controller.GameController;
 import es.upm.pproject.sokoban.controller.InputHandler;
+import es.upm.pproject.sokoban.model.Game;
 
 public class GameView extends JFrame {
-    private GameController gameController;
+    private transient GameController gameController;
     private BoardView boardView;
-    private int levelCount;
     private JLabel scoreLabel;
 
     public GameView(GameController gameController, int levelCount) {
-    	this.levelCount = levelCount;
         this.gameController = gameController;
         setTitle(gameController.getGame().getCurrentLevel().getLevelName() + " - Sokoban");
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         setSize(800, 600);
         setLocationRelativeTo(null);
         setLayout(new BorderLayout());
@@ -51,7 +50,7 @@ public class GameView extends JFrame {
 	}
 	private String getScoreText() {
         int levelScore = gameController.getGame().getCurrentLevel().getLevelScore();
-        int totalScore = gameController.getGame().getTotalScore();
+        int totalScore = Game.getTotalScore();
         return "Puntuación Nivel: " + levelScore + " | Puntuación Total: " + totalScore;
     }
 	}

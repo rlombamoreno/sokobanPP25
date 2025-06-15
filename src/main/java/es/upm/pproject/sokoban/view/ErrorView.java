@@ -6,7 +6,7 @@ import java.awt.*;
 public class ErrorView extends JFrame {
     public ErrorView() {
         setTitle("Error - Faltan niveles");
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         setSize(400, 200);
         setLocationRelativeTo(null);
         setLayout(new BorderLayout());

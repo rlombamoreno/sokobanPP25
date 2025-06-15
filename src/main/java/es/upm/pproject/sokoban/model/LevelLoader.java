@@ -5,7 +5,8 @@ import java.util.List;
 
 public class LevelLoader {
 
-    public LevelLoader() {
+    private LevelLoader() {
+    	// constructor innecesario
     }
 
     public static Level loadLevel(String levelData) {
@@ -15,8 +16,6 @@ public class LevelLoader {
         if (lines.length < 2) {
             throw new IllegalArgumentException("Invalid level format: missing rows or data.");
         }
-
-        List<String> levelLines = Arrays.asList(lines).subList(1, lines.length);
         
         String levelName = lines[0].trim();
         String[] dimensions = lines[1].trim().split("\\s+"); // Separar valores por espacios

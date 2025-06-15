@@ -98,7 +98,7 @@ public class Game {
         try (BufferedReader reader = new BufferedReader(new FileReader(filename))) {
             this.levelNumber = Integer.parseInt(reader.readLine());
             levelScore = Integer.parseInt(reader.readLine());
-            Game.totalScore = Integer.parseInt(reader.readLine());
+            totalScore = Integer.parseInt(reader.readLine());
         	dequeString = reader.readLine(); // Leer la línea del stack
         	boxesString = reader.readLine(); // Leer la línea de las cajas
             String line;

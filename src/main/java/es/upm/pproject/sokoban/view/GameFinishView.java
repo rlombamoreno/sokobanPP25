@@ -11,9 +11,10 @@ import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
 import es.upm.pproject.sokoban.controller.GameController;
+import es.upm.pproject.sokoban.model.Game;
 
 public class GameFinishView extends JDialog{
-		private GameController gameController;
+		private transient GameController gameController;
 		private GameView gameView;
 
 	public GameFinishView(GameController gameController, GameView gameView) {
@@ -25,8 +26,9 @@ public class GameFinishView extends JDialog{
         setLocationRelativeTo(gameView);
         setLayout(new BorderLayout());
 
-        JLabel message = new JLabel("<html><center><h2>¡Enhorabuena, has completado todos los niveles!</h2>"
-                + "<h3>Puntuación final: " + gameController.getGame().getTotalScore() + "</h3></center></html>");
+        gameController.getGame();
+		JLabel message = new JLabel("<html><center><h2>¡Enhorabuena, has completado todos los niveles!</h2>"
+                + "<h3>Puntuación final: " + Game.getTotalScore() + "</h3></center></html>");
         message.setHorizontalAlignment(SwingConstants.CENTER);
         message.setFont(new Font("Arial", Font.BOLD, 16));
         add(message, BorderLayout.CENTER);
@@ -47,7 +49,7 @@ public class GameFinishView extends JDialog{
         gameController.getGame().setCurrentLevelNumber(1);
     	gameController.getGame().loadLevel(1);
     	gameController.updateBoard();
-    	gameController.getGame().restartLevelScore();
+		Game.restartLevelScore();
         new MainMenuView(gameController).setVisible(true);
         dispose();
     }

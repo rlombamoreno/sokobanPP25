@@ -4,7 +4,7 @@ import java.awt.*;
 import es.upm.pproject.sokoban.model.Board;
 
 public class BoardView extends JPanel {
-    private Board board;
+    private transient Board board;
 
     public BoardView(Board board) {
         this.board = board;

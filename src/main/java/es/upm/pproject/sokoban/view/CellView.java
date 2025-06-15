@@ -8,7 +8,7 @@ import javax.imageio.ImageIO;
 import es.upm.pproject.sokoban.model.Cell;
 
 public class CellView extends JPanel {
-    private Cell cell;
+    private transient Cell cell;
     private static Image playerImage;
     private static Image boxImage;
     private static Image equisImage;
