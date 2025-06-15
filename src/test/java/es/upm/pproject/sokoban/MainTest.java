@@ -683,6 +683,13 @@ class MainTest {
         level.decreaseScore();
         assertEquals(2, level.getLevelScore());
     }
+    @Test
+    void testDecreaseLevelScore0() {
+        Board board = new Board(5, 5);
+        Level level = new Level("Level 2", board);
+        level.decreaseScore();
+        assertEquals(0, level.getLevelScore());
+    }
 
 //----------------------------LOAD LEVEL------------------------------------
     @Test
