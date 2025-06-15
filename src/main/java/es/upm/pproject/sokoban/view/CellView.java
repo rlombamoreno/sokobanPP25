@@ -10,15 +10,14 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import es.upm.pproject.sokoban.model.Cell;
-import es.upm.pproject.sokoban.model.Game;
 
 public class CellView extends JPanel {
     private transient Cell cell;
     private static Image playerImage;
     private static Image boxImage;
-    private static Image equisImage;
+    private static Image equisImage; 
     private static Image boxEquisImage;
-    private static final Logger LOGGER = LoggerFactory.getLogger(Game.class);
+	    private static final Logger LOGGER = LoggerFactory.getLogger(CellView.class);
 
     static {
         try {
