@@ -7,12 +7,16 @@ import java.io.IOException;
 import java.util.ArrayDeque;
 import java.util.Deque;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import es.upm.pproject.sokoban.model.Position.Direction;
 
 public class Game {
     private Level currentLevel;
     private static int totalScore = 0;
     private int levelNumber;
+    private static final Logger LOGGER = LoggerFactory.getLogger(Game.class);
 
     public Game() {
         this.levelNumber = 1;
@@ -26,16 +30,16 @@ public class Game {
         try (BufferedReader reader = new BufferedReader(new FileReader(filename))) {
             String line;
             while ((line = reader.readLine()) != null) {
-                levelData.append(line).append("\n"); // Leer línea y agregarla al `StringBuilder`
+                levelData.append(line).append("\n"); // Leer línea y agregarla al StringBuilder
             }
         } catch (IOException e) {
-            System.err.println("Error al leer el archivo: " + filename);
+        	LOGGER.error("Error al leer el archivo: {}", filename, e);
             return false;
         }
 
         Level newLevel = LevelLoader.loadLevel(levelData.toString()); // Pasamos el contenido del archivo
         if (newLevel == null) {
-            System.out.println("No hay más niveles. ¡Juego terminado!");
+        	LOGGER.warn("No hay más niveles. ¡Juego terminado!");
             return false;
         }
         
@@ -86,6 +90,7 @@ public class Game {
             writer.write(currentLevel.getBoard().getHeight() + " " + currentLevel.getBoard().getWidth()+"\n"); // Guardar dimensiones del tablero
             writer.write(currentLevel.getBoard().toString());
         } catch (IOException e) {
+        	LOGGER.error("Error al guardar la partida en el archivo: {}", filename, e);
         }
     }
 
@@ -103,9 +108,10 @@ public class Game {
         	boxesString = reader.readLine(); // Leer la línea de las cajas
             String line;
             while ((line = reader.readLine()) != null) {
-                levelData.append(line).append("\n"); // Leer línea y agregarla al `StringBuilder`
+                levelData.append(line).append("\n"); // Leer línea y agregarla al StringBuilder
             }
         } catch (IOException e) {
+        	LOGGER.error("Error al cargar la partida desde el archivo: {}", filename, e);
             return new ArrayDeque<>(); // Retorna una pila vacía si hay un error
         }
         this.currentLevel = LevelLoader.loadLevel(levelData.toString());
@@ -133,7 +139,7 @@ public class Game {
 					boxHistory.addLast(newBox);
 				}
 			} catch (NumberFormatException e) {
-				System.out.println("Formato de coordenadas inválido: " + move);
+				LOGGER.warn("Formato de coordenadas inválido: {}", move);
 			}
 		}
 		return boxHistory;
@@ -179,7 +185,7 @@ public class Game {
 						moveHistory.addLast(Direction.RIGHT);
 						break;
 					default:
-						System.out.println("Movimiento desconocido: " + move);
+						LOGGER.warn("Movimiento desconocido: {}", move);
 				}
 			}
 		}
