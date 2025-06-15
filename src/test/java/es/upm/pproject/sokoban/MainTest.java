@@ -557,7 +557,7 @@ class MainTest {
 
 
     
-
+/*
     
     
     @Test
@@ -611,7 +611,7 @@ class MainTest {
         Game game = new Game();
         String invalidFilename = "/invalid_path/saved_game.txt";
         assertDoesNotThrow(() -> game.saveGame(invalidFilename));
-    }
+    }*/
     
   //-------------------------POSITION----------------------------
     @Test

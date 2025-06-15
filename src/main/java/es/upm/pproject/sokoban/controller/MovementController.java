@@ -31,5 +31,11 @@ public class MovementController {
         Direction oppositeMove = lastMove.getOpposite();
         return board.undoLastMove(oppositeMove);
     }
+	public Stack<Direction> getMoveHistoryPlayer() {
+		return moveHistoryPlayer;
+	}
+	public void setMoveHistoryPlayer(Stack<Direction> moveHistory) {
+		this.moveHistoryPlayer = moveHistory;
+	}
     
 }

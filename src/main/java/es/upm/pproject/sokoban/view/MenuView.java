@@ -76,6 +76,9 @@ public class MenuView extends JMenuBar {
 
     private void returnToMainMenu() {
     	gameController.getGame().restartLevelScore();
+    	gameController.getGame().setCurrentLevelNumber(1);
+    	gameController.getGame().loadLevel(1);
+    	gameController.updateBoard();
         gameView.dispose(); // Cierra la ventana del juego
         MainMenuView mainMenu = new MainMenuView(gameController);
         mainMenu.setVisible(true); // Abre el menú principal

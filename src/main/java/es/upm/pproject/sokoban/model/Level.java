@@ -28,4 +28,9 @@ public class Level {
 			this.levelScore -= 1;
 		}
 	}
+
+	public void setLevelScore(int levelScore2) {
+		this.levelScore = levelScore2;
+		
+	}
 }

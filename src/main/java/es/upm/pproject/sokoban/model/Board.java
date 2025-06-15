@@ -145,10 +145,10 @@ public class Board {
 		}
 	}
 	
+	public Stack<Box> getBoxHistory() {
+		return boxHistory;
+	}
 	
-	
-	
-
 	public boolean isLevelCompleted() {
 		for (Box box : boxes) {
 			if (!box.isOnTarget()) {
@@ -195,6 +195,19 @@ public class Board {
 	        sb.append("\n"); 
 	    }
 	    return sb.toString();
+	}
+
+	public Box getBoxAt(int x, int y) {
+		for (Box box : boxes) {
+			if (box.getX() == x && box.getY() == y) {
+				return box;
+			}
+		}
+		return null;
+	}
+
+	public void setBoxHistory(Stack<Box> boxHistory2) {
+		this.boxHistory = boxHistory2;
 	}
 
 
