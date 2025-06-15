@@ -81,6 +81,7 @@ public class Game {
             writer.write(totalScore + "\n");
             writer.write(stack.toString() + "\n");
             writer.write(stackString.toString() + "\n"); // Guardar el nombre del nivel
+            writer.write(currentLevel.getLevelName() + "\n"); // Guardar el nombre del nivel
             writer.write(currentLevel.getBoard().toString());
         } catch (IOException e) {
         }
@@ -98,8 +99,7 @@ public class Game {
             Game.totalScore = Integer.parseInt(reader.readLine());
         	stackString = reader.readLine(); // Leer la línea del stack
         	boxesString = reader.readLine(); // Leer la línea de las cajas
-            String line = "Juego Guargado\n";
-            levelData.append(line);
+            String line;
             while ((line = reader.readLine()) != null) {
                 levelData.append(line).append("\n"); // Leer línea y agregarla al `StringBuilder`
             }
