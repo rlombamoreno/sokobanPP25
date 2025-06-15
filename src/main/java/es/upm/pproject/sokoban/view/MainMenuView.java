@@ -8,14 +8,14 @@ import javax.imageio.ImageIO;
 import es.upm.pproject.sokoban.controller.GameController;
 
 public class MainMenuView extends JFrame {
-    private GameController gameController;
-    private Image titleImage;
+    private transient GameController gameController;
+    private transient Image titleImage;
     private int levelCount = 0;
 
     public MainMenuView(GameController gameController) {
         this.gameController = gameController;
         setTitle("Sokoban - Menú Principal");
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         setSize(600, 400);
         setLocationRelativeTo(null);
         setLayout(new BorderLayout());

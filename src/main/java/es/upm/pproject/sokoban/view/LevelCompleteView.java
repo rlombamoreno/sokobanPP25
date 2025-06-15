@@ -3,9 +3,10 @@ package es.upm.pproject.sokoban.view;
 import javax.swing.*;
 import java.awt.*;
 import es.upm.pproject.sokoban.controller.GameController;
+import es.upm.pproject.sokoban.model.Game;
 
 public class LevelCompleteView extends JDialog {
-    private GameController gameController;
+    private transient GameController gameController;
     private GameView gameView;
     private int levelCount;
 
@@ -69,7 +70,7 @@ public class LevelCompleteView extends JDialog {
     }
 
     private void exitToMenu() {
-    	gameController.getGame().restartLevelScore();
+    	Game.restartLevelScore();
         gameView.dispose();
         new MainMenuView(gameController).setVisible(true);
         dispose();

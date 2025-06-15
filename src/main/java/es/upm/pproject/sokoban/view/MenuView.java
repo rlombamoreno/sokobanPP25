@@ -6,7 +6,7 @@ import es.upm.pproject.sokoban.controller.GameController;
 import es.upm.pproject.sokoban.model.Game;
 
 public class MenuView extends JMenuBar {
-    private GameController gameController;
+    private transient GameController gameController;
     private GameView gameView;
 
     public MenuView(GameController gameController, GameView gameView) {

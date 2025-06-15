@@ -1,8 +1,5 @@
 package es.upm.pproject.sokoban.model;
 
-import java.util.Arrays;
-import java.util.List;
-
 public class LevelLoader {
 
     private LevelLoader() {
