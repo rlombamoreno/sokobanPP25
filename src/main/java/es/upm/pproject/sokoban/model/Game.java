@@ -121,25 +121,18 @@ public class Game {
     	String[] moves = boxesString.split(";");
     	Board board = currentLevel.getBoard();
     	for (String move : moves) {
-			if (!move.isEmpty() && !move.equals("null")) {
-				String[] coordinates = move.split(",");
-				if (coordinates.length == 2) {
-					try {
-						int x = Integer.parseInt(coordinates[0].trim());
-						int y = Integer.parseInt(coordinates[1].trim());
-						Box box = board.getBoxAt(x, y);
-						if (box != null) {
-							boxHistory.push(box);
-						} else {
-							System.out.println("Caja no encontrada en las coordenadas: " + move);
-						}
-					} catch (NumberFormatException e) {
-						System.out.println("Formato de coordenadas inválido: " + move);
-					}
+			String[] coordinates = move.split(",");
+			try {
+				int x = Integer.parseInt(coordinates[0].trim());
+				int y = Integer.parseInt(coordinates[1].trim());
+				Box box = board.getBoxAt(x, y);
+				if (box != null) {
+					boxHistory.push(box);
+				} else {
+					System.out.println("Caja no encontrada en las coordenadas: " + move);
 				}
-			}
-			if (move.equals("null")) {
-				boxHistory.push(null);
+			} catch (NumberFormatException e) {
+				System.out.println("Formato de coordenadas inválido: " + move);
 			}
 		}
 		return boxHistory;
