@@ -394,6 +394,33 @@ class MainTest {
     }
     
     @Test
+    void testUndoLastMoveWithBox() {
+        Board board = new Board(5, 5);
+        board.setCell(2, 2, new Cell(CellType.PLAYER));
+        Box box = new Box(2, 1);
+        board.getBoxes().add(box);
+        board.getBoxHistory().push(box);
+        board.setCell(1, 2, new Cell(CellType.EMPTY)); 
+        board.setCell(2, 1, new Cell(CellType.BOX)); 
+        boolean result = board.undoLastMove(Position.Direction.UP);
+        assertTrue(result);
+        assertTrue(board.getCell(1, 2).isPlayer());
+        assertTrue(board.getCell(2, 2).isBox());
+    }
+    
+    @Test
+    void testUndoLastMoveWithoutBox() {
+        Board board = new Board(5, 5);
+        board.setCell(2, 2, new Cell(CellType.PLAYER));
+        board.getBoxHistory().push(new Box(-100, -100)); 
+        board.setCell(1, 2, new Cell(CellType.EMPTY));
+        boolean result = board.undoLastMove(Position.Direction.UP);
+        assertTrue(result);
+        assertTrue(board.getCell(1, 2).isPlayer());
+        assertFalse( board.getCell(2, 2).isBox());
+    }
+    
+    @Test
     void testGetBox() {
         Board board = new Board(3, 3);
         board.setCell(1, 1, new Cell(CellType.BOX));
