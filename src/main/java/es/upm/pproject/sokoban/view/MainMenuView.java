@@ -96,7 +96,7 @@ public class MainMenuView extends JFrame {
     private boolean hasEnoughLevels() {
         levelCount = 0;
         for (int i = 1; i <= 100; i++) { // Buscar hasta 100 niveles
-            File levelFile = new File("level" + i + ".txt");
+            File levelFile = new File("level_" + i + ".txt");
             if (levelFile.exists()) {
                 levelCount++;
             }

@@ -20,7 +20,7 @@ public class Game {
 
     // Carga un nivel desde un número
     public boolean loadLevel(int levelNumber) {
-        String filename = "level" + levelNumber + ".txt"; 
+        String filename = "level_" + levelNumber + ".txt"; 
         StringBuilder levelData = new StringBuilder();
         try (BufferedReader reader = new BufferedReader(new FileReader(filename))) {
             String line;
