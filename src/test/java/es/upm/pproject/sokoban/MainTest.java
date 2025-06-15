@@ -688,6 +688,15 @@ class MainTest {
         Game.increaseScore(game);
         assertEquals(1, game.getCurrentLevel().getLevelScore());
     }
+    
+    @Test
+    void testDecreaseScore() {
+        Game game = new Game();
+        Game.increaseScore(game);
+        Game.increaseScore(game);
+        Game.decreaseScore(game);
+        assertEquals(1, game.getCurrentLevel().getLevelScore());
+    }
 
 
     
