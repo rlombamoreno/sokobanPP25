@@ -400,6 +400,20 @@ class MainTest {
         assertTrue(box.isOnTarget());
     }
     
+    @Test
+    void testToStringBox() {
+        board.setCell(0, 0, new Cell(CellType.PLAYER));
+        board.setCell(1, 1, new Cell(CellType.BOX));
+        board.setCell(2, 2, new Cell(CellType.WALL));
+        board.setTarget(3, 3);
+        String expected = "W    \n" +
+                          " #   \n" +
+                          "  +  \n" +
+                          "   * \n" +
+                          "     \n";
+        assertEquals(expected, board.toString());
+    }
+    
 //-----------------WAREHOUSEMAN--------------------------------
     
     @Test
