@@ -1,6 +1,8 @@
 package es.upm.pproject.sokoban.model;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Stack;
 
 import es.upm.pproject.sokoban.model.Cell.CellType;
 import es.upm.pproject.sokoban.model.Position.Direction;
@@ -10,6 +12,8 @@ public class Board {
 	private WarehouseMan warehouseman;
 	private List<Box> boxes;
 	private List<Position> targets;
+	private Stack<Box> boxHistory;
+	
 	
 	// The width and height of the board
 	private int width;
@@ -19,8 +23,9 @@ public class Board {
 	public Board(int width, int height) {
 		this.width = width;
 		this.height = height;
-		boxes = new java.util.ArrayList<>();
-		this.targets = new java.util.ArrayList<>();
+		boxes = new ArrayList<>();
+		this.targets = new ArrayList<>();
+		boxHistory = new Stack<>();
 
 		cells = new Cell[height][width];
 		for (int i = 0; i < height; i++) {
@@ -97,8 +102,7 @@ public class Board {
 		Cell targetCell = cells[newPos.getY()][newPos.getX()];
 		if (targetCell.isWall()) {
 			return false; // Wall
-		}
-		if (targetCell.isBox()) {
+		}else if (targetCell.isBox()) {
 			Position boxNewPos = newPos.getAdjacent(direction);
 			if (boxNewPos.getX() < 0 || boxNewPos.getX() >= width || boxNewPos.getY() < 0 || boxNewPos.getY() >= height) {
 				return false; // Out of bounds
@@ -113,9 +117,12 @@ public class Board {
 			
 			box.move(boxNewPos.getX() - newPos.getX(), boxNewPos.getY() - newPos.getY());
 			boxTargetCell.setType(CellType.BOX);
+			boxHistory.push(box);
 			
+		}else {
+			boxHistory.push(null);
 		}
-		return true; // Valid move
+		return true;
 	}
 
 	private Box findBox(Position newPos) {
@@ -164,6 +171,25 @@ public class Board {
 			}
 		}
 		return true; // Todas las cajas están en sus objetivos
+	}
+
+	public boolean undoLastMove(Direction oppositeMove) {
+		Box box = boxHistory.pop();
+		Position playerPos = warehouseman.getPosition();
+		Position newPos = playerPos.getAdjacent(oppositeMove);
+		if(box != null) {
+			Cell targetBoxCell = cells[box.getY()][box.getX()];
+			targetBoxCell.setType(CellType.EMPTY);
+			box.updateOnTarget(targets.contains(playerPos));
+			cells[playerPos.getY()][playerPos.getX()].setType(CellType.BOX);
+			box.move(playerPos.getX()-box.getX(), playerPos.getY()-box.getY());
+		}else {
+			cells[playerPos.getY()][playerPos.getX()].setType(CellType.EMPTY);
+		}
+		cells[newPos.getY()][newPos.getX()].setType(CellType.PLAYER);
+		warehouseman.move(oppositeMove);
+		return true;
+		
 	}
 
 

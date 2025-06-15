@@ -25,8 +25,8 @@ public class GameFinishView extends JDialog{
         setLocationRelativeTo(gameView);
         setLayout(new BorderLayout());
 
-        JLabel message = new JLabel("<html><center><h2>¡Enhorabuena has completado todos los niveles!</h2>"
-                + "</center></html>");
+        JLabel message = new JLabel("<html><center><h2>¡Enhorabuena, has completado todos los niveles!</h2>"
+                + "<h3>Puntuación final: " + gameController.getGame().getTotalScore() + "</h3></center></html>");
         message.setHorizontalAlignment(SwingConstants.CENTER);
         message.setFont(new Font("Arial", Font.BOLD, 16));
         add(message, BorderLayout.CENTER);

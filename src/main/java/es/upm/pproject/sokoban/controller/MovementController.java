@@ -6,16 +6,17 @@ import java.util.Stack;
 
 public class MovementController {
     private Board board;
-    private Stack<Direction> moveHistory;
+    private Stack<Direction> moveHistoryPlayer;
+    
 
     public MovementController(Board board) {
         this.board = board;
-        this.moveHistory = new Stack<>();
+        this.moveHistoryPlayer = new Stack<>();
     }
     public boolean move(Direction direction) {
         boolean moved = board.movePlayer(direction);
         if(moved)
-        	moveHistory.push(direction);
+        	moveHistoryPlayer.push(direction);
         return moved;
     }
     public Board getCurrentBoard() {
@@ -23,12 +24,12 @@ public class MovementController {
 	}
     // Deshacer el último movimiento
     public boolean undoLastMove() {
-        if (moveHistory.isEmpty()) {
+        if (moveHistoryPlayer.isEmpty()) {
             return false;
         }
-        Direction lastMove = moveHistory.pop();
+        Direction lastMove = moveHistoryPlayer.pop();
         Direction oppositeMove = lastMove.getOpposite();
-        return board.movePlayer(oppositeMove);
+        return board.undoLastMove(oppositeMove);
     }
     
 }
