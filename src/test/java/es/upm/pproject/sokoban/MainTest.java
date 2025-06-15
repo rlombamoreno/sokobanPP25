@@ -12,6 +12,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.Deque;
 import java.util.List;
 
 class MainTest {
@@ -412,6 +413,23 @@ class MainTest {
         assertEquals(4, box2.getY());
         assertNull(box3, "No debe haber caja en (0,0)");
     }
+    
+    @Test
+    void testSetBoxHistory() {
+        Board board = new Board(3, 3);
+
+        // Creamos una nueva historia con una caja de prueba
+        Deque<Box> newHistory = new java.util.ArrayDeque<>();
+        Box testBox = new Box(1, 1);
+        newHistory.push(testBox);
+
+        board.setBoxHistory(newHistory);
+
+        Deque<Box> result = board.getBoxHistory();
+        assertEquals(1, result.size());
+        assertSame(testBox, result.peek());
+    }
+ 
 
 //--------------------------------------BOX---------------------------------
   //AQUI NO HAGO UN BEFORE EACH PARA ASI CAMBIAR UN POCO, PERO LO PODRÍAMOS AÑADIR Y NO DECLARAR BOX EN TODOS LOS METODOS
