@@ -113,6 +113,9 @@ public class Board {
 				return false; // Wall or another box
 			}
 			
+			if(box == null) {
+				return false; // No box at the target position
+			}
 			box.updateOnTarget(targets.contains(boxNewPos));
 			
 			box.move(boxNewPos.getX() - newPos.getX(), boxNewPos.getY() - newPos.getY());
@@ -144,33 +147,15 @@ public class Board {
 	
 	
 	
-	@Override
-	public String toString() {
-	    StringBuilder sb = new StringBuilder();
-	    for (int i = 0; i < height; i++) {
-	        for (int j = 0; j < width; j++) {
-	            char symbol = ' ';
-	            Cell cell = cells[i][j];
-	            if (cell.isWall()) symbol = '+';
-	            else if (cell.isBox()) symbol = '#';
-	            else if (targets.contains(new Position(j, i))) symbol = '*';
-	            else if (cell.isPlayer()) symbol = 'W'; // Asegurar que el almacenero se imprime correctamente
-	            else symbol = ' ';
-
-	            sb.append(symbol);
-	        }
-	        sb.append("\n"); // Nueva línea por cada fila
-	    }
-	    return sb.toString();
-	}
+	
 
 	public boolean isLevelCompleted() {
 		for (Box box : boxes) {
 			if (!box.isOnTarget()) {
-				return false; // Si alguna caja no está en su objetivo, el nivel no está completado
+				return false; 
 			}
 		}
-		return true; // Todas las cajas están en sus objetivos
+		return true; 
 	}
 
 	public boolean undoLastMove(Direction oppositeMove) {
@@ -190,6 +175,26 @@ public class Board {
 		warehouseman.move(oppositeMove);
 		return true;
 		
+	}
+	
+	@Override
+	public String toString() {
+	    StringBuilder sb = new StringBuilder();
+	    for (int i = 0; i < height; i++) {
+	        for (int j = 0; j < width; j++) {
+	            char symbol = ' ';
+	            Cell cell = cells[i][j];
+	            if (cell.isWall()) symbol = '+';
+	            else if (cell.isBox()) symbol = '#';
+	            else if (targets.contains(new Position(j, i))) symbol = '*';
+	            else if (cell.isPlayer()) symbol = 'W';
+	            else symbol = ' ';
+
+	            sb.append(symbol);
+	        }
+	        sb.append("\n"); 
+	    }
+	    return sb.toString();
 	}
 
 
