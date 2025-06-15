@@ -721,6 +721,13 @@ class MainTest {
         Game.restartLevelScore();
         assertEquals(0, Game.getTotalScore());
     }
+    
+    @Test
+    void testSetCurrentLevelNumber() {
+        Game game = new Game();
+        game.setCurrentLevelNumber(5);
+        assertEquals(5, game.getCurrentLevelNumber()); 
+    }
 
 
     
