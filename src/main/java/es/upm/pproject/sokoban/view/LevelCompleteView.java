@@ -30,8 +30,7 @@ public class LevelCompleteView extends JDialog {
         JPanel buttonPanel = new JPanel();
         buttonPanel.setLayout(new FlowLayout());
 
-        JButton saveAndMenuButton = new JButton("Guardar y salir al menú");
-        saveAndMenuButton.addActionListener(e -> saveAndExit());
+
 
         JButton nextLevelButton = new JButton("Ir al siguiente nivel");
         nextLevelButton.addActionListener(e -> goToNextLevel());
@@ -39,7 +38,6 @@ public class LevelCompleteView extends JDialog {
         JButton exitToMenuButton = new JButton("Salir al menú principal");
         exitToMenuButton.addActionListener(e -> exitToMenu());
 
-        buttonPanel.add(saveAndMenuButton);
         buttonPanel.add(nextLevelButton);
         buttonPanel.add(exitToMenuButton);
         add(buttonPanel, BorderLayout.SOUTH);
@@ -48,11 +46,6 @@ public class LevelCompleteView extends JDialog {
         setVisible(true);
     }
 
-    private void saveAndExit() {
-        gameController.saveGame("saved_game.txt");
-        gameController.restartLevel();
-        exitToMenu();
-    }
 
     private void goToNextLevel() {
     	int levelAct = gameController.getGame().getCurrentLevelNumber();
