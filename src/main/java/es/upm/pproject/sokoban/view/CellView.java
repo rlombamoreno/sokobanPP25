@@ -1,11 +1,16 @@
 package es.upm.pproject.sokoban.view;
 
 import javax.swing.*;
+
 import java.awt.*;
 import java.io.File;
 import java.io.IOException;
 import javax.imageio.ImageIO;
 import es.upm.pproject.sokoban.model.Cell;
+import es.upm.pproject.sokoban.model.Game;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class CellView extends JPanel {
     private transient Cell cell;
@@ -13,6 +18,8 @@ public class CellView extends JPanel {
     private static Image boxImage;
     private static Image equisImage;
     private static Image boxEquisImage;
+    private static final Logger LOGGER = LoggerFactory.getLogger(Game.class);
+
 
     static {
         try {
@@ -21,7 +28,7 @@ public class CellView extends JPanel {
             equisImage = ImageIO.read(new File("src/main/resources/equis.png"));
             boxEquisImage = ImageIO.read(new File("src/main/resources/boxEquis.png"));
         } catch (IOException e) {
-            System.err.println("Error al cargar las imágenes.");
+        	LOGGER.error("Error al cargar las imágenes." + e);
             playerImage = null;
             boxImage = null;
         }
