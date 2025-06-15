@@ -98,7 +98,7 @@ public class Game {
         try (BufferedReader reader = new BufferedReader(new FileReader(filename))) {
             this.levelNumber = Integer.parseInt(reader.readLine());
             levelScore = Integer.parseInt(reader.readLine());
-            totalScore = Integer.parseInt(reader.readLine());
+            setTotalScore(Integer.parseInt(reader.readLine()));
         	dequeString = reader.readLine(); // Leer la línea del stack
         	boxesString = reader.readLine(); // Leer la línea de las cajas
             String line;
@@ -153,6 +153,10 @@ public class Game {
 
 	public void setCurrentLevelNumber(int i) {
 		this.levelNumber = i;
+	}
+	
+	public static void setTotalScore(int i) {
+		totalScore = i;
 	}
 	
 	public Deque<Direction> setMoveHistoryPlayer(String dequeString) {
