@@ -17,20 +17,20 @@ public class GameController {
         game = new Game();
     }   
     public void restartLevel() {
-    	game.resetLevelScore();
+    	Game.resetLevelScore(game);
         game.loadLevel(game.getCurrentLevelNumber());
         movementController = new MovementController(game.getCurrentLevel().getBoard());
     }   
     public boolean movePlayer(Direction direction) {
     	if(movementController.move(direction)) {
-    		game.increaseScore();
+    		Game.increaseScore(game);
     		return true;
 		}
         return false;
     } 
     public boolean undoLastMove() {
         if(movementController.undoLastMove()) {
-        	game.decreaseScore();
+        	Game.decreaseScore(game);
         	return true;
         }
         return false;

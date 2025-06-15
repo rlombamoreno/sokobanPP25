@@ -20,7 +20,7 @@ public class Game {
     }
 
     // Carga un nivel desde un número
-    public boolean loadLevel(int levelNumber) {
+    public final boolean loadLevel(int levelNumber) {
         String filename = "level_" + levelNumber + ".txt"; 
         StringBuilder levelData = new StringBuilder();
         try (BufferedReader reader = new BufferedReader(new FileReader(filename))) {
@@ -45,21 +45,21 @@ public class Game {
     }
 
     
-    public void increaseScore() {
-		currentLevel.increaseScore();
+    public static void increaseScore(Game game) {
+		game.currentLevel.increaseScore();
 		totalScore++;
 	}
-    public void decreaseScore() {
-		if (currentLevel.getLevelScore() > 0) {
-			currentLevel.decreaseScore();
+    public static void decreaseScore(Game game) {
+		if (game.currentLevel.getLevelScore() > 0) {
+			game.currentLevel.decreaseScore();
 			totalScore--;
 		}
 	}
-    public void resetLevelScore() {
-		totalScore -= currentLevel.getLevelScore();
+    public static void resetLevelScore(Game game) {
+		totalScore -= game.currentLevel.getLevelScore();
 	}
     
-    public void restartLevelScore() {
+    public static void restartLevelScore() {
     	totalScore = 0;
     }
 
