@@ -964,40 +964,40 @@ class MainTest {
   //-------------------------POSITION----------------------------
     @Test
     void testDirectionGetOppositeUp() {
-    	logger.info("Starting Test");
+    	logger.info("Starting Test testDirectionGetOppositeUp");
         assertEquals(Direction.DOWN, Direction.UP.getOpposite());
         
     }
     
     @Test
     void testDirectionGetOppositeDown() {
-    	logger.info("Starting Test");
+    	logger.info("Starting Test testDirectionGetOppositeDown");
         assertEquals(Direction.UP, Direction.DOWN.getOpposite());
       
     }
     
     @Test
     void testDirectionGetOppositeLeft() {
-    	logger.info("Starting Test");
+    	logger.info("Starting Test testDirectionGetOppositeLeft");
         assertEquals(Direction.RIGHT, Direction.LEFT.getOpposite());
     }
     
     @Test
     void testDirectionGetOppositeRight() {
-    	logger.info("Starting Test");
+    	logger.info("Starting Test testDirectionGetOppositeRight");
         assertEquals(Direction.LEFT, Direction.RIGHT.getOpposite());
     }
     
     @Test
     void testEqualsSameObject() {
-    	logger.info("Starting Test");
+    	logger.info("Starting Test testEqualsSameObject");
         Position pos = new Position(2, 3);
         assertEquals(true, pos.equals(pos)); 
     }
 
     @Test
     void testEqualsDifferentType() {
-    	logger.info("Starting Test");
+    	logger.info("Starting Test testEqualsDifferentType");
         Position pos = new Position(2, 3);
         assertNotEquals(true, pos.equals("not a Position")); 
     }
@@ -1006,7 +1006,7 @@ class MainTest {
 
     @Test
     void testConstructorWithLevelNameBoardAndNumber() {
-    	logger.info("Starting Test");
+    	logger.info("Starting Test testConstructorWithLevelNameBoardAndNumber");
         Board board = new Board(5, 5);
         Level level = new Level("Level 2", board);
         assertEquals("Level 2", level.getLevelName());
@@ -1015,7 +1015,7 @@ class MainTest {
     
     @Test
     void testGetLevelScore() {
-    	logger.info("Starting Test");
+    	logger.info("Starting Test testGetLevelScore");
         Board board = new Board(5, 5);
         Level level = new Level("Level 2", board);
         assertEquals(0, level.getLevelScore());
@@ -1023,7 +1023,7 @@ class MainTest {
     
     @Test
     void testIncreaseLevelScore() {
-    	logger.info("Starting Test");
+    	logger.info("Starting Test testIncreaseLevelScore");
         Board board = new Board(5, 5);
         Level level = new Level("Level 2", board);
         level.increaseScore();
@@ -1032,7 +1032,7 @@ class MainTest {
     
     @Test
     void testDecreaseLevelScore() {
-    	logger.info("Starting Test");
+    	logger.info("Starting Test testDecreaseLevelScore");
         Board board = new Board(5, 5);
         Level level = new Level("Level 2", board);
         level.increaseScore();
@@ -1043,7 +1043,7 @@ class MainTest {
     }
     @Test
     void testDecreaseLevelScore0() {
-    	logger.info("Starting Test");
+    	logger.info("Starting Test testDecreaseLevelScore0");
         Board board = new Board(5, 5);
         Level level = new Level("Level 2", board);
         level.decreaseScore();
@@ -1158,7 +1158,7 @@ class MainTest {
 
     @Test
     void testInvalidLevelFormat() {
-    	logger.info("Starting Test");
+    	logger.info("Starting Test testInvalidLevelFormat");
         String levelData =
             "Only Name";
 
