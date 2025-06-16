@@ -826,9 +826,10 @@ class MainTest {
     void testSaveGame_FileWriteError() {
         logger.info("Starting Test");
         Game game = new Game();
-        // Intenta guardar en un path probablemente inválido
-        game.saveGame("/invalid_path/test_save.txt", new ArrayDeque<>());
-        // No se espera excepción, solo verificar que no se cae
+        Deque<Direction> moves = new ArrayDeque<>();
+        String invalidFile = "?:/invalid_path/test_save.txt";
+
+        assertDoesNotThrow(() -> game.saveGame(invalidFile, moves));
     }
 
     @Test
@@ -864,12 +865,12 @@ class MainTest {
         logger.info("Starting Test");
         Game game = new Game();
         Board board = game.getCurrentLevel().getBoard();
-
         Deque<Box> fakeHistory = new ArrayDeque<>();
-        fakeHistory.add(new Box(-100, -100)); 
+        fakeHistory.add(new Box(-100, -100));
 
-        board.setBoxHistory(fakeHistory); 
-        game.saveGame("test_output.txt", new ArrayDeque<>());
+        board.setBoxHistory(fakeHistory); // Asegúrate de tener este setter público
+
+        assertDoesNotThrow(() -> game.saveGame("test_output_invalid_box.txt", new ArrayDeque<>()));
     }
 
 
