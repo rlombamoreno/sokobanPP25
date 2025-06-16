@@ -905,10 +905,12 @@ class MainTest {
     void testSetMoveHistoryPlayer_InvalidMove() {
         logger.info("Starting Test testSetMoveHistoryPlayer_InvalidMove");
         Game game = new Game();
-        Deque<Direction> result = game.setMoveHistoryPlayer("[UP, JUMP, DOWN]");
-        assertEquals(2, result.size()); 
+        Deque<Direction> result = game.setMoveHistoryPlayer("[UP, JUMP, DOWN, LEFT]");
+        assertEquals(3, result.size()); 
         assertTrue(result.contains(Direction.UP));
         assertTrue(result.contains(Direction.DOWN));
+        assertTrue(result.contains(Direction.LEFT));
+
     }
 
     @Test
