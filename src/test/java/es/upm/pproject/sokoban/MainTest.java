@@ -208,10 +208,9 @@ class MainTest {
     void testSetTargetValid() {
     	logger.info("Starting Test testSetTargetValid");
         board.setTarget(3, 4);
-        // Verify via toString since getTargets is not available
         board.setCell(3, 4, new Cell(CellType.EMPTY));
         String boardStr = board.toString();
-        assertTrue(boardStr.contains("*")); // Target is represented by '*'
+        assertTrue(boardStr.contains("*")); 
     }
     
     @Test
@@ -228,13 +227,13 @@ class MainTest {
     @Test
     void testSetTargetInValid3() {
     	logger.info("Starting Test testSetTargetInValid3");
-        assertThrows(IndexOutOfBoundsException.class, () -> board.setTarget(5, 2)); // i >= height
+        assertThrows(IndexOutOfBoundsException.class, () -> board.setTarget(5, 2)); 
     }
     
     @Test
     void testSetTargetInValid4() {
     	logger.info("Starting Test testSetTargetInValid4");
-        assertThrows(IndexOutOfBoundsException.class, () -> board.setTarget(2, 5)); // j >= width
+        assertThrows(IndexOutOfBoundsException.class, () -> board.setTarget(2, 5)); 
     }
 
 
@@ -587,7 +586,6 @@ class MainTest {
     	logger.info("Starting Test testSetBoxHistory");
         Board board = new Board(3, 3);
 
-        // Creamos una nueva historia con una caja de prueba
         Deque<Box> newHistory = new java.util.ArrayDeque<>();
         Box testBox = new Box(1, 1);
         newHistory.push(testBox);
@@ -872,7 +870,7 @@ class MainTest {
     void testLoadLevel_FileNotFound() {
         logger.info("Starting Test testLoadLevel_FileNotFound");
         Game game = new Game();
-        boolean loaded = game.loadLevel(9999); // Nivel que no existe
+        boolean loaded = game.loadLevel(9999); 
         assertFalse(loaded);
     }
 
@@ -880,7 +878,7 @@ class MainTest {
     void testLoadLevel_NullLevel() {
         logger.info("Starting Test testLoadLevel_NullLevel");
         Game game = new Game();
-        boolean loaded = game.loadLevel(-1); // Asume que LevelLoader retorna null para nivel inválido
+        boolean loaded = game.loadLevel(-1); 
         assertFalse(loaded);
     }
 
@@ -908,7 +906,7 @@ class MainTest {
         logger.info("Starting Test testSetMoveHistoryPlayer_InvalidMove");
         Game game = new Game();
         Deque<Direction> result = game.setMoveHistoryPlayer("[UP, JUMP, DOWN]");
-        assertEquals(2, result.size()); // Ignora "JUMP"
+        assertEquals(2, result.size()); 
         assertTrue(result.contains(Direction.UP));
         assertTrue(result.contains(Direction.DOWN));
     }
@@ -930,7 +928,7 @@ class MainTest {
         Deque<Box> fakeHistory = new ArrayDeque<>();
         fakeHistory.add(new Box(-100, -100));
 
-        board.setBoxHistory(fakeHistory); // Asegúrate de tener este setter público
+        board.setBoxHistory(fakeHistory); 
 
         assertDoesNotThrow(() -> game.saveGame("test_output_invalid_box.txt", new ArrayDeque<>()));
     }
