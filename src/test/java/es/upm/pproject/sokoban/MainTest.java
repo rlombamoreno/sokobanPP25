@@ -874,7 +874,7 @@ class MainTest {
     }
 
     @Test
-    void testSaveAndLoadGame_CompleteCycle() throws IOException {
+    void testSaveAndLoadGame() throws IOException {
         logger.info("Starting Test");
         Game originalGame = new Game();
         originalGame.loadLevel(1);
