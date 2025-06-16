@@ -873,8 +873,38 @@ class MainTest {
         assertDoesNotThrow(() -> game.saveGame("test_output_invalid_box.txt", new ArrayDeque<>()));
     }
 
-
-    
+    @Test
+    void testSaveAndLoadGame_CompleteCycle() throws IOException {
+        logger.info("Starting Test");
+        Game originalGame = new Game();
+        originalGame.loadLevel(1);
+        
+        originalGame.setCurrentLevelNumber(2);
+        Game.increaseScore(originalGame);
+        Game.increaseScore(originalGame);
+        Game.setTotalScore(20);
+        
+        Deque<Direction> originalMoves = new ArrayDeque<>();
+        originalMoves.add(Direction.UP);
+        originalMoves.add(Direction.RIGHT);
+        
+        File tempFile = File.createTempFile("test_cycle", ".txt");
+        tempFile.deleteOnExit();
+        originalGame.saveGame(tempFile.getAbsolutePath(), originalMoves);
+        
+        Game loadedGame = new Game();
+        Deque<Direction> loadedMoves = loadedGame.loadSavedGame(tempFile.getAbsolutePath());
+        
+        assertEquals(2, loadedGame.getCurrentLevelNumber());
+        assertEquals(2, loadedGame.getCurrentLevel().getLevelScore());
+        assertEquals(20, Game.getTotalScore());
+        assertEquals(2, loadedMoves.size());
+        assertEquals(Direction.UP, loadedMoves.pollFirst());
+        assertEquals(Direction.RIGHT, loadedMoves.pollFirst());
+        assertEquals(originalGame.getCurrentLevel().getLevelName(), 
+                     loadedGame.getCurrentLevel().getLevelName());
+    }
+      
 /*
     
     
