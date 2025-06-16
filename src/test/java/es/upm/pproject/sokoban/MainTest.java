@@ -536,7 +536,7 @@ class MainTest {
         assertEquals(1, result.size());
         assertSame(testBox, result.peek());
     }
- 
+     
 
 //--------------------------------------BOX---------------------------------
   //AQUI NO HAGO UN BEFORE EACH PARA ASI CAMBIAR UN POCO, PERO LO PODRÍAMOS AÑADIR Y NO DECLARAR BOX EN TODOS LOS METODOS
