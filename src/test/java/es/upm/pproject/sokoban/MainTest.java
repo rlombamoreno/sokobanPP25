@@ -600,7 +600,7 @@ class MainTest {
     
     @Test
     void testConstructor() {
-    	logger.info("Starting Test");
+    	logger.info("Starting Test testConstructor");
         WarehouseMan wm = new WarehouseMan(2, 3);
         Position pos = wm.getPosition();
         assertEquals(2, pos.getX());
@@ -609,7 +609,7 @@ class MainTest {
 
     @Test
     void testMoveUp() {
-    	logger.info("Starting Test");
+    	logger.info("Starting Test testMoveUp");
         WarehouseMan wm = new WarehouseMan(2, 2);
         wm.move(Direction.UP);
         Position pos = wm.getPosition();
@@ -619,7 +619,7 @@ class MainTest {
 
     @Test
     void testMoveDown() {
-    	logger.info("Starting Test");
+    	logger.info("Starting Test testMoveDown");
         WarehouseMan wm = new WarehouseMan(2, 2);
         wm.move(Direction.DOWN);
         Position pos = wm.getPosition();
@@ -629,7 +629,7 @@ class MainTest {
 
     @Test
     void testMoveLeft() {
-    	logger.info("Starting Test");
+    	logger.info("Starting Test testMoveLeft");
         WarehouseMan wm = new WarehouseMan(2, 2);
         wm.move(Direction.LEFT);
         Position pos = wm.getPosition();
@@ -639,7 +639,7 @@ class MainTest {
 
     @Test
     void testMoveRight() {
-    	logger.info("Starting Test");
+    	logger.info("Starting Test testMoveRight");
         WarehouseMan wm = new WarehouseMan(2, 2);
         wm.move(Direction.RIGHT);
         Position pos = wm.getPosition();
@@ -649,7 +649,7 @@ class MainTest {
 
     @Test
     void testMultipleMoves() {
-    	logger.info("Starting Test");
+    	logger.info("Starting Test testMultipleMoves");
         WarehouseMan wm = new WarehouseMan(0, 0);
         wm.move(Direction.RIGHT);
         wm.move(Direction.DOWN);
@@ -662,7 +662,7 @@ class MainTest {
 
     @Test
     void testMoveWithNullDirectionThrows() {
-    	logger.info("Starting Test");
+    	logger.info("Starting Test testMoveWithNullDirectionThrows");
         WarehouseMan wm = new WarehouseMan(1, 1);
         assertThrows(NullPointerException.class, () -> wm.move(null));
     }
