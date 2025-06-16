@@ -329,6 +329,42 @@ class MainTest {
     }
     
     @Test
+    void testMovePlayerPushBoxInValid1() {
+    	logger.info("Starting Test testMovePlayerPushBoxInValid1");
+        board.setCell(2, 3, new Cell(CellType.PLAYER));
+        board.setCell(2, 4, new Cell(CellType.BOX));
+        boolean moved = board.movePlayer(Direction.RIGHT);
+        assertFalse(moved);
+    }
+    
+    @Test
+    void testMovePlayerPushBoxInValid2() {
+    	logger.info("Starting Test testMovePlayerPushBoxInValid2");
+        board.setCell(2, 1, new Cell(CellType.PLAYER));
+        board.setCell(2, 0, new Cell(CellType.BOX));
+        boolean moved = board.movePlayer(Direction.LEFT);
+        assertFalse(moved);       
+    }
+    
+    @Test
+    void testMovePlayerPushBoxInValid3() {
+    	logger.info("Starting Test testMovePlayerPushBoxInValid3");
+        board.setCell(1, 2, new Cell(CellType.PLAYER));
+        board.setCell(0, 2, new Cell(CellType.BOX));
+        boolean moved = board.movePlayer(Direction.UP);
+        assertFalse(moved);
+    }
+    
+    @Test
+    void testMovePlayerPushBoxInValid4() {
+    	logger.info("Starting Test testMovePlayerPushBoxInValid4");
+        board.setCell(3, 3, new Cell(CellType.PLAYER));
+        board.setCell(4, 3, new Cell(CellType.BOX));
+        boolean moved = board.movePlayer(Direction.DOWN);
+        assertFalse(moved);       
+    }
+    
+    @Test
     void testIsValidMoveFailsWhenBoxIsMissing() {
     	logger.info("Starting Test testIsValidMoveFailsWhenBoxIsMissing");
         Board board = new Board(3, 3);
