@@ -1,4 +1,4 @@
-FINAL LEVEL
+MEDIUM LEVEL
 8 11
 +++++++++++
 +        W+
