@@ -542,7 +542,7 @@ class MainTest {
   //AQUI NO HAGO UN BEFORE EACH PARA ASI CAMBIAR UN POCO, PERO LO PODRÍAMOS AÑADIR Y NO DECLARAR BOX EN TODOS LOS METODOS
     @Test
     void testBoxConstructor() {
-    	logger.info("Starting Test");
+    	logger.info("Starting Test testBoxConstructor");
         Box box = new Box(2, 2);
         assertEquals(2, box.getX());
         assertEquals(2, box.getY());
@@ -551,14 +551,14 @@ class MainTest {
 
     @Test
     void testGetX() {
-    	logger.info("Starting Test");
+    	logger.info("Starting Test testGetX");
         Box box = new Box(3, 6);
         assertEquals(3, box.getX());
     }
 
     @Test
     void testGetY() {
-    	logger.info("Starting Test");
+    	logger.info("Starting Test testGetY");
         Box box = new Box(3, 6);
         assertEquals(6, box.getY());
     }
@@ -566,7 +566,7 @@ class MainTest {
 
     @Test
     void testBoxMove() {
-    	logger.info("Starting Test");
+    	logger.info("Starting Test testBoxMove");
         Box box = new Box(2, 3);
         box.move(1, 1);
         assertEquals(3, box.getX());
@@ -575,7 +575,7 @@ class MainTest {
 
     @Test
     void testBoxUpdateOnTarget() {
-    	logger.info("Starting Test");
+    	logger.info("Starting Test testBoxUpdateOnTarget");
         Box box = new Box(1, 1);
         box.updateOnTarget(true);
         assertTrue(box.isOnTarget());
@@ -583,7 +583,7 @@ class MainTest {
     
     @Test
     void testToStringBox() {
-    	logger.info("Starting Test");
+    	logger.info("Starting Test testToStringBox");
         board.setCell(0, 0, new Cell(CellType.PLAYER));
         board.setCell(1, 1, new Cell(CellType.BOX));
         board.setCell(2, 2, new Cell(CellType.WALL));
