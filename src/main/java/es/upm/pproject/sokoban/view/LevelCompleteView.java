@@ -30,8 +30,6 @@ public class LevelCompleteView extends JDialog {
         JPanel buttonPanel = new JPanel();
         buttonPanel.setLayout(new FlowLayout());
 
-
-
         JButton nextLevelButton = new JButton("Ir al siguiente nivel");
         nextLevelButton.addActionListener(e -> goToNextLevel());
 
