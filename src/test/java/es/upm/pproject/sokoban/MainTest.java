@@ -40,7 +40,7 @@ class MainTest {
 
     @Test
     void testConstructorValid() {
-    	logger.info("Starting Test");
+    	logger.info("Starting Test testConstructorValid");
         assertEquals(width, board.getWidth());
         assertEquals(height, board.getHeight());
         assertNotNull(board.getCells());
@@ -60,21 +60,21 @@ class MainTest {
 
     @Test
     void testGetSetWidth() {
-    	logger.info("Starting Test");
+    	logger.info("Starting Test testGetSetWidth");
         board.setWidth(10);
         assertEquals(10, board.getWidth());
     }
 
     @Test
     void testGetSetHeight() {
-    	logger.info("Starting Test");
+    	logger.info("Starting Test testGetSetHeight");
         board.setHeight(8);
         assertEquals(8, board.getHeight());
     }
 
     @Test
     void testGetCellValid() {
-    	logger.info("Starting Test");
+    	logger.info("Starting Test testGetCellValid");
         Cell cell = board.getCell(2, 3);
         assertNotNull(cell);
         assertFalse(cell.isWall());
@@ -84,7 +84,7 @@ class MainTest {
     
     @Test
     void testGetCellInvalid1() {
-    	logger.info("Starting Test");
+    	logger.info("Starting Test testGetCellInvalid1");
         Board board = new Board(3, 3); 
         assertThrows(IndexOutOfBoundsException.class, () -> {
             board.getCell(-1, 0);
@@ -93,7 +93,7 @@ class MainTest {
     }
     @Test
     void testGetCellInvalid2() {
-    	logger.info("Starting Test");
+    	logger.info("Starting Test testGetCellInvalid2");
         Board board = new Board(3, 3); 
         assertThrows(IndexOutOfBoundsException.class, () -> {
             board.getCell(0, 3);
@@ -104,7 +104,7 @@ class MainTest {
     
     @Test
     void testGetCellInvalid3() {
-    	logger.info("Starting Test");
+    	logger.info("Starting Test testGetCellInvalid3");
         Board board = new Board(3, 3); 
         assertThrows(IndexOutOfBoundsException.class, () -> {
             board.getCell(5, 5);
@@ -113,7 +113,7 @@ class MainTest {
     
     @Test
     void testGetCellInvalid4() {
-    	logger.info("Starting Test");
+    	logger.info("Starting Test testGetCellInvalid4");
         Board board = new Board(3, 3); 
         assertThrows(IndexOutOfBoundsException.class, () -> {
             board.getCell(2, -1);
@@ -122,7 +122,7 @@ class MainTest {
     
     @Test
     void testSetCellsReplacesBoardCells() {
-    	logger.info("Starting Test");
+    	logger.info("Starting Test testSetCellsReplacesBoardCells");
         Board board = new Board(2, 2); // crea una board inicial
 
         Cell[][] newCells = {
@@ -140,7 +140,7 @@ class MainTest {
 
     @Test
     void testSetCellValidPlayer() {
-    	logger.info("Starting Test");
+    	logger.info("Starting Test testSetCellValidPlayer");
         Cell playerCell = new Cell(CellType.PLAYER);
         board.setCell(2, 2, playerCell);
         assertTrue(board.getCell(2, 2).isPlayer());
@@ -163,7 +163,7 @@ class MainTest {
     
     @Test
     void testSetCellInvalid1() {
-    	logger.info("Starting Test");
+    	logger.info("Starting Test testSetCellInvalid1");
         Board board = new Board(3, 3); 
         Cell emptyCell = new Cell(CellType.EMPTY);
         assertThrows(IndexOutOfBoundsException.class, () -> {
@@ -173,7 +173,7 @@ class MainTest {
     }
     @Test
     void testSetCellInvalid2() {
-    	logger.info("Starting Test");
+    	logger.info("Starting Test testSetCellInvalid2");
     	Board board = new Board(3, 3); 
         Cell emptyCell = new Cell(CellType.EMPTY);
         assertThrows(IndexOutOfBoundsException.class, () -> {
@@ -185,7 +185,7 @@ class MainTest {
     
     @Test
     void testSetCellInvalid3() {
-    	logger.info("Starting Test");
+    	logger.info("Starting Test testSetCellInvalid3");
     	Board board = new Board(3, 3); 
         Cell emptyCell = new Cell(CellType.EMPTY);
         assertThrows(IndexOutOfBoundsException.class, () -> {
@@ -195,7 +195,7 @@ class MainTest {
     
     @Test
     void testSetCellInvalid4() {
-    	logger.info("Starting Test");
+    	logger.info("Starting Test testSetCellInvalid4");
     	Board board = new Board(3, 3); 
         Cell emptyCell = new Cell(CellType.EMPTY);
         assertThrows(IndexOutOfBoundsException.class, () -> {
@@ -206,7 +206,7 @@ class MainTest {
 
     @Test
     void testSetTargetValid() {
-    	logger.info("Starting Test");
+    	logger.info("Starting Test testSetTargetValid");
         board.setTarget(3, 4);
         // Verify via toString since getTargets is not available
         board.setCell(3, 4, new Cell(CellType.EMPTY));
@@ -216,24 +216,24 @@ class MainTest {
     
     @Test
     void testSetTargetInValid1() {
-    	logger.info("Starting Test");
+    	logger.info("Starting Test testSetTargetInValid1");
         assertThrows(IndexOutOfBoundsException.class, () -> board.setTarget(-1, 2));
     }
     @Test
     void testSetTargetInValid2() {
-    	logger.info("Starting Test");
+    	logger.info("Starting Test testSetTargetInValid2");
         assertThrows(IndexOutOfBoundsException.class, () -> board.setTarget(2, -1));
 
     }
     @Test
     void testSetTargetInValid3() {
-    	logger.info("Starting Test");
+    	logger.info("Starting Test testSetTargetInValid3");
         assertThrows(IndexOutOfBoundsException.class, () -> board.setTarget(5, 2)); // i >= height
     }
     
     @Test
     void testSetTargetInValid4() {
-    	logger.info("Starting Test");
+    	logger.info("Starting Test testSetTargetInValid4");
         assertThrows(IndexOutOfBoundsException.class, () -> board.setTarget(2, 5)); // j >= width
     }
 
@@ -241,7 +241,7 @@ class MainTest {
 
     @Test
     void testMovePlayerValid() {
-    	logger.info("Starting Test");
+    	logger.info("Starting Test testMovePlayerValid");
         board.setCell(2, 2, new Cell(CellType.PLAYER));
         boolean moved = board.movePlayer(Direction.RIGHT);
         assertTrue(moved);
@@ -253,7 +253,7 @@ class MainTest {
 
     @Test
     void testMovePlayerOutOfBounds() {
-    	logger.info("Starting Test");
+    	logger.info("Starting Test testMovePlayerOutOfBounds");
         board.setCell(0, 0, new Cell(CellType.PLAYER));
         boolean moved = board.movePlayer(Direction.LEFT);
         assertFalse(moved);
@@ -262,7 +262,7 @@ class MainTest {
     
     @Test
     void testMovePlayerInvalid() {
-    	logger.info("Starting Test");
+    	logger.info("Starting Test testMovePlayerInvalid");
     	board.setCell(4, 0, new Cell(CellType.PLAYER));
         boolean moved = board.movePlayer(Direction.LEFT);
         assertFalse(moved);
@@ -271,16 +271,16 @@ class MainTest {
     
     
     @Test
-    void testMovePlayerInvalid3() {
-    	logger.info("Starting Test");
+    void testMovePlayerInvalid2() {
+    	logger.info("Starting Test testMovePlayerInvalid2");
     	board.setCell(0, 4, new Cell(CellType.PLAYER));
         boolean moved = board.movePlayer(Direction.UP);
         assertFalse(moved);
     }
     
     @Test
-    void testMovePlayerInvalid4() {
-    	logger.info("Starting Test");
+    void testMovePlayerInvalid3() {
+    	logger.info("Starting Test testMovePlayerInvalid3");
     	board.setCell(0, 0, new Cell(CellType.PLAYER));
         boolean moved = board.movePlayer(Direction.LEFT);
         assertFalse(moved);
@@ -288,7 +288,7 @@ class MainTest {
 
     @Test
     void testMovePlayerIntoWall() {
-    	logger.info("Starting Test");
+    	logger.info("Starting Test testMovePlayerIntoWall");
         board.setCell(2, 2, new Cell(CellType.PLAYER));
         board.setCell(2, 3, new Cell(CellType.WALL));
         boolean moved = board.movePlayer(Direction.RIGHT);
@@ -299,7 +299,7 @@ class MainTest {
 
     @Test
     void testMovePlayerPushBoxValid() {
-    	logger.info("Starting Test");
+    	logger.info("Starting Test testMovePlayerPushBoxValid");
         board.setCell(2, 2, new Cell(CellType.PLAYER));
         board.setCell(2, 3, new Cell(CellType.BOX));
         boolean moved = board.movePlayer(Direction.RIGHT);
@@ -314,7 +314,7 @@ class MainTest {
     
     @Test
     void testIsValidMoveFailsWhenBoxIsMissing() {
-    	logger.info("Starting Test");
+    	logger.info("Starting Test testIsValidMoveFailsWhenBoxIsMissing");
         Board board = new Board(3, 3);
         board.setCell(1, 1, new Cell(Cell.CellType.PLAYER));
         board.setCell(2, 1, new Cell(Cell.CellType.BOX)); 
@@ -324,7 +324,7 @@ class MainTest {
 
     @Test
     void testMovePlayerPushBoxToTarget() {
-    	logger.info("Starting Test");
+    	logger.info("Starting Test testMovePlayerPushBoxToTarget");
         board.setCell(2, 2, new Cell(CellType.PLAYER));
         board.setCell(2, 3, new Cell(CellType.BOX));
         board.setTarget(2, 4);
@@ -341,7 +341,7 @@ class MainTest {
 
     @Test
     void testMovePlayerPushBoxIntoWall() {
-    	logger.info("Starting Test");
+    	logger.info("Starting Test testMovePlayerPushBoxIntoWall");
         board.setCell(2, 2, new Cell(CellType.PLAYER));
         board.setCell(2, 3, new Cell(CellType.BOX));
         board.setCell(2, 4, new Cell(CellType.WALL));
@@ -355,7 +355,7 @@ class MainTest {
 
     @Test
     void testMovePlayerPushBoxIntoBox() {
-    	logger.info("Starting Test");
+    	logger.info("Starting Test testMovePlayerPushBoxIntoBox");
         board.setCell(2, 2, new Cell(CellType.PLAYER));
         board.setCell(2, 3, new Cell(CellType.BOX));
         board.setCell(2, 4, new Cell(CellType.BOX));
@@ -368,7 +368,7 @@ class MainTest {
 
     @Test
     void testToString() {
-    	logger.info("Starting Test");
+    	logger.info("Starting Test testToString");
         board.setCell(0, 0, new Cell(CellType.PLAYER));
         board.setCell(1, 1, new Cell(CellType.BOX));
         board.setCell(2, 2, new Cell(CellType.WALL));
@@ -383,7 +383,7 @@ class MainTest {
 
     @Test
     void testFindBox() {
-    	logger.info("Starting Test");
+    	logger.info("Starting Test testFindBox");
         board.setCell(1, 1, new Cell(CellType.BOX));
         Box box = board.getBoxes().get(0);
         assertNotNull(box);
@@ -393,7 +393,7 @@ class MainTest {
     
     @Test
     void testFindBoxes() {
-    	logger.info("Starting Test");
+    	logger.info("Starting Test testFindBoxes");
         board.setCell(1, 1, new Cell(CellType.BOX));
         board.setCell(2, 2, new Cell(CellType.BOX));
         Box box = board.getBoxes().get(0);
@@ -408,7 +408,7 @@ class MainTest {
        
     @Test
     void testLevelCompletedTrue() {
-    	logger.info("Starting Test");
+    	logger.info("Starting Test testLevelCompletedTrue");
         Board board = new Board(5, 5);
         board.setCell(1, 1, new Cell(Cell.CellType.BOX));
         board.setTarget(1, 1);
@@ -423,7 +423,7 @@ class MainTest {
     
     @Test
     void testLevelCompletedFalse() {
-    	logger.info("Starting Test");
+    	logger.info("Starting Test testLevelCompletedFalse");
         Board board = new Board(5, 5);
         board.setCell(1, 1, new Cell(Cell.CellType.BOX));
         board.setTarget(1, 1);
@@ -436,7 +436,7 @@ class MainTest {
     
     @Test
     void testUndoLastMoveWithBox() {
-    	logger.info("Starting Test");
+    	logger.info("Starting Test testUndoLastMoveWithBox");
         Board board = new Board(5, 5);
         board.setCell(2, 2, new Cell(CellType.PLAYER));
         Box box = new Box(2, 1);
@@ -452,7 +452,7 @@ class MainTest {
     
     @Test
     void testUndoLastMoveWithoutBox() {
-    	logger.info("Starting Test");
+    	logger.info("Starting Test testUndoLastMoveWithoutBox");
         Board board = new Board(5, 5);
         board.setCell(2, 2, new Cell(CellType.PLAYER));
         board.getBoxHistory().push(new Box(-100, -100)); 
@@ -464,7 +464,7 @@ class MainTest {
     }
     @Test
     void testUndoLastMoveWithoutBox2() {
-    	logger.info("Starting Test");
+    	logger.info("Starting Test testUndoLastMoveWithoutBox2");
         Board board = new Board(5, 5);
         board.setCell(2, 2, new Cell(CellType.PLAYER));
         board.getBoxHistory().push(new Box(0, -100)); 
@@ -477,7 +477,7 @@ class MainTest {
     
     @Test
     void testGetBox() {
-    	logger.info("Starting Test");
+    	logger.info("Starting Test testGetBox");
         Board board = new Board(3, 3);
         board.setCell(1, 1, new Cell(CellType.BOX));
         Box box = board.getBoxAt(1, 1);
@@ -488,14 +488,14 @@ class MainTest {
     
     @Test
     void testGetBoxNull() {
-    	logger.info("Starting Test");
+    	logger.info("Starting Test testGetBoxNull");
         Board board = new Board(3, 3);
         Box box = board.getBoxAt(0, 0);
         assertNull(box);
     }
     @Test
     void testGetBoxNull2() {
-    	logger.info("Starting Test");
+    	logger.info("Starting Test testGetBoxNull2");
         Board board = new Board(3, 3);
         board.setCell(1, 1, new Cell(CellType.BOX));
         Box box = board.getBoxAt(1, 2);
@@ -504,7 +504,7 @@ class MainTest {
     
     @Test
     void testGetBoxes() {
-    	logger.info("Starting Test");
+    	logger.info("Starting Test testGetBoxes");
         Board board = new Board(5, 5);
         board.setCell(2, 2, new Cell(CellType.BOX));
         board.setCell(4, 4, new Cell(CellType.BOX));
@@ -522,7 +522,7 @@ class MainTest {
     
     @Test
     void testSetBoxHistory() {
-    	logger.info("Starting Test");
+    	logger.info("Starting Test testSetBoxHistory");
         Board board = new Board(3, 3);
 
         // Creamos una nueva historia con una caja de prueba
