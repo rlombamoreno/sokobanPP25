@@ -736,7 +736,7 @@ class MainTest {
 //-------------------------GAME----------------------------
     @Test
     void testGameInitialization() {
-    	logger.info("Starting Test");
+    	logger.info("Starting Test testGameInitialization");
         Game game = new Game();
         Level level = game.getCurrentLevel();
         assertNotNull(level);
@@ -745,7 +745,7 @@ class MainTest {
 
     @Test
     void testLoadLevel() {
-    	logger.info("Starting Test");
+    	logger.info("Starting Test testLoadLevel");
         Game game = new Game();
         boolean loaded = game.loadLevel(1);
         assertTrue(loaded);
@@ -755,7 +755,7 @@ class MainTest {
     
     @Test
     void testIncreaseScore() {
-    	logger.info("Starting Test");
+    	logger.info("Starting Test testIncreaseScore");
         Game game = new Game();
         Game.increaseScore(game);
         assertEquals(1, game.getCurrentLevel().getLevelScore());
@@ -763,7 +763,7 @@ class MainTest {
     
     @Test
     void testDecreaseScore() {
-    	logger.info("Starting Test");
+    	logger.info("Starting Test testDecreaseScore");
         Game game = new Game();
         Game.increaseScore(game);
         Game.increaseScore(game);
@@ -773,7 +773,7 @@ class MainTest {
     
     @Test
     void testDecreaseScore2() {
-    	logger.info("Starting Test");
+    	logger.info("Starting Test testDecreaseScore2");
         Game game = new Game();
         Game.decreaseScore(game);
         assertEquals(0, game.getCurrentLevel().getLevelScore());
@@ -781,7 +781,7 @@ class MainTest {
     
     @Test
     void testResetLevelScore() {
-    	logger.info("Starting Test");
+    	logger.info("Starting Test testResetLevelScore");
         Game game = new Game();
         Level level = game.getCurrentLevel();
         level.setLevelScore(5);  
@@ -792,7 +792,7 @@ class MainTest {
     
     @Test
     void testRestartLevelScore() {
-    	logger.info("Starting Test");
+    	logger.info("Starting Test testRestartLevelScore");
         Game.setTotalScore(15); 
         Game.restartLevelScore();
         assertEquals(0, Game.getTotalScore());
@@ -800,7 +800,7 @@ class MainTest {
     
     @Test
     void testSetCurrentLevelNumber() {
-    	logger.info("Starting Test");
+    	logger.info("Starting Test testSetCurrentLevelNumber");
         Game game = new Game();
         game.setCurrentLevelNumber(5);
         assertEquals(5, game.getCurrentLevelNumber()); 
@@ -808,7 +808,7 @@ class MainTest {
     
     @Test
     void testLoadLevel_FileNotFound() {
-        logger.info("Starting Test");
+        logger.info("Starting Test testLoadLevel_FileNotFound");
         Game game = new Game();
         boolean loaded = game.loadLevel(9999); // Nivel que no existe
         assertFalse(loaded);
@@ -816,7 +816,7 @@ class MainTest {
 
     @Test
     void testLoadLevel_NullLevel() {
-        logger.info("Starting Test");
+        logger.info("Starting Test testLoadLevel_NullLevel");
         Game game = new Game();
         boolean loaded = game.loadLevel(-1); // Asume que LevelLoader retorna null para nivel inválido
         assertFalse(loaded);
@@ -824,7 +824,7 @@ class MainTest {
 
     @Test
     void testSaveGame_FileWriteError() {
-        logger.info("Starting Test");
+        logger.info("Starting Test testSaveGame_FileWriteError");
         Game game = new Game();
         Deque<Direction> moves = new ArrayDeque<>();
         String invalidFile = "?:/invalid_path/test_save.txt";
@@ -834,7 +834,7 @@ class MainTest {
 
     @Test
     void testLoadSavedGame_FileNotFound() {
-        logger.info("Starting Test");
+        logger.info("Starting Test testLoadSavedGame_FileNotFound");
         Game game = new Game();
         Deque<Direction> result = game.loadSavedGame("non_existent_file.txt");
         assertNotNull(result);
@@ -843,7 +843,7 @@ class MainTest {
 
     @Test
     void testSetMoveHistoryPlayer_InvalidMove() {
-        logger.info("Starting Test");
+        logger.info("Starting Test testSetMoveHistoryPlayer_InvalidMove");
         Game game = new Game();
         Deque<Direction> result = game.setMoveHistoryPlayer("[UP, JUMP, DOWN]");
         assertEquals(2, result.size()); // Ignora "JUMP"
@@ -853,7 +853,7 @@ class MainTest {
 
     @Test
     void testSetMoveHistoryPlayer_EmptyInput() {
-        logger.info("Starting Test");
+        logger.info("Starting Test testSetMoveHistoryPlayer_EmptyInput");
         Game game = new Game();
         Deque<Direction> result = game.setMoveHistoryPlayer("[]");
         assertNotNull(result);
@@ -862,7 +862,7 @@ class MainTest {
 
     @Test
     void testSaveGame_WithInvalidBox() {
-        logger.info("Starting Test");
+        logger.info("Starting Test testSaveGame_WithInvalidBox");
         Game game = new Game();
         Board board = game.getCurrentLevel().getBoard();
         Deque<Box> fakeHistory = new ArrayDeque<>();
@@ -875,7 +875,7 @@ class MainTest {
 
     @Test
     void testSaveAndLoadGame() throws IOException {
-        logger.info("Starting Test");
+        logger.info("Starting Test testSaveAndLoadGame");
         Game originalGame = new Game();
         originalGame.loadLevel(1);
         
