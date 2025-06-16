@@ -673,7 +673,7 @@ class MainTest {
     
     @Test
     void testConstructorEmpty() {
-    	logger.info("Starting Test");
+    	logger.info("Starting Test testConstructorEmpty");
         Cell cell = new Cell();
         cell.setType(CellType.EMPTY);
         assertFalse(cell.isWall());
@@ -685,7 +685,7 @@ class MainTest {
     
     @Test
     void testConstructorWall() {
-    	logger.info("Starting Test");
+    	logger.info("Starting Test testConstructorWall");
         Cell cell = new Cell(CellType.WALL);
         assertTrue(cell.isWall());
         assertEquals("Wall", cell.getContent());
@@ -693,7 +693,7 @@ class MainTest {
     
     @Test
     void testConstructorBox() {
-    	logger.info("Starting Test");
+    	logger.info("Starting Test testConstructorBox");
         Cell cell = new Cell(CellType.BOX);
         assertTrue(cell.isBox());
         assertEquals("Box", cell.getContent());
@@ -701,7 +701,7 @@ class MainTest {
     
     @Test
     void testConstructorPlayer() {
-    	logger.info("Starting Test");
+    	logger.info("Starting Test testConstructorPlayer");
         Cell cell = new Cell(CellType.PLAYER);
         assertTrue(cell.isPlayer());
         assertEquals("Player", cell.getContent());
@@ -709,7 +709,7 @@ class MainTest {
     
     @Test
     void testSetTypeWALL() {
-    	logger.info("Starting Test");
+    	logger.info("Starting Test testSetTypeWALL");
         Cell cell = new Cell(CellType.PLAYER);
         assertTrue(cell.isPlayer());
         assertEquals("Player", cell.getContent());
@@ -718,7 +718,7 @@ class MainTest {
     
     @Test
     void testIsTargetTrue() {
-    	logger.info("Starting Test");
+    	logger.info("Starting Test testIsTargetTrue");
         Cell cell = new Cell();
         cell.setIsTarget(true);
         assertTrue(cell.isTarget());
@@ -726,7 +726,7 @@ class MainTest {
     
     @Test
     void testIsTargetFalse() {
-    	logger.info("Starting Test");
+    	logger.info("Starting Test testIsTargetFalse");
         Cell cell = new Cell();
         cell.setIsTarget(true);
         cell.setIsTarget(false);
