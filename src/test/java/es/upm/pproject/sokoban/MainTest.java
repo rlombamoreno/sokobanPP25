@@ -904,7 +904,7 @@ class MainTest {
         assertEquals(originalGame.getCurrentLevel().getLevelName(), 
                      loadedGame.getCurrentLevel().getLevelName());
     }
-      
+       
 /*
     
     
