@@ -12,6 +12,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.ArrayDeque;
 import java.util.Deque;
 import java.util.List;
 import org.slf4j.Logger;
@@ -803,6 +804,72 @@ class MainTest {
         Game game = new Game();
         game.setCurrentLevelNumber(5);
         assertEquals(5, game.getCurrentLevelNumber()); 
+    }
+    
+    @Test
+    void testLoadLevel_FileNotFound() {
+        logger.info("Starting Test");
+        Game game = new Game();
+        boolean loaded = game.loadLevel(9999); // Nivel que no existe
+        assertFalse(loaded);
+    }
+
+    @Test
+    void testLoadLevel_NullLevel() {
+        logger.info("Starting Test");
+        Game game = new Game();
+        boolean loaded = game.loadLevel(-1); // Asume que LevelLoader retorna null para nivel inválido
+        assertFalse(loaded);
+    }
+
+    @Test
+    void testSaveGame_FileWriteError() {
+        logger.info("Starting Test");
+        Game game = new Game();
+        // Intenta guardar en un path probablemente inválido
+        game.saveGame("/invalid_path/test_save.txt", new ArrayDeque<>());
+        // No se espera excepción, solo verificar que no se cae
+    }
+
+    @Test
+    void testLoadSavedGame_FileNotFound() {
+        logger.info("Starting Test");
+        Game game = new Game();
+        Deque<Direction> result = game.loadSavedGame("non_existent_file.txt");
+        assertNotNull(result);
+        assertTrue(result.isEmpty());
+    }
+
+    @Test
+    void testSetMoveHistoryPlayer_InvalidMove() {
+        logger.info("Starting Test");
+        Game game = new Game();
+        Deque<Direction> result = game.setMoveHistoryPlayer("[UP, JUMP, DOWN]");
+        assertEquals(2, result.size()); // Ignora "JUMP"
+        assertTrue(result.contains(Direction.UP));
+        assertTrue(result.contains(Direction.DOWN));
+    }
+
+    @Test
+    void testSetMoveHistoryPlayer_EmptyInput() {
+        logger.info("Starting Test");
+        Game game = new Game();
+        Deque<Direction> result = game.setMoveHistoryPlayer("[]");
+        assertNotNull(result);
+        assertTrue(result.isEmpty());
+    }
+
+    @Test
+    void testSaveGame_WithInvalidBox() {
+        logger.info("Starting Test");
+        Game game = new Game();
+        Board board = game.getCurrentLevel().getBoard();
+
+        Deque<Box> fakeHistory = new ArrayDeque<>();
+        fakeHistory.add(new Box(-100, -100)); 
+
+        board.setBoxHistory(fakeHistory); 
+        game.saveGame("test_output.txt", new ArrayDeque<>());
     }
 
 
