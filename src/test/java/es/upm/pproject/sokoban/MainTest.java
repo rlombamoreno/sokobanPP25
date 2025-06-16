@@ -392,6 +392,15 @@ class MainTest {
     }
     
     @Test
+    void testFindBoxNull() {
+        logger.info("Starting Test testFindBoxNull");
+        board.setCell(1, 1, new Cell(CellType.BOX)); 
+        Position pos = new Position(3, 3); 
+        Box result = board.getBoxAt(pos.getX(), pos.getY()); 
+        assertNull(result);
+    }
+    
+    @Test
     void testFindBoxes() {
     	logger.info("Starting Test testFindBoxes");
         board.setCell(1, 1, new Cell(CellType.BOX));
