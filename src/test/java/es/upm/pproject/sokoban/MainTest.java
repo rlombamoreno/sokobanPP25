@@ -373,6 +373,16 @@ class MainTest {
         boolean result = board.movePlayer(Direction.DOWN);
         assertFalse(result);
     }
+    
+    @Test
+    void testIsValidMoveFailsWhenBoxIsMissing2() {
+        logger.info("Starting Test testIsValidMoveFailsWhenBoxIsMissing2");
+        Board board = new Board(3, 3);
+        board.setCell(1, 1, new Cell(Cell.CellType.PLAYER));
+        board.getCells()[2][1].setType(Cell.CellType.BOX);
+        boolean result = board.movePlayer(Direction.DOWN);
+        assertFalse(result);  
+    }
 
     @Test
     void testMovePlayerPushBoxToTarget() {
