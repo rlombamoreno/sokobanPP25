@@ -1064,6 +1064,26 @@ class MainTest {
         assertNotEquals(true, pos.equals("not a Position")); 
     }
     
+    @Test
+    void testGetOppositeAllDirections() {
+        logger.info("Starting Test testGetOppositeAllDirections");
+        assertEquals(Direction.DOWN, Direction.UP.getOpposite());
+        assertEquals(Direction.UP, Direction.DOWN.getOpposite());
+        assertEquals(Direction.RIGHT, Direction.LEFT.getOpposite());
+        assertEquals(Direction.LEFT, Direction.RIGHT.getOpposite());
+    }
+    
+    @Test
+    void testGetAdjacentAllDirections() {
+        logger.info("Starting Test testGetAdjacentAllDirections");
+        Position pos = new Position(5, 5);  // y = 5, x = 5
+        assertEquals(new Position(5, 4), pos.getAdjacent(Direction.UP));     
+        assertEquals(new Position(5, 6), pos.getAdjacent(Direction.DOWN));   
+        assertEquals(new Position(4, 5), pos.getAdjacent(Direction.LEFT));   
+        assertEquals(new Position(6, 5), pos.getAdjacent(Direction.RIGHT));  
+    }
+    
+    
     //-------------------------LEVEL----------------------------
 
     @Test
