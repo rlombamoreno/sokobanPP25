@@ -1136,22 +1136,66 @@ class MainTest {
     
 */
     
-/*
+
     @Test
     void testInvalidLevelNoBoxes() {
+    	logger.info("Starting Test testInvalidLevelNoBoxes");
+
         String levelData =
             "No Boxes\n" +
+            "4 4\n" +       
             "++++\n" +
             "+W*+\n" +
             "++++\n" +
             "++++";
 
-        Exception exception = assertThrows(IllegalArgumentException.class, () ->
-            LevelLoader.loadLevel(levelData)
-        );
-        assertEquals("The level must contain at least one box and one objective.", exception.getMessage());
+        assertThrows(IllegalArgumentException.class, () -> LevelLoader.loadLevel(levelData));
     }
-*/
+    
+    @Test
+    void testInvalidLevelNoTarget() {
+    	logger.info("Starting Test testInvalidLevelNoTarget");
+
+        String levelData =
+            "No Targets\n" +
+            "4 4\n" +        
+            "++++\n" +
+            "+W#+\n" +
+            "++++\n" +
+            "++++";
+
+        assertThrows(IllegalArgumentException.class, () -> LevelLoader.loadLevel(levelData));
+    }
+    
+    @Test
+    void testInvalidLevelNoPlayer() {
+    	logger.info("Starting Test testInvalidLevelNoPlayer");
+
+        String levelData =
+            "No Player\n" +
+            "4 4\n" +        
+            "++++\n" +
+            "+*#+\n" +
+            "++++\n" +
+            "++++";
+
+        assertThrows(IllegalArgumentException.class, () -> LevelLoader.loadLevel(levelData));
+    }
+    
+    @Test
+    void testInvalidLevelNotEqualBoxAndTarget() {
+    	logger.info("Starting Test testInvalidLevelNotEqualBoxAndTarget");
+    	String levelData =
+    	    "Unequal Boxes and Targets\n" +
+    	    "4 4\n" +        
+    	    "++++\n" +
+    	    "+W#+\n" +
+    	    "+**+\n" +
+    	    "++++";
+
+        assertThrows(IllegalArgumentException.class, () -> LevelLoader.loadLevel(levelData));
+    }
+
 
     /*
     @Test
@@ -1229,4 +1273,5 @@ class MainTest {
         );
         assertEquals("Invalid level format: missing rows or data.", exception.getMessage());
     }
+    
 }
