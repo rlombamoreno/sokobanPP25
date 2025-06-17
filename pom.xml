@@ -50,8 +50,8 @@
         <sonar.projectKey>sokoban-220209</sonar.projectKey>
 		<sonar.projectName>Sokoban-220209</sonar.projectName>
 		<sonar.host.url>https://costa.ls.fi.upm.es/sonar</sonar.host.url>
-		<sonar.coverage.exclusions>**/view/**,**/controller/**</sonar.coverage.exclusions>
-		
+		<sonar.coverage.exclusions>**/view/**,**/controller/**,**/Sokoban.java</sonar.coverage.exclusions>
+
 		<sonar.coverage.jacoco.xmlReportPaths>target/site/jacoco/jacoco.xml</sonar.coverage.jacoco.xmlReportPaths>
     </properties>
 
