@@ -25,8 +25,7 @@ class MainTest {
     private final int width = 5;
     private final int height = 5;
     private static final Logger logger = LoggerFactory.getLogger(MainTest.class);
-    //private final int x = 2;
-    //private final int y = 3;
+
     
 
     @BeforeEach
@@ -235,8 +234,6 @@ class MainTest {
     	logger.info("Starting Test testSetTargetInValid4");
         assertThrows(IndexOutOfBoundsException.class, () -> board.setTarget(2, 5)); 
     }
-
-
 
     @Test
     void testMovePlayerValid() {
@@ -599,7 +596,6 @@ class MainTest {
      
 
 //--------------------------------------BOX---------------------------------
-  //AQUI NO HAGO UN BEFORE EACH PARA ASI CAMBIAR UN POCO, PERO LO PODRÍAMOS AÑADIR Y NO DECLARAR BOX EN TODOS LOS METODOS
     @Test
     void testBoxConstructor() {
     	logger.info("Starting Test testBoxConstructor");
@@ -655,6 +651,21 @@ class MainTest {
                           "     \n";
         assertEquals(expected, board.toString());
     }
+    
+    @Test
+    void testIsValidMoveWhenBoxIsMissing() {
+        logger.info("Starting Test testIsValidMoveWhenBoxIsMissing");
+        
+        Board board = new Board(3, 3);
+        board.setCell(1, 1, new Cell(CellType.PLAYER));
+        board.getCell(1, 2).setType(CellType.BOX);        
+        boolean result = board.movePlayer(Direction.RIGHT); 
+        
+        assertFalse(result);
+        assertTrue(board.getCell(1, 1).isPlayer());
+        assertTrue(board.getCell(1, 2).isBox()); 
+    }
+    
     
 //-----------------WAREHOUSEMAN--------------------------------
     
@@ -967,61 +978,7 @@ class MainTest {
                      loadedGame.getCurrentLevel().getLevelName());
     }
        
-/*
-    
-    
-    @Test
-    void testSaveGameSuccess() {
-        Game game = new Game();
-        String filename = "testSave.txt";
-        assertDoesNotThrow(() -> game.saveGame(filename));
-        File file = new File(filename);
-        assertTrue(file.exists());
-        file.delete();
-    }
-    
-    @Test
-    void testSaveGameIOException() {
-        Game game = new Game();
-        assertDoesNotThrow(() -> game.saveGame("/invalid-path/testSave.txt"));
-    }
-    
-    
-    
-    @Test
-    void testLoadSavedGameIOException() {
-        Game game = new Game();
-        boolean loaded = game.loadSavedGame("nonexistentfile.txt");
-        assertFalse(loaded);
-    }
-    
-    @Test
-    void testLoadLevelIOException() {
-        Game game = new Game();
-        boolean loaded = game.loadLevel(99); 
-        assertFalse(loaded);
-    }
-    
-    @Test
-    void testLoadLevelReturnsNull() throws IOException {
-        // Crear archivo vacío
-        String filename = "level_empty.txt";
-        try (FileWriter writer = new FileWriter(filename)) {
-            writer.write("Only Name"); // forzamos error de formato
-        }
 
-        Game game = new Game();
-        boolean loaded = game.loadLevel("empty".hashCode()); // hashCode como número para evitar colisión
-
-        assertFalse(loaded);
-    }
-    
-    @Test
-    void testSaveGameIOException00() {
-        Game game = new Game();
-        String invalidFilename = "/invalid_path/saved_game.txt";
-        assertDoesNotThrow(() -> game.saveGame(invalidFilename));
-    }*/
     
   //-------------------------POSITION----------------------------
     @Test
@@ -1130,28 +1087,6 @@ class MainTest {
 
 //----------------------------LOAD LEVEL------------------------------------
     
-/*
-    @Test
-    void testValidLevelLoad() {
-        String levelData =
-            "Level 1\n" +
-            "++++\n" +
-            "+W*+\n" +
-            "+#++\n" +
-            "++++";
-
-        Level level = LevelLoader.loadLevel(levelData);
-        assertEquals("Level 1", level.getLevelName());
-        assertNotNull(level.getBoard());
-        assertEquals(1, level.getBoard().getBoxes().size());
-        assertNotNull(level.getBoard().getWarehouseman());
-
-        Cell targetCell = level.getBoard().getCell(1, 2);
-        assertTrue(targetCell.isTarget());
-    }
-    
-*/
-    
 
     @Test
     void testInvalidLevelNoBoxes() {
@@ -1211,72 +1146,6 @@ class MainTest {
 
         assertThrows(IllegalArgumentException.class, () -> LevelLoader.loadLevel(levelData));
     }
-
-
-    /*
-    @Test
-    void testInvalidLeveNoGoals() {
-        String levelData =
-            "No Goals\n" +
-            "++++\n" +
-            "+W#+\n" +
-            "++++\n" +
-            "++++";
-
-        Exception exception = assertThrows(IllegalArgumentException.class, () ->
-            LevelLoader.loadLevel(levelData)
-        );
-        assertEquals("The level must contain at least one box and one objective.", exception.getMessage());
-    }
-*/
-/*
-    @Test
-    void testInvalidLevelMultipleW() {
-        String levelData =
-            "Too Many Players\n" +
-            "++++\n" +
-            "+W#+\n" +
-            "+W*+\n" +
-            "++++";
-
-        Exception exception = assertThrows(IllegalArgumentException.class, () ->
-            LevelLoader.loadLevel(levelData)
-        );
-        assertEquals("There must be exactly one warehouseman in the level.", exception.getMessage());
-    }
-*/
-    
-/*
-    @Test
-    void testInvalidLevelMismatched() {
-        String levelData =
-            "Box Goal Mismatch\n" +
-            "++++\n" +
-            "+W#+\n" +
-            "+*++\n" +
-            "+*++";
-
-        Exception exception = assertThrows(IllegalArgumentException.class, () ->
-            LevelLoader.loadLevel(levelData)
-        );
-        assertEquals("The number of boxes and objectives must be the same.", exception.getMessage());
-    }
-*/
-    /*
-    @Test
-    void testLevelNonRectangular() {
-        String levelData =
-            "Non Rectangular\n" +
-            "++++\n" +
-            "+W*+\n" +
-            "+#\n" +
-            "++++";
-
-        Level level = LevelLoader.loadLevel(levelData);
-        assertEquals(4, level.getBoard().getHeight());
-        assertEquals(4, level.getBoard().getWidth());
-    } 
-    */
 
     @Test
     void testInvalidLevelFormat() {
