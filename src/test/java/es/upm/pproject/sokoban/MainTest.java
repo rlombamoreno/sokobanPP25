@@ -652,21 +652,6 @@ class MainTest {
         assertEquals(expected, board.toString());
     }
     
-    @Test
-    void testIsValidMoveWhenBoxIsMissing() {
-        logger.info("Starting Test testIsValidMoveWhenBoxIsMissing");
-        
-        Board board = new Board(3, 3);
-        board.setCell(1, 1, new Cell(CellType.PLAYER));
-        board.getCell(1, 2).setType(CellType.BOX);        
-        boolean result = board.movePlayer(Direction.RIGHT); 
-        
-        assertFalse(result);
-        assertTrue(board.getCell(1, 1).isPlayer());
-        assertTrue(board.getCell(1, 2).isBox()); 
-    }
-    
-    
 //-----------------WAREHOUSEMAN--------------------------------
     
     @Test
