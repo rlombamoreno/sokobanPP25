@@ -77,7 +77,9 @@ public class Board {
 				warehouseman = new WarehouseMan(j, i);
 			} 
 			if (cell.isBox()) {
-				boxes.add(new Box(j, i));
+				Box box = new Box(j, i);
+				boxes.add(box);
+				box.updateOnTarget(targets.contains(new Position(j, i)));
 			}
 		} else {
 			throw new IndexOutOfBoundsException(INVALID_CELL_POSITION);
