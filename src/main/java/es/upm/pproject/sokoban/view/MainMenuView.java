@@ -93,6 +93,7 @@ public class MainMenuView extends JFrame {
     }
 
     private void loadGame() {
+    	hasEnoughLevels();
         gameController.loadSavedGame("saved_game.txt");
         dispose();
         GameView gameView = new GameView(gameController, levelCount);
