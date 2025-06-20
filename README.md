@@ -32,16 +32,10 @@ git clone https://costa.ls.fi.upm.es/gitlab/220227/project2025.git
 cd project2025
 ```
 
-Build the project with Maven:
+To run the game :
 
 ```sh
-mvn clean package
-```
-
-To run the game after building:
-
-```sh
-java -jar target/sokoban-0.0.1-SNAPSHOT.jar
+mvn exec:java
 ```
 
 Send the project to SonarQube: 
