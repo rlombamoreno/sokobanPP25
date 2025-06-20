@@ -189,6 +189,7 @@ public class Board {
 	            char symbol;
 	            Cell cell = cells[i][j];
 	            if (cell.isWall()) symbol = '+';
+	            else if(cell.isBox() && targets.contains(new Position(j, i))) symbol = '$';
 	            else if (cell.isBox()) symbol = '#';
 	            else if (targets.contains(new Position(j, i))) symbol = '*';
 	            else if (cell.isPlayer()) symbol = 'W';

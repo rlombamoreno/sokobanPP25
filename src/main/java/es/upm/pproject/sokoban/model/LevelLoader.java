@@ -50,6 +50,13 @@ public class LevelLoader {
                         cell.setType(Cell.CellType.PLAYER);
                         warehouseManCount++;
                         break;
+                    case '$':
+                    	cell.setType(Cell.CellType.BOX);
+                        boxCount++;
+                    	cell.setIsTarget(true);
+                    	board.setTarget(i, j);
+                        goalCount++;
+                        break;
                     default:
                         break;
                 }

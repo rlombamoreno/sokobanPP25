@@ -14,7 +14,7 @@ public class GameView extends JFrame {
 
     public GameView(GameController gameController, int levelCount) {
         this.gameController = gameController;
-        setTitle(gameController.getGame().getCurrentLevel().getLevelName() + " - Sokoban");
+        setTitle(gameController.getGame().getCurrentLevel().getLevelName() + " - Sokoban - Level "+ gameController.getGame().getCurrentLevelNumber());
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         setSize(800, 600);
         setLocationRelativeTo(null);
