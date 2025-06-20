@@ -136,26 +136,28 @@
   <properties>
     <maven.compiler.release>${java.version}</maven.compiler.release>
     <maven.resources.plugin>3.1.0</maven.resources.plugin>
-    <sonar.language>java</sonar.language>
-    <sonar.projectName>${project.name}-${sonar.id}</sonar.projectName>
-    <java.version>11</java.version>
-    <maven.compiler.source>${java.version}</maven.compiler.source>
-    <maven.clean.plugin>3.1.0</maven.clean.plugin>
+    <sonar.projectName>Sokoban-220209</sonar.projectName>
     <maven.compiler.plugin>3.8.1</maven.compiler.plugin>
     <sonar.host.url>https://costa.ls.fi.upm.es/sonar</sonar.host.url>
-    <jacoco.version>0.8.11</jacoco.version>
-    <sonar.scm.provider>git</sonar.scm.provider>
-    <maven.compiler.target>${java.version}</maven.compiler.target>
-    <maven.jar.plugin>3.2.0</maven.jar.plugin>
-    <sonar.projectKey>${project.groupId}:${project.artifactId}:${sonar.projectName}:${sonar.id}</sonar.projectKey>
     <slf4j.version>1.7.32</slf4j.version>
     <sonar.qualitygate.wait>true</sonar.qualitygate.wait>
-    <maven.shade.plugin>3.2.2</maven.shade.plugin>
-    <maven.install.plugin>3.0.0-M1</maven.install.plugin>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <javafx.version>17.0.2</javafx.version>
     <junit.version>5.6.2</junit.version>
     <maven.surefire.plugin>3.0.0-M5</maven.surefire.plugin>
+    <sonar.coverage.jacoco.xmlReportPaths>target/site/jacoco/jacoco.xml</sonar.coverage.jacoco.xmlReportPaths>
     <logback.version>1.2.6</logback.version>
+    <sonar.coverage.exclusions>**/view/**,**/controller/**</sonar.coverage.exclusions>
+    <sonar.language>java</sonar.language>
+    <java.version>11</java.version>
+    <maven.compiler.source>${java.version}</maven.compiler.source>
+    <maven.clean.plugin>3.1.0</maven.clean.plugin>
+    <jacoco.version>0.8.11</jacoco.version>
+    <sonar.scm.provider>git</sonar.scm.provider>
+    <maven.compiler.target>${java.version}</maven.compiler.target>
+    <maven.jar.plugin>3.2.0</maven.jar.plugin>
+    <sonar.projectKey>sokoban-220209</sonar.projectKey>
+    <maven.shade.plugin>3.2.2</maven.shade.plugin>
+    <maven.install.plugin>3.0.0-M1</maven.install.plugin>
   </properties>
 </project>
