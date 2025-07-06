@@ -28,7 +28,7 @@ Ensure you have the following installed before running the project:
 Clone the repository and navigate to the project folder:
 
 ```sh
-git clone https://costa.ls.fi.upm.es/gitlab/220227/project2025.git 
+git clone https://github.com/rlombamoreno/sokobanPP25.git 
 cd project2025
 ```
 
